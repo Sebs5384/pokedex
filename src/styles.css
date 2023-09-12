@@ -1,0 +1,22 @@
+.card-border {
+  border-color: #dc143c;
+}
+
+.poke-logo {
+  width: 200px;
+  height: 50px;
+}
+
+.nav-bar {
+  background-color: #dc143c !important;
+}
+
+.paginator-text {
+  color: black;
+}
+
+.paginator-text:hover {
+  color: black;
+  border-color: #dc143c;
+  box-shadow: 0 0 10px crimson;
+}
