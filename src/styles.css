@@ -60,6 +60,10 @@ body {
   box-shadow: 0 0 10px #dc143c;
 }
 
+.hidden {
+  display: none;
+}
+
 @keyframes poke-shake {
   0% {
     transform: translateX(0);
