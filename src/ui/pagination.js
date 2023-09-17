@@ -1,26 +1,25 @@
 import { getPokemonPaginationData } from "../api/pokemon.js";
 
-export function updatePagination(POKEMONS_PER_PAGE, NEXT_PAGE) {
-  getPokemonPaginationData(POKEMONS_PER_PAGE, NEXT_PAGE).then((data) => {
+export function updatePagination(POKEMONS_PER_PAGE, PAGE_INDEX) {
+  getPokemonPaginationData(POKEMONS_PER_PAGE, PAGE_INDEX).then((data) => {
     const { names, next, previous, count } = data;
     const TOTAL_POKEMONS = count;
     const TOTAL_PAGES = Math.ceil(TOTAL_POKEMONS / POKEMONS_PER_PAGE + 1);
-    const CURRENT_PAGE = NEXT_PAGE / POKEMONS_PER_PAGE;
+    const CURRENT_PAGE = PAGE_INDEX / POKEMONS_PER_PAGE + 1;
 
     console.log(data);
     handlePaginationChanges(POKEMONS_PER_PAGE);
     createPaginator(TOTAL_PAGES);
-    setCurrentPages(CURRENT_PAGE);
+    displayCurrentPagination(CURRENT_PAGE);
   });
 }
 
-function setCurrentPages(current) {
+function displayCurrentPagination(currentPage) {
   const $pages = document.querySelectorAll(".paginator-page");
 
   $pages.forEach((page, index) => {
     const pageIndex = index + 1;
 
-    const currentPage = Number(current);
     pageIndex >= currentPage - 1 && pageIndex <= currentPage + 2 ? page.classList.remove("hidden") : page.classList.add("hidden");
   });
 }
@@ -30,14 +29,13 @@ function handlePaginationChanges(POKEMONS_PER_PAGE) {
 
   $buttons.onclick = (event) => {
     event.preventDefault();
-    const $clickedElement = event.target;
+    const $clickedPage = event.target;
 
-    if ($clickedElement.classList.contains("paginator-page")) {
-      const CURRENT_PAGE = Number(event.target.innerText);
-      console.log(CURRENT_PAGE, "currentpage");
-      const NEXT_PAGE = (CURRENT_PAGE - 1) * POKEMONS_PER_PAGE;
+    if ($clickedPage.classList.contains("paginator-page")) {
+      const CURRENT_PAGE = Number($clickedPage.innerText);
+      const NEXT_PAGE_INDEX = (CURRENT_PAGE - 1) * POKEMONS_PER_PAGE;
 
-      updatePagination(POKEMONS_PER_PAGE, NEXT_PAGE);
+      updatePagination(POKEMONS_PER_PAGE, NEXT_PAGE_INDEX);
     }
   };
 }
