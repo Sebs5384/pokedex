@@ -8,7 +8,7 @@ export function updatePagination(POKEMONS_PER_PAGE, PAGE_INDEX) {
     const CURRENT_PAGE = PAGE_INDEX / POKEMONS_PER_PAGE + 1;
 
     console.log(data);
-    handlePaginationChanges(POKEMONS_PER_PAGE);
+    handlePaginationChanges(POKEMONS_PER_PAGE, CURRENT_PAGE, PAGE_INDEX);
     createPaginator(TOTAL_PAGES);
     displayCurrentPagination(CURRENT_PAGE);
   });
@@ -24,18 +24,25 @@ function displayCurrentPagination(currentPage) {
   });
 }
 
-function handlePaginationChanges(POKEMONS_PER_PAGE) {
-  const $buttons = document.querySelector("#paginator-container");
+function handlePaginationChanges(POKEMONS_PER_PAGE, CURRENT_PAGE, PAGE_INDEX) {
+  let NEXT_PAGE_INDEX = POKEMONS_PER_PAGE;
+  let PREVIOUS_PAGE_INDEX = PAGE_INDEX;
 
+  const $buttons = document.querySelector("#paginator-container");
   $buttons.onclick = (event) => {
     event.preventDefault();
-    const $clickedPage = event.target;
+    const $clickedButton = event.target;
 
-    if ($clickedPage.classList.contains("paginator-page")) {
-      const CURRENT_PAGE = Number($clickedPage.innerText);
-      const NEXT_PAGE_INDEX = (CURRENT_PAGE - 1) * POKEMONS_PER_PAGE;
+    if ($clickedButton.classList.contains("paginator-page")) {
+      const CURRENT_PAGE = Number($clickedButton.innerText);
+      const PAGE_INDEX = (CURRENT_PAGE - 1) * POKEMONS_PER_PAGE;
 
-      updatePagination(POKEMONS_PER_PAGE, NEXT_PAGE_INDEX);
+      updatePagination(POKEMONS_PER_PAGE, PAGE_INDEX);
+    } else if ($clickedButton.classList.contains("paginator-button")) {
+      NEXT_PAGE_INDEX = CURRENT_PAGE * POKEMONS_PER_PAGE;
+      PREVIOUS_PAGE_INDEX = (CURRENT_PAGE - 1) * POKEMONS_PER_PAGE;
+
+      $clickedButton.innerText === "Previous" ? updatePagination(POKEMONS_PER_PAGE, PREVIOUS_PAGE_INDEX) : updatePagination(POKEMONS_PER_PAGE, NEXT_PAGE_INDEX);
     }
   };
 }
@@ -53,7 +60,7 @@ function createPaginator(totalPages) {
     $link.href = "#";
 
     $link.textContent = i === 0 ? "Previous" : i === totalPages ? "Next" : i;
-    i !== 0 && i !== totalPages ? $link.classList.add("paginator-page") : null;
+    i !== 0 && i !== totalPages ? $link.classList.add("paginator-page") : $link.classList.add("paginator-button");
 
     $item.appendChild($link);
     $pageContainer.appendChild($item);
