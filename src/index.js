@@ -1,6 +1,6 @@
-import { setupPagination } from "./ui/pagination.js";
+import { setupPokedex } from "./ui/pokemon.js";
 function initialize() {
-  setupPagination();
+  setupPokedex();
 }
 
 initialize();
