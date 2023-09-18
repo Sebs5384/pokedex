@@ -7,24 +7,23 @@ export function updatePagination(POKEMONS_PER_PAGE, PAGE_INDEX) {
     const TOTAL_PAGES = Math.ceil(TOTAL_POKEMONS / POKEMONS_PER_PAGE + 1);
     const CURRENT_PAGE = PAGE_INDEX / POKEMONS_PER_PAGE + 1;
 
-    console.log(data);
-    handlePaginationChanges(POKEMONS_PER_PAGE, CURRENT_PAGE, PAGE_INDEX);
+    handlePaginationChanges(POKEMONS_PER_PAGE, PAGE_INDEX, CURRENT_PAGE);
     createPaginator(TOTAL_PAGES);
     displayCurrentPagination(CURRENT_PAGE);
   });
 }
 
-function displayCurrentPagination(currentPage) {
+function displayCurrentPagination(CURRENT_PAGE) {
   const $pages = document.querySelectorAll(".paginator-page");
 
   $pages.forEach((page, index) => {
     const pageIndex = index + 1;
 
-    pageIndex >= currentPage - 1 && pageIndex <= currentPage + 2 ? page.classList.remove("hidden") : page.classList.add("hidden");
+    pageIndex >= CURRENT_PAGE - 1 && pageIndex <= CURRENT_PAGE + 2 ? page.classList.remove("hidden") : page.classList.add("hidden");
   });
 }
 
-function handlePaginationChanges(POKEMONS_PER_PAGE, CURRENT_PAGE, PAGE_INDEX) {
+function handlePaginationChanges(POKEMONS_PER_PAGE, PAGE_INDEX, CURRENT_PAGE) {
   let NEXT_PAGE_INDEX = POKEMONS_PER_PAGE;
   let PREVIOUS_PAGE_INDEX = PAGE_INDEX;
 
@@ -40,7 +39,7 @@ function handlePaginationChanges(POKEMONS_PER_PAGE, CURRENT_PAGE, PAGE_INDEX) {
       updatePagination(POKEMONS_PER_PAGE, PAGE_INDEX);
     } else if ($clickedButton.classList.contains("paginator-button")) {
       NEXT_PAGE_INDEX = CURRENT_PAGE * POKEMONS_PER_PAGE;
-      PREVIOUS_PAGE_INDEX = (CURRENT_PAGE - 1) * POKEMONS_PER_PAGE;
+      PREVIOUS_PAGE_INDEX = (CURRENT_PAGE - 2) * POKEMONS_PER_PAGE;
 
       $clickedButton.innerText === "Previous" ? updatePagination(POKEMONS_PER_PAGE, PREVIOUS_PAGE_INDEX) : updatePagination(POKEMONS_PER_PAGE, NEXT_PAGE_INDEX);
     }
