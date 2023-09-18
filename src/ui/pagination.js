@@ -2,19 +2,25 @@ import { getPokemonPaginationData } from "../api/pokemon.js";
 
 export function updatePagination(POKEMONS_PER_PAGE, PAGE_INDEX) {
   getPokemonPaginationData(POKEMONS_PER_PAGE, PAGE_INDEX).then((data) => {
-    const { names, next, previous, count } = data;
+    const { names, count } = data;
     const TOTAL_POKEMONS = count;
     const TOTAL_PAGES = Math.ceil(TOTAL_POKEMONS / POKEMONS_PER_PAGE + 1);
     const CURRENT_PAGE = PAGE_INDEX / POKEMONS_PER_PAGE + 1;
 
-    handlePaginationChanges(POKEMONS_PER_PAGE, PAGE_INDEX, CURRENT_PAGE);
     createPaginator(TOTAL_PAGES);
-    displayCurrentPagination(CURRENT_PAGE);
+    displayCurrentPagination(CURRENT_PAGE, TOTAL_PAGES);
+    handlePaginationChanges(POKEMONS_PER_PAGE, PAGE_INDEX, CURRENT_PAGE);
   });
 }
 
-function displayCurrentPagination(CURRENT_PAGE) {
+function displayCurrentPagination(CURRENT_PAGE, TOTAL_PAGES) {
   const $pages = document.querySelectorAll(".paginator-page");
+  const $navigationButtons = document.querySelectorAll(".paginator-button");
+  const $previousButton = $navigationButtons[0];
+  const $nextButton = $navigationButtons[1];
+
+  CURRENT_PAGE === 1 ? $previousButton.classList.add("disabled") : $previousButton.classList.remove("disabled");
+  CURRENT_PAGE === TOTAL_PAGES - 1 ? $nextButton.classList.add("disabled") : $nextButton.classList.remove("disabled");
 
   $pages.forEach((page, index) => {
     const pageIndex = index + 1;
@@ -24,10 +30,10 @@ function displayCurrentPagination(CURRENT_PAGE) {
 }
 
 function handlePaginationChanges(POKEMONS_PER_PAGE, PAGE_INDEX, CURRENT_PAGE) {
+  const $buttons = document.querySelector("#paginator-container");
   let NEXT_PAGE_INDEX = POKEMONS_PER_PAGE;
   let PREVIOUS_PAGE_INDEX = PAGE_INDEX;
 
-  const $buttons = document.querySelector("#paginator-container");
   $buttons.onclick = (event) => {
     event.preventDefault();
     const $clickedButton = event.target;
@@ -46,22 +52,23 @@ function handlePaginationChanges(POKEMONS_PER_PAGE, PAGE_INDEX, CURRENT_PAGE) {
   };
 }
 
-function createPaginator(totalPages) {
+function createPaginator(TOTAL_PAGES) {
   const $pageContainer = document.querySelector("#paginator-container");
 
-  $pageContainer.innerHTML = "";
-  for (let i = 0; i <= totalPages; i++) {
+  if ($pageContainer.innerHTML !== "") return;
+
+  for (let i = 0; i <= TOTAL_PAGES; i++) {
     const $item = document.createElement("li");
-    const $link = document.createElement("a");
+    const $page = document.createElement("a");
 
     $item.className = "page-item";
-    $link.className = "page-link card-border paginator-text";
-    $link.href = "#";
+    $page.className = "page-link card-border paginator-text";
+    $page.href = "#";
 
-    $link.textContent = i === 0 ? "Previous" : i === totalPages ? "Next" : i;
-    i !== 0 && i !== totalPages ? $link.classList.add("paginator-page") : $link.classList.add("paginator-button");
+    $page.textContent = i === 0 ? "Previous" : i === TOTAL_PAGES ? "Next" : i;
+    i !== 0 && i !== TOTAL_PAGES ? $page.classList.add("paginator-page") : $page.classList.add("paginator-button");
 
-    $item.appendChild($link);
+    $item.appendChild($page);
     $pageContainer.appendChild($item);
   }
 }
