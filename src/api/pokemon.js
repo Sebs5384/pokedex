@@ -1,7 +1,7 @@
 const URL = "https://pokeapi.co/api/v2/pokemon/";
 
-function getPokemon(pokemon) {
-  const pokemonURL = `${URL}${pokemon}`;
+export function getPokemon(id) {
+  const pokemonURL = `${URL}${id}`;
 
   return fetch(pokemonURL)
     .then((response) => {
@@ -12,7 +12,7 @@ function getPokemon(pokemon) {
     });
 }
 
-function getPokemons(limit = "20", offset = "0") {
+export function getPokemons(limit = "20", offset = "0") {
   const pokemonsURL = `${URL}?limit=${limit}&offset=${offset}`;
 
   return fetch(pokemonsURL)
@@ -22,13 +22,4 @@ function getPokemons(limit = "20", offset = "0") {
     .then((pokemons) => {
       return pokemons;
     });
-}
-
-export function getPokemonPaginationData(limit, offset) {
-  return getPokemons(limit, offset).then((pokemons) => {
-    return {
-      names: pokemons.results.map((pokemon) => pokemon.name),
-      TOTAL_POKEMONS: pokemons.count,
-    };
-  });
 }
