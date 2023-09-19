@@ -1,11 +1,10 @@
 import { getPokemonPaginationData } from "../api/pokemon.js";
+import { pokedexPaginationValues } from "../utils/general.js";
 
 export function updatePagination(POKEMONS_PER_PAGE, PAGE_INDEX) {
-  getPokemonPaginationData(POKEMONS_PER_PAGE, PAGE_INDEX).then((data) => {
-    const { names, count } = data;
-    const TOTAL_POKEMONS = count;
-    const TOTAL_PAGES = Math.ceil(TOTAL_POKEMONS / POKEMONS_PER_PAGE + 1);
-    const CURRENT_PAGE = PAGE_INDEX / POKEMONS_PER_PAGE + 1;
+  getPokemonPaginationData(POKEMONS_PER_PAGE, PAGE_INDEX).then((pokemons) => {
+    const { names, TOTAL_POKEMONS } = pokemons;
+    const { TOTAL_PAGES, CURRENT_PAGE } = pokedexPaginationValues(TOTAL_POKEMONS, POKEMONS_PER_PAGE, PAGE_INDEX);
 
     createPaginator(TOTAL_PAGES);
     displayCurrentPagination(CURRENT_PAGE, TOTAL_PAGES);
