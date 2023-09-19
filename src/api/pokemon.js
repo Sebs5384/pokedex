@@ -28,8 +28,6 @@ export function getPokemonPaginationData(limit, offset) {
   return getPokemons(limit, offset).then((pokemons) => {
     return {
       names: pokemons.results.map((pokemon) => pokemon.name),
-      next: pokemons.next,
-      previous: pokemons.previous,
       count: pokemons.count,
     };
   });
