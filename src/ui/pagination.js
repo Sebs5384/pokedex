@@ -1,7 +1,7 @@
-export function updatePagination(POKEMONS_PER_PAGE, pageIndex, totalPages, currentPage, callbackFunction = () => {}) {
+export function setupPagination(POKEMONS_PER_PAGE, pageIndex, totalPages, currentPage, setNewPage) {
   createPaginator(totalPages);
   displayCurrentPagination(currentPage, totalPages);
-  handlePaginationChanges(POKEMONS_PER_PAGE, pageIndex, currentPage, callbackFunction);
+  handlePaginationChanges(POKEMONS_PER_PAGE, pageIndex, currentPage, setNewPage);
 }
 
 function displayCurrentPagination(currentPage, totalPages) {
@@ -20,7 +20,7 @@ function displayCurrentPagination(currentPage, totalPages) {
   });
 }
 
-function handlePaginationChanges(POKEMONS_PER_PAGE, pageIndex, currentPage, callbackFunction = () => {}) {
+function handlePaginationChanges(POKEMONS_PER_PAGE, pageIndex, currentPage, setNewPage) {
   const $buttons = document.querySelector("#paginator-container");
   let nextPageIndex = POKEMONS_PER_PAGE;
   let previousPageIndex = pageIndex;
@@ -33,12 +33,12 @@ function handlePaginationChanges(POKEMONS_PER_PAGE, pageIndex, currentPage, call
       const currentPage = Number($clickedButton.innerText);
       const pageIndex = (currentPage - 1) * POKEMONS_PER_PAGE;
 
-      callbackFunction(POKEMONS_PER_PAGE, pageIndex);
+      setNewPage(POKEMONS_PER_PAGE, pageIndex);
     } else if ($clickedButton.classList.contains("paginator-button")) {
       nextPageIndex = currentPage * POKEMONS_PER_PAGE;
       previousPageIndex = (currentPage - 2) * POKEMONS_PER_PAGE;
 
-      $clickedButton.innerText === "Previous" ? callbackFunction(POKEMONS_PER_PAGE, previousPageIndex) : callbackFunction(POKEMONS_PER_PAGE, nextPageIndex);
+      $clickedButton.innerText === "Previous" ? setNewPage(POKEMONS_PER_PAGE, previousPageIndex) : setNewPage(POKEMONS_PER_PAGE, nextPageIndex);
     }
   };
 }
