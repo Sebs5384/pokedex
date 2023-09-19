@@ -28,7 +28,7 @@ export function getPokemonPaginationData(limit, offset) {
   return getPokemons(limit, offset).then((pokemons) => {
     return {
       names: pokemons.results.map((pokemon) => pokemon.name),
-      count: pokemons.count,
+      TOTAL_POKEMONS: pokemons.count,
     };
   });
 }
