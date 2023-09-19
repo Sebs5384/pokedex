@@ -1,6 +1,6 @@
-import { setupPokedex } from "./ui/pokemon.js";
+import { updatePokedexPage } from "./ui/pokemon.js";
 function initialize() {
-  setupPokedex();
+  updatePokedexPage();
 }
 
 initialize();

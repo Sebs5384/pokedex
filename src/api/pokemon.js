@@ -12,7 +12,7 @@ export function getPokemon(id) {
     });
 }
 
-export function getPokemons(limit = "20", offset = "0") {
+export function getPokemons(limit, offset) {
   const pokemonsURL = `${URL}?limit=${limit}&offset=${offset}`;
 
   return fetch(pokemonsURL)

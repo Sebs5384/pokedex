@@ -1,15 +1,7 @@
-import { getPokemons } from "../api/pokemon.js";
-import { pokedexPaginationValues } from "../utils/general.js";
-
-export function updatePagination(POKEMONS_PER_PAGE, pageIndex) {
-  getPokemons(POKEMONS_PER_PAGE, pageIndex).then((pokemons) => {
-    const totalPokemons = pokemons.count;
-    const { totalPages, currentPage } = pokedexPaginationValues(totalPokemons, pageIndex, POKEMONS_PER_PAGE);
-
-    createPaginator(totalPages);
-    displayCurrentPagination(currentPage, totalPages);
-    handlePaginationChanges(POKEMONS_PER_PAGE, pageIndex, currentPage);
-  });
+export function updatePagination(POKEMONS_PER_PAGE, pageIndex, totalPages, currentPage, callbackFunction = () => {}) {
+  createPaginator(totalPages);
+  displayCurrentPagination(currentPage, totalPages);
+  handlePaginationChanges(POKEMONS_PER_PAGE, pageIndex, currentPage, callbackFunction);
 }
 
 function displayCurrentPagination(currentPage, totalPages) {
@@ -28,7 +20,7 @@ function displayCurrentPagination(currentPage, totalPages) {
   });
 }
 
-function handlePaginationChanges(POKEMONS_PER_PAGE, pageIndex, currentPage) {
+function handlePaginationChanges(POKEMONS_PER_PAGE, pageIndex, currentPage, callbackFunction = () => {}) {
   const $buttons = document.querySelector("#paginator-container");
   let nextPageIndex = POKEMONS_PER_PAGE;
   let previousPageIndex = pageIndex;
@@ -41,12 +33,12 @@ function handlePaginationChanges(POKEMONS_PER_PAGE, pageIndex, currentPage) {
       const currentPage = Number($clickedButton.innerText);
       const pageIndex = (currentPage - 1) * POKEMONS_PER_PAGE;
 
-      updatePagination(POKEMONS_PER_PAGE, pageIndex);
+      callbackFunction(POKEMONS_PER_PAGE, pageIndex);
     } else if ($clickedButton.classList.contains("paginator-button")) {
       nextPageIndex = currentPage * POKEMONS_PER_PAGE;
       previousPageIndex = (currentPage - 2) * POKEMONS_PER_PAGE;
 
-      $clickedButton.innerText === "Previous" ? updatePagination(POKEMONS_PER_PAGE, previousPageIndex) : updatePagination(POKEMONS_PER_PAGE, nextPageIndex);
+      $clickedButton.innerText === "Previous" ? callbackFunction(POKEMONS_PER_PAGE, previousPageIndex) : callbackFunction(POKEMONS_PER_PAGE, nextPageIndex);
     }
   };
 }
