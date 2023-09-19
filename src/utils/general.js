@@ -1,8 +1,8 @@
-function calculatePaginationValues(TOTAL_ITEMS, ITEMS_PER_PAGE, PAGE_INDEX) {
-  const TOTAL_PAGES = Math.ceil(TOTAL_ITEMS / ITEMS_PER_PAGE + 1);
-  const CURRENT_PAGE = PAGE_INDEX / ITEMS_PER_PAGE + 1;
+function calculatePaginationValues(totalItems, pageIndex, itemsPerPage) {
+  const totalPages = Math.ceil(totalItems / itemsPerPage + 1);
+  const currentPage = pageIndex / itemsPerPage + 1;
 
-  return { TOTAL_PAGES, CURRENT_PAGE };
+  return { totalPages, currentPage };
 }
 
 export { calculatePaginationValues as pokedexPaginationValues };
