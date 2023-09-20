@@ -23,3 +23,7 @@ export function getPokemons(limit, offset) {
       return pokemons;
     });
 }
+
+export function getPokemonSprite(id) {
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+}
