@@ -64,6 +64,15 @@ body {
   display: none;
 }
 
+.pokemon-sprite {
+  transition: transform 0.3s ease;
+}
+
+.pokemon-sprite:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
 @keyframes poke-shake {
   0% {
     transform: translateX(0);

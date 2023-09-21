@@ -19,8 +19,9 @@ function createCards(pokemons, ids, sprites) {
     $name.style = "font-size: 13px";
     $name.textContent = `#${id}  ${pokemon}`;
 
-    $sprite.className = "card-img-top";
+    $sprite.className = "card-img-top pokemon-sprite";
     $sprite.src = sprite;
+    $sprite.id = `${id}`;
     $sprite.onerror = () => ($sprite.src = "img/404-shocked.png");
 
     $card.appendChild($name);
