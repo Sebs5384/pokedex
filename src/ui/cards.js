@@ -14,16 +14,17 @@ function createCards(pokemons, ids, sprites) {
     const $name = document.createElement("strong");
 
     $card.className = "card col-2 card-border";
+    $card.style.backgroundImage = 'url("img/pokeball.png"';
     $name.className = "card-body text-center";
     $name.style = "font-size: 13px";
-    $name.textContent = `${pokemon.replace(/-/g, " ")}`;
+    $name.textContent = `#${id}  ${pokemon}`;
 
     $sprite.className = "card-img-top";
     $sprite.src = sprite;
     $sprite.onerror = () => ($sprite.src = "img/404-shocked.png");
 
-    $card.appendChild($sprite);
     $card.appendChild($name);
+    $card.appendChild($sprite);
     $container.appendChild($card);
   });
 }
