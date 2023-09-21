@@ -6,16 +6,16 @@ export function calculatePaginationValues(totalItems, pageIndex, itemsPerPage) {
 }
 
 export function getPokemonNames(list) {
-  return list.map((item) => firstLetterToUpperCase(item.name));
+  return list.map((item) => parsePokemonName(item.name));
 }
 
 export function getPokemonIds(list) {
   return list.map((item) => item.url.split("/")[6]);
 }
 
-function firstLetterToUpperCase(string) {
-  return string
+function parsePokemonName(pokemonName) {
+  return pokemonName
     .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join("-");
+    .map((pokemon) => pokemon.charAt(0).toUpperCase() + pokemon.slice(1))
+    .join(" ");
 }
