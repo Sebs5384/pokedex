@@ -9,8 +9,8 @@ export function getPokemonNames(list) {
   return list.map((item) => parsePokemonName(item.name));
 }
 
-export function getPokemonIds(list) {
-  return list.map((item) => item.url.split("/")[6]);
+export function getPokemonIds(pokemons) {
+  return pokemons.map((pokemon) => pokemon.url.split("/")[6]);
 }
 
 function parsePokemonName(pokemonName) {
