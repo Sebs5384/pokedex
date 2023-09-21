@@ -14,7 +14,7 @@ function createCards(pokemons, ids, sprites) {
     const $name = document.createElement("strong");
 
     $card.className = "card col-2 card-border";
-    $card.style.backgroundImage = 'url("img/pokeball.png"';
+    $card.style.backgroundImage = 'url("img/pokeball.png")';
     $name.className = "card-body text-center";
     $name.style = "font-size: 13px";
     $name.textContent = `#${id}  ${pokemon}`;
