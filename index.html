@@ -54,8 +54,8 @@
       <section class="row justify-content-center mt-2">
         <div class="card col-11 card-border main-card-container">
           <div class="card-body">
-            <div class="modal fade" id="pokemon-modal" tabindex="-1" aria-hidden="true">
-              <div class="modal-dialog">
+            <section class="modal fade" id="pokemon-modal" tabindex="-1" aria-hidden="true">
+              <div class="modal-dialog" style="border: solid yellow">
                 <div class="modal-content">
                   <div class="modal-header" style="border-color: red">
                     <small class="text-end">Evolves from POKEMON</small>
@@ -64,30 +64,28 @@
 
                   <div class="modal-body fs-5 w-100">
                     <section class="container-fluid">
-                      <div class="row" style="font-size: 15px">
+                      <div class="row" style="font-size: 13px">
                         <div class="col-2">
                           <strong>Stage 2 </strong>
                         </div>
                         <strong class="col-5">BLASTOISE</strong>
-                        <strong class="col-3 text-end">120 HP</strong>
-                        <strong class="col-2 text-center">33</strong>
-                      </div>
-                      <div class="card">
-                        <div class="card">
-                          <div class="card-body" style="position: absolute; top: 0; left: 0">
-                            <img src="img/pokeball.png" style="width: 10px" />
+                        <strong class="col-4 text-end">120 HP</strong>
+                        <img src="img/pokeball.png" class="col-1" />
+
+                        <div class="card card-border">
+                          <div class="card-img" style="position: absolute; top: 0; left: 0">
+                            <img src="img/pokeball.png" style="width: 30px" />
                           </div>
-                        </div>
-                        <div class="card-body">
-                          <img src="img/404-shocked.png" alt="" />
+                          <div class="row card-body justify-content-center">
+                            <img src="img/blastoise-removebg-preview.png" class="col-8" />
+                          </div>
                         </div>
                       </div>
                     </section>
                   </div>
-                  <div class="modal-footer"></div>
                 </div>
               </div>
-            </div>
+            </section>
 
             <div class="row justify-content-center gap-2 text-center" id="cards-container"></div>
           </div>
