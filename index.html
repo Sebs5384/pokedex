@@ -11,7 +11,7 @@
   <body>
     <main>
       <nav class="navbar navbar-expand-lg bg-body-tertiary nav-bar">
-        <div class="container-fluid col-12">
+        <section class="container-fluid col-12">
           <a class="navbar-brand" href="#">
             <img src="img/pokedex-logo.png" alt="Pokedex" class="poke-logo" />
           </a>
@@ -23,7 +23,7 @@
             </div>
           </form>
 
-          <div class="container-fluid col-7">
+          <section class="container-fluid col-7">
             <div class="row justify-content-start">
               <div class="col-1">
                 <button class="btn" id="catch-pokemon-button"></button>
@@ -47,46 +47,91 @@
                 </button>
               </div>
             </div>
-          </div>
-        </div>
+          </section>
+        </section>
       </nav>
 
-      <section class="row justify-content-center mt-2">
-        <div class="card col-11 card-border main-card-container">
-          <div class="card-body">
-            <section class="modal fade" id="pokemon-modal" tabindex="-1" aria-hidden="true">
-              <div class="modal-dialog" style="border: solid yellow">
-                <div class="modal-content">
-                  <div class="modal-header" style="border-color: red">
-                    <small class="text-end">Evolves from POKEMON</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
+      <section class="modal fade" id="pokemon-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog" style="border: solid yellow">
+          <div class="modal-content">
+            <section class="container-fluid">
+              <div class="row justify-content-center">
+                <div class="row">
+                  <small class="col-2 align-self-end">STAGE 2</small>
 
-                  <div class="modal-body fs-5 w-100">
-                    <section class="container-fluid">
-                      <div class="row" style="font-size: 13px">
-                        <div class="col-2">
-                          <strong>Stage 2 </strong>
-                        </div>
-                        <strong class="col-5">BLASTOISE</strong>
-                        <strong class="col-4 text-end">120 HP</strong>
-                        <img src="img/pokeball.png" class="col-1" />
+                  <small class="col-9 align-self-end">Evolves from Wartortle</small>
 
-                        <div class="card card-border">
-                          <div class="card-img" style="position: absolute; top: 0; left: 0">
-                            <img src="img/pokeball.png" style="width: 30px" />
-                          </div>
-                          <div class="row card-body justify-content-center">
-                            <img src="img/blastoise-removebg-preview.png" class="col-8" />
-                          </div>
-                        </div>
-                      </div>
-                    </section>
-                  </div>
+                  <button type="button" class="btn-close col-1 text-end" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <hr class="col-11" />
+
+                <div class="row" style="margin-top: -25px">
+                  <img class="col-2 align-self-center" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png" />
+
+                  <strong class="col-4 align-self-center" style="font-size: 32px"> Blastoise</strong>
+
+                  <strong class="col-4 align-self-center text-end" style="font-size: 32px; color: red">120 HP</strong>
+
+                  <img class="col-2 align-self-center" src="img/water-type.png" style="width: 3.5rem; height: 2.5rem" />
                 </div>
               </div>
             </section>
 
+            <section class="modal-body" style="margin-top: -20px">
+              <section class="container-fluid">
+                <div class="card" style="background: transparent; border-color: gold">
+                  <div class="row card-body justify-content-center">
+                    <img src="img/blastoise.png" class="col-8" />
+                  </div>
+                </div>
+
+                <div class="row mt-2" style="border: 1px solid yellow; font-size: 13px; background-color: rgb(254, 230, 98)">
+                  <small class="col-3">TYPE 1 </small>
+                  <small class="col-3">TYPE 2</small>
+                  <small class="col-3 text-end">Length: 5'3"</small>
+                  <small class="col-3 text-end">Weight: 188.5lbs</small>
+                </div>
+              </section>
+
+              <div class="container-fluid mt-2">
+                <div class="row text-start">
+                  <strong class="col-12">SKILLS</strong>
+                  <hr class="col-12" style="margin-top: 0rem" />
+                  <strong class="col-6 align-self-start">ATTACK: 100</strong>
+                  <strong class="col-6">DEFENSE: 50</strong>
+                </div>
+              </div>
+
+              <div class="mt-2">
+                <strong class="text-center col-12">STATUS</strong>
+                <hr class="col-12" style="margin-top: 0.3rem" />
+                <div class="row mb-3">
+                  <div class="col-4">
+                    <strong>ATTACK: 100</strong>
+                  </div>
+                  <div class="col-4">
+                    <strong>DEFENSE: 50</strong>
+                  </div>
+                  <div class="col-4">
+                    <strong>SPEED: 80</strong>
+                  </div>
+                  <div class="col-4">
+                    <strong>SP ATK: 120</strong>
+                  </div>
+                  <div class="col-4">
+                    <strong>SP DEF: 70</strong>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="row justify-content-center mt-2">
+        <div class="card col-11 card-border main-card-container">
+          <div class="card-body">
             <div class="row justify-content-center gap-2 text-center" id="cards-container"></div>
           </div>
         </div>
