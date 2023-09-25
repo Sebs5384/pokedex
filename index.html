@@ -53,83 +53,118 @@
 
       <section class="modal fade" id="pokemon-modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog mb-4">
-          <div class="modal-content" style="border: solid gold 10px; border-radius: 10px; border-style: outset">
+          <div class="modal-content" style="border: solid gold 10px; border-radius: 10px; border-style: outset; background: url(img/water-texture.png); background-size: cover">
             <section class="container-fluid">
+              <div class="row" style="font-size: 12px">
+                <strong class="col-2 align-self-end">STAGE 2</strong>
+                <strong class="col-9 align-self-end">Evolves from Wartortle</strong>
+                <div class="col-1">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+              </div>
+
               <div class="row justify-content-center">
-                <div class="row" style="font-size: 12px">
-                  <strong class="col-2 align-self-end">STAGE 2</strong>
-                  <strong class="col-9 align-self-end">Evolves from Wartortle</strong>
-                  <button type="button" class="btn-close col-1 text-end" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+                <hr class="border col-11 border-warning border-1 opacity-50" />
+              </div>
 
-                <hr class="col-11" />
-
-                <div class="row" style="margin-top: -25px">
-                  <img class="col-2 align-self-center" style="background-color: gray; width: 4rem" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png" />
-                  <strong class="col-4 align-self-center" style="font-size: 32px"> Blastoise</strong>
-                  <strong class="col-4 align-self-center text-end" style="font-size: 32px; color: red">120 HP</strong>
-                  <img class="col-2 align-self-center" src="img/water-type.png" style="width: 3.5rem; height: 2.5rem" />
-                </div>
+              <div class="row" style="margin-top: -25px">
+                <img class="col-2 align-self-center" style="width: 4rem" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png" />
+                <strong class="col-4 align-self-center" style="font-size: 30px"> Blastoise</strong>
+                <strong class="col-4 align-self-center text-end" style="font-size: 30px; color: red">120 HP</strong>
+                <img class="col-2 align-self-center" src="img/water-type.png" style="width: 3.5rem; height: 1.7rem" />
               </div>
             </section>
 
             <section class="modal-body" style="margin-top: -20px">
               <section class="container-fluid">
-                <div class="card" style="border: 5px solid; border-color: rgb(254, 230, 98); border-style: outset; border-radius: 0px">
+                <div class="card" style="border: 5px solid; border-color: rgb(254, 230, 98); border-style: outset; border-radius: 0px; background: content-box linear-gradient(rgb(107, 254, 154), rgb(30, 103, 198), rgb(13, 52, 104))">
                   <div class="row card-body justify-content-center">
                     <img src="img/blastoise.png" class="col-8" />
                   </div>
                 </div>
 
-                <div class="row mt-2" style="border: 2px solid rgb(254, 230, 98); font-size: 12px; background-color: rgb(254, 230, 98); border-style: inset">
-                  <small class="col-3">TYPE 1 </small>
-                  <small class="col-3">TYPE 2</small>
-                  <small class="col-3 text-end">Length: 5'3"</small>
-                  <small class="col-3 text-end">Weight: 188.5lbs</small>
+                <div class="row col-11 mt-2 mx-auto" style="border: 2px solid rgb(254, 230, 98); font-size: 12px; background: content-box radial-gradient(rgb(250, 232, 130), rgb(193, 187, 26)); border-style: inset">
+                  <img class="col-2" src="img/water-type-icon.png" />
+                  <div class="col-2"></div>
+                  <strong class="col-4 text-end">Length: 5'3"</strong>
+                  <strong class="col-4">Weight: 188.5lbs</strong>
                 </div>
               </section>
 
               <section class="container-fluid mt-2" style="font-size: 12px">
                 <div class="row">
-                  <strong class="col-12">Pokemon Skills</strong>
-                  <hr class="col-12" />
-                  <strong class="col-6" style="color: red">TORRENT</strong>
-                  <strong class="col-6" style="color: red">RAIN DISH</strong>
-                </div>
-              </section>
-
-              <section class="container-fluid mt-3" style="font-size: 12px">
-                <div class="row">
-                  <strong class="text-start col-12">Pokemon Status</strong>
-                  <hr class="col-12" />
-                  <strong class="col-4">ATTACK: 100</strong>
-                  <strong class="col-4">DEFENSE: 50</strong>
-                  <strong class="col-4">SPEED: 80</strong>
-                  <strong class="col-4">SP ATK: 120</strong>
-                  <strong class="col-4">SP DEF: 70</strong>
+                  <div class="col-12">
+                    <img src="img/skill-icon-png.png" class="mb-1" style="width: 1rem; height: 1rem" />
+                    <strong>Pokemon Skills</strong>
+                  </div>
+                  <hr class="col-12" style="border: 1px solid black" />
+                  <div class="col-6" style="color: red; font-size: 20px">
+                    <img src="img/water-type.png" style="width: 1.5rem; height: 1.5rem" />
+                    <strong>TORRENT</strong>
+                  </div>
+                  <div class="col-6" style="color: red; font-size: 20px">
+                    <img src="img/water-type.png" style="width: 1.5rem; height: 1.5rem" />
+                    <strong>RAIN DISH</strong>
+                  </div>
                 </div>
               </section>
 
               <section class="container-fluid mt-2" style="font-size: 12px">
                 <div class="row">
-                  <hr class="col-12" />
+                  <div class="text-start col-12">
+                    <img src="img/status-icon.png" style="width: 1rem; height: 1rem" />
+                    <strong>Pokemon Status</strong>
+                  </div>
+                  <hr class="col-12" style="border: 1px solid black" />
+                  <div class="col-4">
+                    <img src="img/atk-icon.png" style="width: 1rem; height: 1rem" />
+                    <strong>ATTACK: 100</strong>
+                  </div>
+
+                  <div class="col-4">
+                    <img src="img/def-icon.png" style="width: 1rem; height: 1rem" />
+                    <strong>DEFENSE: 50</strong>
+                  </div>
+
+                  <div class="col-4">
+                    <img src="img/speed-icon.png" style="width: 1rem; height: 1rem" />
+                    <strong>SPEED: 80</strong>
+                  </div>
+
+                  <div class="col-4 mt-1">
+                    <img src="img/sp-atk-icon.png" style="width: 1rem; height: 1rem" />
+                    <strong>SP ATK: 120</strong>
+                  </div>
+
+                  <div class="col-4 mt-1">
+                    <img src="img/sp-def-icon.png" style="width: 1rem; height: 1rem" />
+                    <strong>SP DEF: 70</strong>
+                  </div>
+                </div>
+              </section>
+
+              <section class="container-fluid mt-2" style="font-size: 12px">
+                <div class="row">
+                  <hr class="col-12" style="border: 1px solid black" />
                   <strong class="col-4 text-start">Weakness</strong>
                   <strong class="col-4 text-center">Resistance</strong>
                   <strong class="col-4 text-end">Retreat Cost</strong>
                   <div class="col-4 text-start">
-                    <img src="img/water-type.png" style="width: 1rem" />
+                    <img src="img/electric-type.png" style="width: 1rem" />
                   </div>
                   <div class="col-4 text-center">
-                    <img src="img/water-type.png" style="width: 1rem" />
+                    <img src="" style="width: 1rem" />
                   </div>
                   <div class="col-4 text-end">
-                    <img src="img/water-type.png" style="width: 1rem" />
+                    <img src="img/normal-type.png" style="width: 1rem" />
+                    <img src="img/normal-type.png" style="width: 1rem" />
+                    <img src="img/normal-type.png" style="width: 1rem" />
                   </div>
                 </div>
               </section>
 
               <section class="container-fluid mt-2">
-                <div class="card text-center" style="font-size: 10px; border: 2px solid rgb(254, 230, 98); border-style: inset; border-radius: 0px">
+                <div class="card text-center" style="font-size: 10px; border: 2px solid rgb(254, 230, 98); border-style: inset; border-radius: 0px; background-color: transparent">
                   <strong>A brutal Pokemon with pressurized water jets on its shell. They are used for high speed tackles</strong>
                 </div>
               </section>
