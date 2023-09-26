@@ -17,3 +17,14 @@ export function displayLoadingSpinner() {
   $container.appendChild($spinnerContainer);
   $container.appendChild($loadingMessage);
 }
+
+export function handleClickedPokemon(clicked) {
+  const $cards = document.querySelector("#cards-container");
+  $cards.onclick = (event) => {
+    const pokemonId = event.target.dataset.id;
+
+    if (pokemonId === undefined) return;
+
+    clicked(pokemonId);
+  };
+}
