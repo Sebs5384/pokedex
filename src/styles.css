@@ -1,5 +1,5 @@
 body {
-  background-image: url(/img/pokepaper.png);
+  background-image: url(/img/misc/pokepaper.png);
   background-size: cover;
 }
 
@@ -8,7 +8,7 @@ body {
 }
 
 #catch-pokemon-button {
-  background-image: url(/img/poke-background.png);
+  background-image: url(/img/misc/poke-background.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

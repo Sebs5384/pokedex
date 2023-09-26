@@ -14,7 +14,7 @@ function createCards(pokemons, ids, sprites) {
     const $name = document.createElement("strong");
 
     $card.className = "card col-2 card-border";
-    $card.style.backgroundImage = 'url("img/pokeball.png")';
+    $card.style.backgroundImage = 'url("img/misc/pokeball.png")';
 
     $name.className = "card-body text-center";
     $name.style = "font-size: 13px";
@@ -23,7 +23,7 @@ function createCards(pokemons, ids, sprites) {
     $sprite.className = "card-img-top pokemon-sprite";
     $sprite.src = sprite;
     $sprite.dataset.id = `${id}`;
-    $sprite.onerror = () => ($sprite.src = "img/404-shocked.png");
+    $sprite.onerror = () => ($sprite.src = "img/misc/404-shocked.png");
 
     $card.appendChild($name);
     $card.appendChild($sprite);
