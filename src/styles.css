@@ -92,12 +92,12 @@ body {
   border-style: inset;
 }
 
-.modal-title {
+#pokemon-main-info {
   margin-top: -25px;
   font-size: 30px;
 }
 
-.modal-main-image {
+#pokemon-modal-body {
   margin-top: -20px;
 }
 
