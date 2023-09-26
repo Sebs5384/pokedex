@@ -73,6 +73,77 @@ body {
   transition: transform 0.3s ease;
 }
 
+.modal-texture {
+  border: solid gold 10px;
+  border-radius: 10px;
+  border-style: outset;
+  background: url(/img/modal-textures/water-texture.png);
+  background-size: cover;
+}
+
+.modal-fs {
+  font-size: 12px;
+}
+
+.modal-banner {
+  border: 2px solid rgb(254, 230, 98);
+  font-size: 11px;
+  background: content-box radial-gradient(rgb(250, 232, 130), rgb(193, 187, 26));
+  border-style: inset;
+}
+
+.modal-title {
+  margin-top: -25px;
+  font-size: 30px;
+}
+
+.modal-main-image {
+  margin-top: -20px;
+}
+
+.modal-footer-description {
+  font-size: 10px;
+  border: 2px solid rgb(254, 230, 98);
+  border-style: inset;
+  border-radius: 0px;
+  background-color: transparent;
+}
+
+.main-image-container {
+  border: 5px solid;
+  border-color: rgb(254, 230, 98);
+  border-style: outset;
+  border-radius: 0px;
+  background: content-box linear-gradient(rgb(107, 254, 154), rgb(30, 103, 198), rgb(13, 52, 104));
+}
+
+.main-status {
+  color: red;
+}
+
+.skill-font {
+  color: red;
+  font-size: 15px;
+}
+
+.status-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.stage-icon {
+  width: 4rem;
+}
+
+.type-icon {
+  width: 3.5rem;
+  height: 1.6rem;
+}
+
+.modal-horizontal-rule {
+  border: 1px solid black;
+}
+
 @keyframes poke-shake {
   0% {
     transform: translateX(0);
