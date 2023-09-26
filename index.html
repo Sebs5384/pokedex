@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="img/pokedex-icon.png" />
+    <link rel="icon" href="img/misc/pokedex-icon.png" />
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="src/styles.css" />
     <title>Pokedex</title>
@@ -54,10 +54,11 @@
       <section class="modal fade" id="pokemon-modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content modal-texture">
-            <section class="container-fluid">
-              <div class="row modal-fs">
+            <section class="container-fluid" id="modal-header">
+              <div class="row modal-fs" id="">
                 <strong class="col-2 align-self-end">STAGE 2</strong>
-                <strong class="col-9 align-self-end">Evolves from Wartortle</strong>
+                <strong class="col-5 align-self-end text-start">Evolves from Wartortle</strong>
+                <strong class="col-4 align-self-end text-end">Shellfish Pokemon</strong>
                 <div class="col-1">
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -67,7 +68,7 @@
                 <hr class="border col-11 border-warning border-1 opacity-50" />
               </div>
 
-              <div class="row modal-title">
+              <div class="row" id="pokemon-main-info">
                 <img class="col-2 align-self-center stage-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png" />
                 <strong class="col-4 align-self-center"> Blastoise</strong>
                 <strong class="col-4 align-self-center text-end main-status">120 HP</strong>
@@ -75,23 +76,23 @@
               </div>
             </section>
 
-            <section class="modal-body modal-main-image">
-              <section class="container-fluid">
+            <section class="modal-body" id="pokemon-modal-body">
+              <section class="container-fluid" id="pokemon-modal-image">
                 <div class="card main-image-container">
                   <div class="row card-body justify-content-center">
                     <img src="img/misc/blastoise.png" class="col-8" />
                   </div>
                 </div>
-
-                <div class="row col-11 mt-2 mx-auto modal-banner">
-                  <img class="col-2" src="img/pokemon-types/water-type.png" />
-                  <div class="col-2"></div>
-                  <strong class="col-4 text-end">Length: 5'3"</strong>
-                  <strong class="col-4">Weight: 188.5lbs</strong>
-                </div>
               </section>
 
-              <section class="container-fluid mt-2">
+              <section class="row col-11 mt-2 mx-auto modal-banner" id="pokemon-modal-banner">
+                <img class="col-2" src="img/pokemon-types/water-type.png" />
+                <img class="col-2" src="img/pokemon-types/water-type.png" />
+                <strong class="col-4 text-end">Length: 5'3"</strong>
+                <strong class="col-4">Weight: 188.5lbs</strong>
+              </section>
+
+              <section class="container-fluid mt-2" id="pokemon-skills">
                 <div class="row modal-fs">
                   <div class="col-12">
                     <img src="img/pokemon-stats/skill-icon-png.png" class="status-icon mb-1" />
@@ -109,7 +110,7 @@
                 </div>
               </section>
 
-              <section class="container-fluid mt-2">
+              <section class="container-fluid mt-2" id="pokemon-status">
                 <div class="row modal-fs">
                   <div class="text-start col-12">
                     <img src="img/pokemon-stats/status-icon.png" class="status-icon" />
@@ -143,7 +144,7 @@
                 </div>
               </section>
 
-              <section class="container-fluid mt-2">
+              <section class="container-fluid mt-2" id="pokemon-type-status">
                 <div class="row modal-fs">
                   <hr class="col-12 modal-horizontal-rule" />
                   <strong class="col-4 text-start">Weakness</strong>
@@ -161,7 +162,7 @@
                 </div>
               </section>
 
-              <section class="container-fluid mt-2">
+              <section class="container-fluid mt-2" id="pokemon-modal-footer">
                 <div class="card text-center modal-footer-description">
                   <strong>A brutal Pokemon with pressurized water jets on its shell. They are used for high speed tackles</strong>
                 </div>
