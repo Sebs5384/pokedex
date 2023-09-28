@@ -1,4 +1,4 @@
-export function displayLoadingSpinner() {
+export function displayLoadingMessage() {
   const $container = document.querySelector("#cards-container");
 
   $container.innerHTML = "";
