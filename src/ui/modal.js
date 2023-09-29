@@ -1,4 +1,5 @@
 export function createPokemonModal(pokemon) {
+  console.log(pokemon);
   const { pokemonSkills, pokemonHeight, pokemonId, pokemonName, pokemonSprite, pokemonStats, pokemonTypes, pokemonWeight, previousEvolutionName, previousEvolutionId, pokemonText, pokemonGenus } = pokemon;
 
   const $modalContent = document.querySelector("#pokemon-modal-content");
