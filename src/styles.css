@@ -78,8 +78,6 @@ body {
   border-radius: 10px;
   border-style: outset;
   text-transform: capitalize;
-  background: url(/img/modal-textures/water-texture.png);
-  background-size: cover;
 }
 
 .modal-fs {
@@ -139,7 +137,7 @@ body {
 
 .type-icon {
   width: 3.5rem;
-  height: 2rem;
+  height: 1.7rem;
 }
 
 .modal-horizontal-rule {
