@@ -19,11 +19,12 @@ export function getPokemonData(pokemon, species, selectedPokemon) {
     const pokemonStats = pokemon.stats.map((stat) => stat.base_stat);
     const pokemonTypes = pokemon.types.map((type) => type.type.name);
     const pokemonWeight = pokemon.weight;
-    const previousEvolution = species.evolves_from_species ? species.evolves_from_species.name : "None";
+    const previousEvolutionName = species.evolves_from_species ? species.evolves_from_species.name : "None";
+    const previousEvolutionId = species.evolves_from_species ? species.evolves_from_species.url.split("/")[6] : "None";
     const pokemonText = species.flavor_text_entries[0].flavor_text;
-    const pokemonGenus = species.genera[0].genus;
+    const pokemonGenus = species.genera[7].genus;
 
-    return { pokemonSkills, pokemonHeight, pokemonId, pokemonName, pokemonSprite, pokemonStats, pokemonTypes, pokemonWeight, previousEvolution, pokemonText, pokemonGenus };
+    return { pokemonSkills, pokemonHeight, pokemonId, pokemonName, pokemonSprite, pokemonStats, pokemonTypes, pokemonWeight, previousEvolutionName, previousEvolutionId, pokemonText, pokemonGenus };
   });
 }
 
