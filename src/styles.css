@@ -73,10 +73,11 @@ body {
   transition: transform 0.3s ease;
 }
 
-.modal-texture {
+.pokemon-modal {
   border: solid gold 10px;
   border-radius: 10px;
   border-style: outset;
+  text-transform: capitalize;
   background: url(/img/modal-textures/water-texture.png);
   background-size: cover;
 }
@@ -110,7 +111,8 @@ body {
 }
 
 .main-image-container {
-  border: 5px solid;
+  border: 7px solid;
+  margin-top: -5px;
   border-color: rgb(254, 230, 98);
   border-style: outset;
   border-radius: 0px;
@@ -137,7 +139,7 @@ body {
 
 .type-icon {
   width: 3.5rem;
-  height: 1.6rem;
+  height: 2rem;
 }
 
 .modal-horizontal-rule {
