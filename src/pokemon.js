@@ -1,6 +1,6 @@
 import { getPokemons, getPokemon, getPokemonSprite, getPokemonSpecies } from "./api/pokemon.js";
 import { setupPagination } from "./ui/pagination.js";
-import { createPokemonModal } from "./ui/modal.js";
+import { createPokemonModal, changeModalTexture, showModal } from "./ui/modal.js";
 import { displayPokemonCards } from "./ui/cards.js";
 import { displayLoadingMessage, handleClickedPokemon } from "./ui/general.js";
 import { getPageData, getPokemonData } from "./utils/general.js";
@@ -21,6 +21,8 @@ export function setupPokemonModal() {
   handleClickedPokemon((clickedPokemon) => {
     getPokemonData(getPokemon, getPokemonSpecies, clickedPokemon).then((pokemonData) => {
       createPokemonModal(pokemonData);
+      changeModalTexture(pokemonData);
+      showModal("#pokemon-modal");
     });
   });
 }
