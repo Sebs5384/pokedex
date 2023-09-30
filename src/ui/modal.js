@@ -1,7 +1,7 @@
 export function createPokemonModal(pokemon) {
   console.log(pokemon);
   const { pokemonSkills, pokemonHeight, pokemonId, pokemonName, pokemonSprite, pokemonStats, pokemonTypes, pokemonWeight, previousEvolutionName, previousEvolutionId, pokemonText, pokemonGenus } = pokemon;
-
+  console.log(pokemonTypes[0]);
   const $modalContent = document.querySelector("#pokemon-modal-content");
   const $modalBody = createModalBody(pokemonSprite, pokemonTypes, pokemonHeight, pokemonWeight, pokemonSkills, pokemonStats, pokemonName, previousEvolutionName, previousEvolutionId, pokemonGenus, pokemonText);
   $modalContent.style.background = `url(/img/modal-textures/${pokemonTypes[0]}-texture.png) center/cover`;
@@ -17,7 +17,7 @@ function createModalBody(pokemonSprite, pokemonTypes, pokemonHeight, pokemonWeig
   $modalBody.id = "pokemon-modal-body";
 
   const $modalHeader = createModalHeader(pokemonName, pokemonStats, pokemonTypes, previousEvolutionName, previousEvolutionId, pokemonGenus);
-  const $modalCard = createCard(pokemonSprite);
+  const $modalCard = createCard(pokemonSprite, pokemonTypes);
   const $modalBanner = createBanner(pokemonTypes, pokemonHeight, pokemonWeight);
   const $modalSkillsContainer = createSkillsContainer(pokemonTypes, pokemonSkills);
   const $modalStatsContainer = createStatsContainer(pokemonStats);
@@ -64,12 +64,12 @@ function createModalHeader(pokemonName, pokemonStats, pokemonTypes, previousEvol
   return $modalHeader;
 }
 
-function createCard(pokemonSprite) {
+function createCard(pokemonSprite, pokemonTypes) {
   const $modalCardContainer = document.createElement("section");
   $modalCardContainer.className = "container-fluid";
   $modalCardContainer.id = "pokemon-modal-image";
   $modalCardContainer.innerHTML = `
-    <div class="card main-image-container">
+    <div class="card main-image-container ${pokemonTypes[0]}-background">
       <div class="row card-body justify-content-center">
         <img class="col-8" src=${pokemonSprite} />
       </div>
