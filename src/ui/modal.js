@@ -61,7 +61,7 @@ function createModalHeader(pokemonData) {
     </div>
 
     <div class="row" id="pokemon-main-info">
-      ${previousEvolutionData.id === "None" ? `<div class="col-2"></div>` : `<img class="col-2 align-self-center stage-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${previousEvolutionData.id}.png" />`}
+      ${previousEvolutionData.id === "None" ? `<div class="col-2"></div>` : `<img class="col-2 align-self-center stage-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${previousEvolutionData.id}.png" alt="" />`}
       <strong class="col-4 align-self-center"> ${pokemonName}</strong>
       <strong class="col-4 align-self-center text-end main-status">${pokemonStats.hp} HP</strong>
       <img class="col-2 align-self-center type-icon" src="img/pokemon-types/icons/${pokemonTypes.mainType}-type-icon.png" />
@@ -80,7 +80,7 @@ function createCard(pokemonData, pokemonSprite) {
   $modalCardContainer.innerHTML = `
     <div class="card main-image-container ${pokemonTypes.mainType}-background">
       <div class="row card-body justify-content-center">
-        <img class="col-8" src=${pokemonSprite} />
+        <img class="col-8" src=${pokemonSprite} onerror="this.src='img/misc/404-shocked.png'" />
       </div>
     </div>
   `;
