@@ -3,7 +3,7 @@ import { setupPagination } from "./ui/pagination.js";
 import { createPokemonModal, changeModalTexture, showModal } from "./ui/modal.js";
 import { displayPokemonCards } from "./ui/cards.js";
 import { displayLoadingMessage, handleClickedPokemon } from "./ui/general.js";
-import { getPageData, getPokemonData } from "./utils/general.js";
+import { getPageData, getPokemonData } from "./utils/pokemon.js";
 
 export function updatePokedexPage(POKEMONS_PER_PAGE = 20, pageIndex = 0) {
   displayLoadingMessage();
