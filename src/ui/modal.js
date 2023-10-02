@@ -118,13 +118,13 @@ function createSkillsContainer(pokemonData) {
         <strong>Pokemon Skills</strong>
       </div>
       <hr class="col-12 modal-horizontal-rule" />
-      <div class="col-6 skill-font">
+      <div class="col-6">
         <img src="img/pokemon-types/icons/${pokemonTypes.mainType}-type-icon.png" class="status-icon" />
-        <strong>${pokemonSkills.firstSkill}</strong>
+        <strong class="skill-font">${pokemonSkills.firstSkill}</strong>
       </div>
-      <div class="col-6 skill-font">
+      <div class="col-6">
         <img src="img/pokemon-types/icons/${pokemonTypes.mainType}-type-icon.png" class="status-icon" />
-        <strong>${pokemonSkills.secondSkill}</strong>
+        <strong class="skill-font">${pokemonSkills.secondSkill}</strong>
       </div>
     </div>
   `;

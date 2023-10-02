@@ -18,14 +18,14 @@ export function convertGramToLb(grams) {
 }
 
 export function convertDecimeterToFeet(meters) {
-  return (meters * 0.328084).toFixed(2);
+  return (meters * 0.328084).toFixed(2).replace(".", "'");
 }
 
 export function getEnglishDescription(entry) {
   const textEntries = entry;
   const englishEntry = textEntries.find((entry) => entry.language.name === "en");
 
-  return englishEntry ? englishEntry.flavor_text : "";
+  return englishEntry ? englishEntry.flavor_text.replace(/\u000c/g, " ") : "";
 }
 
 export function getPokemonSkills(pokemonSkills) {
