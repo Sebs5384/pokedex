@@ -121,11 +121,13 @@ body {
 
 .main-status {
   color: red;
+  text-shadow: -0.2px -0.2px 0 black, 0.2px -0.2px 0 black, -0.2px 0.2px 0 black, 0.2px 0.2px 0 black;
 }
 
 .skill-font {
   color: red;
   font-size: 15px;
+  text-shadow: -0.3px -0.3px 0 black, 0.3px -0.3px 0 black, -0.3px 0.3px 0 black, 0.3px 0.3px 0 black;
 }
 
 .status-icon {
