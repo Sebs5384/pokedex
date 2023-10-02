@@ -11,19 +11,16 @@ export function getPageData(getPokemons, POKEMONS_PER_PAGE, pageIndex) {
 
 export function getPokemonData(pokemon, species, selectedPokemon) {
   return Promise.all([pokemon(selectedPokemon), species(selectedPokemon)]).then(([pokemon, species]) => {
+    const pokemonName = pokemon.name;
     const pokemonSkills = getPokemonSkills(pokemon.abilities);
     const pokemonStats = getPokemonStats(pokemon.stats);
     const pokemonTypes = getPokemonTypes(pokemon.types);
     const pokemonHeight = convertDecimeterToFeet(pokemon.height);
     const pokemonWeight = convertGramToLb(pokemon.weight);
-    const pokemonName = pokemon.name;
-    const pokemonSprite = pokemon.sprites.other["official-artwork"].front_default;
-    const previousEvolutionName = species.evolves_from_species ? `Evolves from ${species.evolves_from_species.name}` : "Basic Pokemon";
-    const previousEvolutionId = species.evolves_from_species ? species.evolves_from_species.url.split("/")[6] : "None";
+    const previousEvolutionData = getPreviousEvolutionData(species);
     const pokemonDescription = getEnglishDescription(species.flavor_text_entries);
-    const pokemonGenus = species.genera[7].genus;
 
-    return { pokemonSkills, pokemonHeight, pokemonName, pokemonSprite, pokemonStats, pokemonTypes, pokemonWeight, previousEvolutionName, previousEvolutionId, pokemonDescription, pokemonGenus };
+    return { pokemonSkills, pokemonHeight, pokemonName, pokemonStats, pokemonTypes, pokemonWeight, previousEvolutionData, pokemonDescription };
   });
 }
 
@@ -32,6 +29,14 @@ function calculatePaginationValues(totalItems, pageIndex, itemsPerPage) {
   const currentPage = pageIndex / itemsPerPage + 1;
 
   return { totalPages, currentPage };
+}
+
+function getPreviousEvolutionData(species) {
+  return {
+    name: species.evolves_from_species ? species.evolves_from_species.name : "Basic Pokemon",
+    id: species.evolves_from_species ? species.evolves_from_species.url.split("/")[6] : "None",
+    genus: species.genera[7].genus,
+  };
 }
 
 function convertGramToLb(grams) {
@@ -78,7 +83,7 @@ function getPokemonStats(pokemonStats) {
 function getPokemonTypes(pokemonTypes) {
   return {
     mainType: pokemonTypes[0].type.name,
-    secondaryType: pokemonTypes[1].type.name,
+    secondaryType: pokemonTypes[1] ? pokemonTypes[1].type.name : undefined,
   };
 }
 

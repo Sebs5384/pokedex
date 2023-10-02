@@ -20,7 +20,9 @@ export function updatePokedexPage(POKEMONS_PER_PAGE = 20, pageIndex = 0) {
 export function setupPokemonModal() {
   handleClickedPokemon((clickedPokemon) => {
     getPokemonData(getPokemon, getPokemonSpecies, clickedPokemon).then((pokemonData) => {
-      createPokemonModal(pokemonData);
+      const pokemonSprite = getPokemonSprite(clickedPokemon);
+
+      createPokemonModal(pokemonData, pokemonSprite);
       changeModalTexture(pokemonData);
       showModal("#pokemon-modal");
     });

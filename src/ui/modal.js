@@ -1,10 +1,10 @@
-export function createPokemonModal(pokemonData) {
+export function createPokemonModal(pokemonData, pokemonSprite) {
   const $modalContent = document.querySelector("#pokemon-modal-content");
   $modalContent.innerHTML = "";
 
   const $modalBody = createModalBody();
   const $modalHeader = createModalHeader(pokemonData);
-  const $modalCard = createCard(pokemonData);
+  const $modalCard = createCard(pokemonData, pokemonSprite);
   const $modalBanner = createBanner(pokemonData);
   const $modalSkillsContainer = createSkillsContainer(pokemonData);
   const $modalStatsContainer = createStatsContainer(pokemonData);
@@ -42,15 +42,15 @@ function createModalBody() {
 }
 
 function createModalHeader(pokemonData) {
-  const { pokemonName, pokemonStats, pokemonTypes, previousEvolutionName, previousEvolutionId, pokemonGenus } = pokemonData;
+  const { pokemonName, pokemonStats, pokemonTypes, previousEvolutionData } = pokemonData;
   const $modalHeader = document.createElement("section");
   $modalHeader.className = "container-fluid";
 
   $modalHeader.innerHTML = `
     <div class="row modal-fs">
-      ${previousEvolutionName === "Basic Pokemon" ? `<div class="col-2"></div>` : ` <strong class="col-2 align-self-end">STAGE</strong>`}
-      <strong class="col-5 align-self-end text-start">${previousEvolutionName}</strong>
-      <strong class="col-4 align-self-end text-end">${pokemonGenus}</strong>
+      ${previousEvolutionData.name === "Basic Pokemon" ? `<div class="col-2"></div>` : ` <strong class="col-2 align-self-end">STAGE</strong>`}
+      <strong class="col-5 align-self-end text-start">${previousEvolutionData.name}</strong>
+      <strong class="col-4 align-self-end text-end">${previousEvolutionData.genus}</strong>
       <div class="col-1">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal-button"></button>
       </div>
@@ -61,7 +61,7 @@ function createModalHeader(pokemonData) {
     </div>
 
     <div class="row" id="pokemon-main-info">
-      ${previousEvolutionId === "None" ? `<div class="col-2"></div>` : `<img class="col-2 align-self-center stage-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${previousEvolutionId}.png" />`}
+      ${previousEvolutionData.id === "None" ? `<div class="col-2"></div>` : `<img class="col-2 align-self-center stage-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${previousEvolutionData.id}.png" />`}
       <strong class="col-4 align-self-center"> ${pokemonName}</strong>
       <strong class="col-4 align-self-center text-end main-status">${pokemonStats.hp} HP</strong>
       <img class="col-2 align-self-center type-icon" src="img/pokemon-types/icons/${pokemonTypes.mainType}-type-icon.png" />
@@ -71,8 +71,8 @@ function createModalHeader(pokemonData) {
   return $modalHeader;
 }
 
-function createCard(pokemonData) {
-  const { pokemonSprite, pokemonTypes } = pokemonData;
+function createCard(pokemonData, pokemonSprite) {
+  const { pokemonTypes } = pokemonData;
 
   const $modalCardContainer = document.createElement("section");
   $modalCardContainer.className = "container-fluid";
