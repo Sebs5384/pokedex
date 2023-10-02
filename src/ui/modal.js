@@ -2,13 +2,13 @@ export function createPokemonModal(pokemonData) {
   const $modalContent = document.querySelector("#pokemon-modal-content");
   $modalContent.innerHTML = "";
 
-  const $modalBody = createModalBody(pokemonData);
+  const $modalBody = createModalBody();
   const $modalHeader = createModalHeader(pokemonData);
   const $modalCard = createCard(pokemonData);
   const $modalBanner = createBanner(pokemonData);
   const $modalSkillsContainer = createSkillsContainer(pokemonData);
   const $modalStatsContainer = createStatsContainer(pokemonData);
-  const $modalMiscStats = createMiscStats();
+  const $modalMiscStats = createMiscStats(pokemonData);
   const $modalFooter = createPokemonDescription(pokemonData);
 
   $modalBody.appendChild($modalHeader);
@@ -30,10 +30,10 @@ export function showModal(modal) {
 export function changeModalTexture(pokemonData) {
   const { pokemonTypes } = pokemonData;
   const $modalContent = document.querySelector("#pokemon-modal-content");
-  $modalContent.style.background = `url(/img/modal-textures/${pokemonTypes[0]}-texture.png) center/cover`;
+  $modalContent.style.background = `url(/img/modal-textures/${pokemonTypes.mainType}-texture.png) center/cover`;
 }
 
-function createModalBody(pokemonData) {
+function createModalBody() {
   const $modalBody = document.createElement("section");
   $modalBody.className = "modal-body";
   $modalBody.id = "pokemon-modal-body";
@@ -48,8 +48,8 @@ function createModalHeader(pokemonData) {
 
   $modalHeader.innerHTML = `
     <div class="row modal-fs">
-      <strong class="col-2 align-self-end">STAGE</strong>
-      <strong class="col-5 align-self-end text-start">Evolves from ${previousEvolutionName}</strong>
+      ${previousEvolutionName === "Basic Pokemon" ? `<div class="col-2"></div>` : ` <strong class="col-2 align-self-end">STAGE</strong>`}
+      <strong class="col-5 align-self-end text-start">${previousEvolutionName}</strong>
       <strong class="col-4 align-self-end text-end">${pokemonGenus}</strong>
       <div class="col-1">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal-button"></button>
@@ -61,10 +61,10 @@ function createModalHeader(pokemonData) {
     </div>
 
     <div class="row" id="pokemon-main-info">
-      <img class="col-2 align-self-center stage-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${previousEvolutionId}.png" />
+      ${previousEvolutionId === "None" ? `<div class="col-2"></div>` : `<img class="col-2 align-self-center stage-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${previousEvolutionId}.png" />`}
       <strong class="col-4 align-self-center"> ${pokemonName}</strong>
-      <strong class="col-4 align-self-center text-end main-status">${pokemonStats[0]} HP</strong>
-      <img class="col-2 align-self-center type-icon" src="img/pokemon-types/icons/${pokemonTypes[0]}-type-icon.png" />
+      <strong class="col-4 align-self-center text-end main-status">${pokemonStats.hp} HP</strong>
+      <img class="col-2 align-self-center type-icon" src="img/pokemon-types/icons/${pokemonTypes.mainType}-type-icon.png" />
     </div>
   `;
 
@@ -78,7 +78,7 @@ function createCard(pokemonData) {
   $modalCardContainer.className = "container-fluid";
   $modalCardContainer.id = "pokemon-modal-image";
   $modalCardContainer.innerHTML = `
-    <div class="card main-image-container ${pokemonTypes[0]}-background">
+    <div class="card main-image-container ${pokemonTypes.mainType}-background">
       <div class="row card-body justify-content-center">
         <img class="col-8" src=${pokemonSprite} />
       </div>
@@ -96,10 +96,10 @@ function createBanner(pokemonData) {
   $modalBanner.id = "pokemon-modal-banner";
 
   $modalBanner.innerHTML = `
-    <img class="col-2" src="img/pokemon-types/logos/${pokemonTypes[0]}-type.png" />
-    <img class="col-2" src="img/pokemon-types/logos/${pokemonTypes[1]}-type.png" />
-    <strong class="col-4 text-end">Length: ${pokemonHeight}</strong>
-    <strong class="col-4">Weight: ${pokemonWeight}</strong>
+    <img class="col-2" src="img/pokemon-types/logos/${pokemonTypes.mainType}-type.png" />
+    <img class="col-2" src="img/pokemon-types/logos/${pokemonTypes.secondaryType}-type.png" />
+    <strong class="col-4 text-end">Length: ${pokemonHeight}" </strong>
+    <strong class="col-4">Weight: ${pokemonWeight} lbs</strong>
   `;
 
   return $modalBanner;
@@ -120,12 +120,12 @@ function createSkillsContainer(pokemonData) {
       </div>
       <hr class="col-12 modal-horizontal-rule" />
       <div class="col-6 skill-font">
-        <img src="img/pokemon-types/icons/${pokemonTypes[0]}-type-icon.png" class="status-icon" />
-        <strong>${pokemonSkills[0]}</strong>
+        <img src="img/pokemon-types/icons/${pokemonTypes.mainType}-type-icon.png" class="status-icon" />
+        <strong>${pokemonSkills.firstSkill}</strong>
       </div>
       <div class="col-6 skill-font">
-        <img src="img/pokemon-types/icons/${pokemonTypes[0]}-type-icon.png" class="status-icon" />
-        <strong>${pokemonSkills[1]}</strong>
+        <img src="img/pokemon-types/icons/${pokemonTypes.mainType}-type-icon.png" class="status-icon" />
+        <strong>${pokemonSkills.secondSkill}</strong>
       </div>
     </div>
   `;
@@ -147,23 +147,23 @@ function createStatsContainer(pokemonData) {
       <hr class="col-12 modal-horizontal-rule" />
       <div class="col-4">
         <img src="img/pokemon-stats/atk-icon.png" class="status-icon" />
-        <strong>ATTACK: ${pokemonStats[1]}</strong>
+        <strong>ATTACK: ${pokemonStats.attack}</strong>
       </div>
       <div class="col-4">
       <img src="img/pokemon-stats/def-icon.png" class="status-icon" />
-      <strong>DEFENSE: ${pokemonStats[2]}</strong>
+      <strong>DEFENSE: ${pokemonStats.defense}</strong>
     </div>
     <div class="col-4">
       <img src="img/pokemon-stats/speed-icon.png" class="status-icon" />
-      <strong>SPEED: ${pokemonStats[5]}</strong>
+      <strong>SPEED: ${pokemonStats.speed}</strong>
     </div>
     <div class="col-4 mt-1">
       <img src="img/pokemon-stats/sp-atk-icon.png" class="status-icon" />
-      <strong>SP ATK: ${pokemonStats[3]}</strong>
+      <strong>SP ATK: ${pokemonStats.spAtk}</strong>
     </div>
     <div class="col-4 mt-1">
       <img src="img/pokemon-stats/sp-def-icon.png" class="status-icon" />
-      <strong>SP DEF: ${pokemonStats[4]}</strong>
+      <strong>SP DEF: ${pokemonStats.spDef}</strong>
     </div>
   </div>  
   `;
@@ -171,7 +171,7 @@ function createStatsContainer(pokemonData) {
   return $modalStatsContainer;
 }
 
-function createMiscStats() {
+function createMiscStats(pokemonData) {
   const $modalMiscStats = document.createElement("section");
   $modalMiscStats.className = "container-fluid mt-2";
 
@@ -197,13 +197,13 @@ function createMiscStats() {
 }
 
 function createPokemonDescription(pokemonData) {
-  const { pokemonText } = pokemonData;
+  const { pokemonDescription } = pokemonData;
   const $modalDescription = document.createElement("section");
   $modalDescription.className = "container-fluid mt-2";
 
   $modalDescription.innerHTML = `
     <div class="card text-center modal-footer-description">
-      <strong>${pokemonText}</strong>
+      <strong>${pokemonDescription}</strong>
     </div>
   `;
 
