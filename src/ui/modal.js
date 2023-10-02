@@ -48,7 +48,7 @@ function createModalHeader(pokemonData) {
 
   $modalHeader.innerHTML = `
     <div class="row modal-fs">
-      ${previousEvolutionData.name === "Basic Pokemon" ? `<div class="col-2"></div>` : ` <strong class="col-2 align-self-end">STAGE</strong>`}
+      ${previousEvolutionData.name === "Basic Pokemon" ? `<div class="col-2"></div>` : ` <strong class="col-2 align-self-end">P. STAGE</strong>`}
       <strong class="col-5 align-self-end text-start">${previousEvolutionData.name}</strong>
       <strong class="col-4 align-self-end text-end">${previousEvolutionData.genus}</strong>
       <div class="col-1">
@@ -172,6 +172,7 @@ function createStatsContainer(pokemonData) {
 }
 
 function createMiscStats(pokemonData) {
+  const { pokemonTypeAdvantage } = pokemonData;
   const $modalMiscStats = document.createElement("section");
   $modalMiscStats.className = "container-fluid mt-2";
 
@@ -182,9 +183,11 @@ function createMiscStats(pokemonData) {
     <strong class="col-4 text-center">Resistance</strong>
     <strong class="col-4 text-end">Retreat Cost</strong>
     <div class="col-4 text-start">
-      <img src="img/pokemon-types/icons/electric-type-icon.png" class="status-icon" />
+      <img src="img/pokemon-types/icons/${pokemonTypeAdvantage.weakness}-type-icon.png" class="status-icon" />
     </div>
-    <div class="col-4 text-center"></div>
+    <div class="col-4 text-center">
+      <img src="img/pokemon-types/icons/${pokemonTypeAdvantage.resistance}-type-icon.png" class="status-icon" />
+    </div>
     <div class="col-4 text-end">
       <img src="img/pokemon-types/icons/retreat-icon.png" class="status-icon" />
       <img src="img/pokemon-types/icons/retreat-icon.png" class="status-icon" />
