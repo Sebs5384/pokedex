@@ -116,6 +116,69 @@ body {
   border-radius: 0px;
 }
 
+.main-status {
+  color: red;
+}
+
+.skill-font {
+  color: red;
+  font-size: 15px;
+}
+
+.status-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.stage-icon {
+  width: 4rem;
+}
+
+.type-icon {
+  width: 3.5rem;
+  height: 1.7rem;
+}
+
+.modal-horizontal-rule {
+  border: 1px solid black;
+}
+
+@keyframes poke-shake {
+  0% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(-15px) rotateZ(-15deg);
+  }
+  20% {
+    transform: translateX(15px) rotateZ(15deg);
+  }
+  30% {
+    transform: translateX(-10px) rotateZ(-10deg);
+  }
+  40% {
+    transform: translateX(10px) rotateZ(10deg);
+  }
+  50% {
+    transform: translateX(-5px) rotateZ(-5deg);
+  }
+  60% {
+    transform: translateX(10px) rotateZ(10deg);
+  }
+  70% {
+    transform: translateX(-10px) rotateZ(-10deg);
+  }
+  80% {
+    transform: translateX(15px) rotateZ(15deg);
+  }
+  90% {
+    transform: translateX(-15px) rotateZ(-15deg);
+  }
+  100% {
+    transform: translateX(0) rotateZ(0);
+  }
+}
+
 .water-background {
   background: content-box linear-gradient(rgb(107, 254, 154), rgb(30, 103, 198), rgb(13, 52, 104), rgb(0, 0, 0));
 }
@@ -186,67 +249,4 @@ body {
 
 .steel-background {
   background: content-box linear-gradient(rgba(0, 0, 0, 0.747), rgba(133, 133, 133, 0), rgb(255, 255, 255));
-}
-
-.main-status {
-  color: red;
-}
-
-.skill-font {
-  color: red;
-  font-size: 15px;
-}
-
-.status-icon {
-  width: 1.2rem;
-  height: 1.2rem;
-}
-
-.stage-icon {
-  width: 4rem;
-}
-
-.type-icon {
-  width: 3.5rem;
-  height: 1.7rem;
-}
-
-.modal-horizontal-rule {
-  border: 1px solid black;
-}
-
-@keyframes poke-shake {
-  0% {
-    transform: translateX(0);
-  }
-  10% {
-    transform: translateX(-15px) rotateZ(-15deg);
-  }
-  20% {
-    transform: translateX(15px) rotateZ(15deg);
-  }
-  30% {
-    transform: translateX(-10px) rotateZ(-10deg);
-  }
-  40% {
-    transform: translateX(10px) rotateZ(10deg);
-  }
-  50% {
-    transform: translateX(-5px) rotateZ(-5deg);
-  }
-  60% {
-    transform: translateX(10px) rotateZ(10deg);
-  }
-  70% {
-    transform: translateX(-10px) rotateZ(-10deg);
-  }
-  80% {
-    transform: translateX(15px) rotateZ(15deg);
-  }
-  90% {
-    transform: translateX(-15px) rotateZ(-15deg);
-  }
-  100% {
-    transform: translateX(0) rotateZ(0);
-  }
 }
