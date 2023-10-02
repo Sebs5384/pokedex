@@ -9,7 +9,7 @@ export function getPreviousEvolutionData(species) {
   return {
     name: species.evolves_from_species ? `Evolves from ${species.evolves_from_species.name}` : "Basic Pokemon",
     id: species.evolves_from_species ? species.evolves_from_species.url.split("/")[6] : "None",
-    genus: species.genera[7].genus,
+    genus: species.genera.find((genus) => genus.language.name === "en").genus,
   };
 }
 
