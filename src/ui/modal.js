@@ -44,7 +44,7 @@ function createModalBody() {
 function createModalHeader(pokemonData) {
   const { pokemonName, pokemonStats, pokemonTypes, previousEvolutionData } = pokemonData;
   const $modalHeader = document.createElement("section");
-  $modalHeader.className = "container-fluid";
+  $modalHeader.className = "container-fluid capitalize-text";
 
   $modalHeader.innerHTML = `
     <div class="row modal-fs">
@@ -109,8 +109,7 @@ function createSkillsContainer(pokemonData) {
   const { pokemonTypes, pokemonSkills } = pokemonData;
 
   const $modalSkillContainer = document.createElement("section");
-  $modalSkillContainer.className = "container-fluid mt-2";
-  $modalSkillContainer.id = "pokemon-skills";
+  $modalSkillContainer.className = "container-fluid capitalize-text mt-2";
 
   $modalSkillContainer.innerHTML = `
     <div class="row modal-fs">
@@ -172,7 +171,7 @@ function createStatsContainer(pokemonData) {
 }
 
 function createMiscStats(pokemonData) {
-  const { pokemonTypeAdvantage } = pokemonData;
+  const { pokemonTypeAdvantage, previousEvolutionData } = pokemonData;
   const $modalMiscStats = document.createElement("section");
   $modalMiscStats.className = "container-fluid mt-2";
 
@@ -189,9 +188,14 @@ function createMiscStats(pokemonData) {
       <img src="img/pokemon-types/icons/${pokemonTypeAdvantage.resistance}-type-icon.png" class="status-icon" />
     </div>
     <div class="col-4 text-end">
-      <img src="img/pokemon-types/icons/retreat-icon.png" class="status-icon" />
-      <img src="img/pokemon-types/icons/retreat-icon.png" class="status-icon" />
-      <img src="img/pokemon-types/icons/retreat-icon.png" class="status-icon" />
+      ${
+        previousEvolutionData.name === "Basic Pokemon"
+          ? `<img src="img/pokemon-types/icons/retreat-icon.png" class="status-icon" />`
+          : `<img src="img/pokemon-types/icons/retreat-icon.png" class="status-icon" />
+        <img src="img/pokemon-types/icons/retreat-icon.png" class="status-icon" />
+        <img src="img/pokemon-types/icons/retreat-icon.png" class="status-icon" />
+      `
+      }
     </div>
   </div>
   `;
