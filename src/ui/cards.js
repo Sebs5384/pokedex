@@ -17,12 +17,12 @@ function createCards(pokemons, ids, sprites) {
     $card.style.backgroundImage = 'url("img/misc/pokeball.png")';
 
     $name.className = "card-body text-center";
+    $name.textContent = `#${id > 1017 ? id - 8983 : id}  ${pokemon}`;
     $name.style = "font-size: 13px";
-    $name.textContent = `#${id}  ${pokemon}`;
 
     $sprite.className = "card-img-top pokemon-sprite";
     $sprite.src = sprite;
-    $sprite.dataset.id = `${id}`;
+    $sprite.dataset.id = id;
     $sprite.onerror = () => ($sprite.src = "img/misc/404-shocked.png");
 
     $card.appendChild($name);
