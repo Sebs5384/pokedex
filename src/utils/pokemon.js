@@ -1,4 +1,4 @@
-import { getPokemonNames, getPokemonIds, getPokemonSkills, getPokemonStats, getPokemonTypes, getPokemonAdvantage, getPreviousEvolutionData, getEnglishDescription, convertGramToLb, convertDecimeterToFeet, calculatePaginationValues, advantageChart } from "./general.js";
+import { getPokemonNames, getPokemonName, getPokemonIds, getPokemonSkills, getPokemonStats, getPokemonTypes, getPokemonAdvantage, getPreviousEvolutionData, getEnglishDescription, convertGramToLb, convertDecimeterToFeet, calculatePaginationValues, advantageChart } from "./general.js";
 export function getPageData(getPokemons, POKEMONS_PER_PAGE, pageIndex) {
   return getPokemons(POKEMONS_PER_PAGE, pageIndex).then((pokemons) => {
     const totalPokemons = pokemons.count;
@@ -11,17 +11,21 @@ export function getPageData(getPokemons, POKEMONS_PER_PAGE, pageIndex) {
 }
 
 export function getPokemonData(pokemon, species, selectedPokemon) {
-  return Promise.all([pokemon(selectedPokemon), species(selectedPokemon)]).then(([pokemon, species]) => {
+  return pokemon(selectedPokemon).then((pokemon) => {
     const pokemonName = pokemon.name;
     const pokemonSkills = getPokemonSkills(pokemon.abilities);
     const pokemonStats = getPokemonStats(pokemon.stats);
     const pokemonTypes = getPokemonTypes(pokemon.types);
     const pokemonHeight = convertDecimeterToFeet(pokemon.height);
     const pokemonWeight = convertGramToLb(pokemon.weight);
-    const previousEvolutionData = getPreviousEvolutionData(species);
-    const pokemonDescription = getEnglishDescription(species.flavor_text_entries);
     const pokemonTypeAdvantage = getPokemonAdvantage(pokemonTypes.mainType, advantageChart);
+    const pokemonSpeciesName = pokemon.species.name;
 
-    return { pokemonSkills, pokemonHeight, pokemonName, pokemonStats, pokemonTypes, pokemonWeight, previousEvolutionData, pokemonDescription, pokemonTypeAdvantage };
+    return species(pokemonSpeciesName).then((species) => {
+      const previousEvolutionData = getPreviousEvolutionData(species);
+      const pokemonDescription = getEnglishDescription(species.flavor_text_entries);
+
+      return { pokemonSkills, pokemonHeight, pokemonName, pokemonStats, pokemonTypes, pokemonWeight, previousEvolutionData, pokemonDescription, pokemonTypeAdvantage };
+    });
   });
 }
