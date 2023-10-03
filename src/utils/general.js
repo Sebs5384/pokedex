@@ -39,6 +39,12 @@ export function getPokemonNames(list) {
   return list.map((item) => parsePokemonName(item.name));
 }
 
+export function getPokemonMainName(name) {
+  const words = name.split("-");
+
+  return words[0].length === 2 ? `${words[0]}${words[1]}` : words[0];
+}
+
 export function getPokemonIds(pokemons) {
   return pokemons.map((pokemon) => pokemon.url.split("/")[6]);
 }
@@ -59,13 +65,6 @@ export function getPokemonTypes(pokemonTypes) {
     mainType: pokemonTypes[0].type.name,
     secondaryType: pokemonTypes[1] ? pokemonTypes[1].type.name : undefined,
   };
-}
-
-export function parsePokemonName(pokemonName) {
-  return pokemonName
-    .split("-")
-    .map((pokemon) => pokemon.charAt(0).toUpperCase() + pokemon.slice(1))
-    .join(" ");
 }
 
 export function getPokemonAdvantage(pokemonType, advantageChart) {
@@ -92,3 +91,10 @@ export const advantageChart = {
   fairy: { resistance: "dark", weakness: "poison" },
   dark: { resistance: "ghost", weakness: "fairy" },
 };
+
+function parsePokemonName(pokemonName) {
+  return pokemonName
+    .split("-")
+    .map((pokemon) => pokemon.charAt(0).toUpperCase() + pokemon.slice(1))
+    .join(" ");
+}
