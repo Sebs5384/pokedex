@@ -7,6 +7,18 @@ body {
   background-color: #fff8dc;
 }
 
+.nav-bar {
+  background-color: #dc143c !important;
+}
+
+.popover {
+  border-color: crimson;
+}
+
+.card-border {
+  border-color: #dc143c;
+}
+
 #catch-pokemon-button {
   background-image: url(/img/misc/poke-background.png);
   background-size: cover;
@@ -17,14 +29,6 @@ body {
   width: 45px;
   height: 45px;
   animation: poke-shake 4s infinite;
-}
-
-.nav-bar {
-  background-color: #dc143c !important;
-}
-
-.card-border {
-  border-color: #dc143c;
 }
 
 .poke-logo {
@@ -47,6 +51,13 @@ body {
   border-color: white;
 }
 
+.paginator-search-box {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.paginator-search-box:focus,
 .paginator-text:focus {
   color: #dc143c;
   box-shadow: none;
@@ -54,6 +65,7 @@ body {
   background-color: white;
 }
 
+.paginator-search-box:hover,
 .paginator-text:hover {
   color: black;
   border-color: #dc143c;
