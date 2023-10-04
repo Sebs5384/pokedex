@@ -2,6 +2,7 @@ export function setupPagination(POKEMONS_PER_PAGE, pageIndex, totalPages, curren
   createPaginator(totalPages);
   displayCurrentPagination(currentPage, totalPages);
   handlePaginationChanges(POKEMONS_PER_PAGE, pageIndex, currentPage, setNewPage);
+  handlePaginationSearch(POKEMONS_PER_PAGE, setNewPage);
 }
 
 function displayCurrentPagination(currentPage, totalPages) {
@@ -16,7 +17,7 @@ function displayCurrentPagination(currentPage, totalPages) {
   $pages.forEach((page, index) => {
     const pageIndex = index + 1;
 
-    pageIndex >= currentPage - 1 && pageIndex <= currentPage + 2 ? page.classList.remove("hidden") : page.classList.add("hidden");
+    pageIndex >= currentPage - 1 && pageIndex <= currentPage + 3 ? page.classList.remove("hidden") : page.classList.add("hidden");
   });
 }
 
@@ -40,6 +41,17 @@ function handlePaginationChanges(POKEMONS_PER_PAGE, pageIndex, currentPage, setN
 
       $clickedButton.innerText === "Previous" ? setNewPage(POKEMONS_PER_PAGE, previousPageIndex) : setNewPage(POKEMONS_PER_PAGE, nextPageIndex);
     }
+  };
+}
+
+function handlePaginationSearch(POKEMONS_PER_PAGE, setNewPage) {
+  const $pageSearcher = document.querySelector("#search-page-input");
+
+  $pageSearcher.onkeydown = (searcher) => {
+    const selectedPage = $pageSearcher.value;
+    const pageIndex = (selectedPage - 1) * POKEMONS_PER_PAGE;
+
+    pageIndex > searcher.key === "Enter" ? setNewPage(POKEMONS_PER_PAGE, pageIndex) : null;
   };
 }
 
