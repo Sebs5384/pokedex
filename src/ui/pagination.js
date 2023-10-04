@@ -1,8 +1,8 @@
-export function setupPagination(POKEMONS_PER_PAGE, pageIndex, totalPages, currentPage, setNewPage) {
+export function setupPagination(POKEMONS_PER_PAGE, pageIndex, totalPages, currentPage, setNewPage, pageValidation) {
   createPaginator(totalPages);
   displayCurrentPagination(currentPage, totalPages);
   handlePaginationChanges(POKEMONS_PER_PAGE, pageIndex, currentPage, setNewPage);
-  handlePaginationSearch(POKEMONS_PER_PAGE, setNewPage);
+  handlePaginationSearch(POKEMONS_PER_PAGE, totalPages, setNewPage, pageValidation);
 }
 
 function displayCurrentPagination(currentPage, totalPages) {
@@ -44,14 +44,17 @@ function handlePaginationChanges(POKEMONS_PER_PAGE, pageIndex, currentPage, setN
   };
 }
 
-function handlePaginationSearch(POKEMONS_PER_PAGE, setNewPage) {
+function handlePaginationSearch(POKEMONS_PER_PAGE, totalPages, setNewPage, pageValidation) {
   const $pageSearcher = document.querySelector("#search-page-input");
 
   $pageSearcher.onkeydown = (searcher) => {
     const selectedPage = $pageSearcher.value;
     const pageIndex = (selectedPage - 1) * POKEMONS_PER_PAGE;
 
-    pageIndex > searcher.key === "Enter" ? setNewPage(POKEMONS_PER_PAGE, pageIndex) : null;
+    if (searcher.key === "Enter") {
+      const isSuccessful = pageValidation(selectedPage, totalPages);
+      isSuccessful === true ? setNewPage(POKEMONS_PER_PAGE, pageIndex) : handleErrorPopUp(isSuccessful);
+    }
   };
 }
 
@@ -74,4 +77,20 @@ function createPaginator(totalPages) {
     $item.appendChild($page);
     $pageContainer.appendChild($item);
   }
+}
+
+function handleErrorPopUp(message) {
+  const $paginatorSearchBox = document.querySelector("#search-page-input");
+
+  const $popover = new bootstrap.Popover($paginatorSearchBox, {
+    container: "body",
+    html: true,
+    content: message,
+  });
+
+  $popover.show();
+
+  setTimeout(() => {
+    $popover.dispose();
+  }, 3000);
 }

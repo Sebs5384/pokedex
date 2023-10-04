@@ -4,6 +4,7 @@ import { createPokemonModal, changeModalTexture, showModal } from "./ui/modal.js
 import { displayPokemonCards } from "./ui/cards.js";
 import { displayLoadingMessage, handleClickedPokemon } from "./ui/general.js";
 import { getPageData, getPokemonData } from "./utils/pokemon.js";
+import { validatePageSearchBox } from "./utils/validation.js";
 
 export function updatePokedexPage(POKEMONS_PER_PAGE = 20, pageIndex = 0) {
   displayLoadingMessage();
@@ -12,7 +13,7 @@ export function updatePokedexPage(POKEMONS_PER_PAGE = 20, pageIndex = 0) {
     const { pokemonNames, pokemonIds, totalPages, currentPage } = pageData;
     const pokemonSprites = pokemonIds.map((id) => getPokemonSprite(id));
 
-    setupPagination(POKEMONS_PER_PAGE, pageIndex, totalPages, currentPage, updatePokedexPage);
+    setupPagination(POKEMONS_PER_PAGE, pageIndex, totalPages, currentPage, updatePokedexPage, validatePageSearchBox);
     displayPokemonCards(pokemonNames, pokemonIds, pokemonSprites);
   });
 }
