@@ -19,6 +19,16 @@ body {
   border-color: #dc143c;
 }
 
+.poke-logo {
+  width: 200px;
+  height: 50px;
+}
+
+.magnifier {
+  width: 35px;
+  height: 35px;
+}
+
 #catch-pokemon-button {
   background-image: url(/img/misc/poke-background.png);
   background-size: cover;
@@ -28,17 +38,7 @@ body {
   border-radius: 50%;
   width: 45px;
   height: 45px;
-  animation: poke-shake 4s infinite;
-}
-
-.poke-logo {
-  width: 200px;
-  height: 50px;
-}
-
-.magnifier {
-  width: 35px;
-  height: 35px;
+  animation: poke-shake 4s;
 }
 
 .paginator-text {
@@ -124,7 +124,7 @@ body {
 }
 
 .main-image-container {
-  border: 7px solid;
+  border: 8px solid;
   margin-top: -5px;
   border-color: rgb(254, 230, 98);
   border-style: outset;
@@ -194,6 +194,15 @@ body {
   100% {
     transform: translateX(0) rotateZ(0);
   }
+}
+
+.catch-pokemon-text {
+  font-family: "emerald-font";
+}
+
+@font-face {
+  font-family: "emerald-font";
+  src: url(/font/pokemon-emerald.ttf);
 }
 
 .water-background {
