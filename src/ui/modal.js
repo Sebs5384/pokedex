@@ -47,7 +47,7 @@ function createModalHeader(pokemonData) {
   $modalHeader.className = "container-fluid capitalize-text";
 
   $modalHeader.innerHTML = `
-    <div class="row modal-fs">
+    <div class="row modal-font">
       ${previousEvolutionData.name === "Basic Pokemon" ? `<div class="col-2"></div>` : ` <strong class="col-2 align-self-end">P. STAGE</strong>`}
       <strong class="col-5 align-self-end text-start">${previousEvolutionData.name}</strong>
       <strong class="col-4 align-self-end text-end">${previousEvolutionData.genus}</strong>
@@ -112,7 +112,7 @@ function createSkillsContainer(pokemonData) {
   $modalSkillContainer.className = "container-fluid capitalize-text mt-2";
 
   $modalSkillContainer.innerHTML = `
-    <div class="row modal-fs">
+    <div class="row modal-font">
       <div class="col-12">
         <img src="img/pokemon-stats/skill-icon-png.png" class="status-icon mb-1" />
         <strong>Pokemon Skills</strong>
@@ -138,7 +138,7 @@ function createStatsContainer(pokemonData) {
   $modalStatsContainer.className = "container-fluid mt-2";
 
   $modalStatsContainer.innerHTML = `
-    <div class="row modal-fs">
+    <div class="row modal-font">
       <div class="text-start col-12">
         <img src="img/pokemon-stats/status-icon.png" class="status-icon" />
         <strong>Pokemon Status</strong>
@@ -176,7 +176,7 @@ function createMiscStats(pokemonData) {
   $modalMiscStats.className = "container-fluid mt-2";
 
   $modalMiscStats.innerHTML = `
-  <div class="row modal-fs">
+  <div class="row modal-font">
     <hr class="col-12 modal-horizontal-rule" />
     <strong class="col-4 text-start">Weakness</strong>
     <strong class="col-4 text-center">Resistance</strong>

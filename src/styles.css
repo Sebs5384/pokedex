@@ -3,12 +3,16 @@ body {
   background-size: cover;
 }
 
-.main-card-container {
-  background-color: #fff8dc;
-}
-
 .nav-bar {
   background-color: #dc143c !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.main-card-container {
+  background-color: #fff8dc;
 }
 
 .popover {
@@ -17,6 +21,14 @@ body {
 
 .card-border {
   border-color: #dc143c;
+}
+
+.capitalize-text {
+  text-transform: capitalize;
+}
+
+.modal-font {
+  font-size: 12px;
 }
 
 .poke-logo {
@@ -72,10 +84,6 @@ body {
   box-shadow: 0 0 10px #dc143c;
 }
 
-.hidden {
-  display: none;
-}
-
 .pokemon-sprite {
   transition: transform 0.3s ease;
 }
@@ -89,14 +97,6 @@ body {
   border: solid gold 10px;
   border-radius: 10px;
   border-style: outset;
-}
-
-.capitalize-text {
-  text-transform: capitalize;
-}
-
-.modal-fs {
-  font-size: 12px;
 }
 
 .modal-banner {
@@ -160,49 +160,60 @@ body {
   border: 1px solid black;
 }
 
-@keyframes poke-shake {
-  0% {
-    transform: translateX(0);
-  }
-  10% {
-    transform: translateX(-15px) rotateZ(-15deg);
-  }
-  20% {
-    transform: translateX(15px) rotateZ(15deg);
-  }
-  30% {
-    transform: translateX(-10px) rotateZ(-10deg);
-  }
-  40% {
-    transform: translateX(10px) rotateZ(10deg);
-  }
-  50% {
-    transform: translateX(-5px) rotateZ(-5deg);
-  }
-  60% {
-    transform: translateX(10px) rotateZ(10deg);
-  }
-  70% {
-    transform: translateX(-10px) rotateZ(-10deg);
-  }
-  80% {
-    transform: translateX(15px) rotateZ(15deg);
-  }
-  90% {
-    transform: translateX(-15px) rotateZ(-15deg);
-  }
-  100% {
-    transform: translateX(0) rotateZ(0);
-  }
+.modal-title {
+  position: relative;
+  display: inline-block;
+  padding: 2px;
+  border: 3px solid;
+  border-color: rgb(82, 82, 82);
+  border-radius: 4px;
 }
 
-.catch-pokemon-text {
-  font-family: "emerald-font";
+.modal-title::before,
+.modal-title::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10px;
 }
 
-@font-face {
+.modal-title::before {
+  animation: tickAnimationLeft 0.7s alternate infinite;
+}
+
+.modal-title::after {
+  animation: tickAnimationRight 0.7s alternate infinite;
+}
+
+.modal-title::before {
+  left: 0;
+  border-radius: 1.7px;
+  background-image: linear-gradient(to left, rgb(255, 202, 44), rgb(255, 137, 2));
+}
+
+.modal-title::after {
+  right: 0;
+  background-image: linear-gradient(to right, rgb(255, 202, 44), rgb(255, 137, 2));
+}
+
+.registration-border {
+  position: relative;
+}
+
+.registration-border::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 22px;
+  width: 105%;
+  height: 3px;
+  border-radius: 10px;
+  background-color: rgb(198, 198, 198);
+}
+
+.pokemon-emerald-font {
   font-family: "emerald-font";
-  src: url(/font/pokemon-emerald.ttf);
 }
 
 .water-background {
@@ -275,4 +286,57 @@ body {
 
 .steel-background {
   background: content-box linear-gradient(rgba(0, 0, 0, 0.747), rgba(133, 133, 133, 0), rgb(255, 255, 255));
+}
+
+@keyframes tickAnimationLeft {
+  0% {
+    background-image: linear-gradient(to left, rgb(211, 211, 211), rgb(57, 57, 57));
+  }
+}
+
+@keyframes tickAnimationRight {
+  0% {
+    background-image: linear-gradient(to right, rgb(211, 211, 211), rgb(57, 57, 57));
+  }
+}
+
+@keyframes poke-shake {
+  0% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(-15px) rotateZ(-15deg);
+  }
+  20% {
+    transform: translateX(15px) rotateZ(15deg);
+  }
+  30% {
+    transform: translateX(-10px) rotateZ(-10deg);
+  }
+  40% {
+    transform: translateX(10px) rotateZ(10deg);
+  }
+  50% {
+    transform: translateX(-5px) rotateZ(-5deg);
+  }
+  60% {
+    transform: translateX(10px) rotateZ(10deg);
+  }
+  70% {
+    transform: translateX(-10px) rotateZ(-10deg);
+  }
+  80% {
+    transform: translateX(15px) rotateZ(15deg);
+  }
+  90% {
+    transform: translateX(-15px) rotateZ(-15deg);
+  }
+  100% {
+    transform: translateX(0) rotateZ(0);
+  }
+}
+
+@font-face {
+  font-family: "emerald-font";
+  src: url(/font/pokemon-emerald.ttf);
 }
