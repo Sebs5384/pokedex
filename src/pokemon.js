@@ -1,9 +1,9 @@
 import { getPokemons, getPokemon, getPokemonSprite, getPokemonSpecies } from "./api/pokemon.js";
 import { setupPagination } from "./ui/pagination.js";
-import { createPokemonModal, changeModalTexture, showModal } from "./ui/modal.js";
+import { displayPokemonCardModal, displayCaughtPokemonModal } from "./ui/modal.js";
 import { displayPokemonCards } from "./ui/cards.js";
-import { displayLoadingMessage, handleClickedPokemon } from "./ui/general.js";
-import { getPageData, getPokemonData } from "./utils/pokemon.js";
+import { displayLoadingMessage, handleClickedPokemon, handlePokeballButton, changeCaughtPokemonText } from "./ui/general.js";
+import { getPageData, getPokemonData, getCaughtPokemonData } from "./utils/pokemon.js";
 import { validatePageSearchBox } from "./utils/validation.js";
 
 export function updatePokedexPage(POKEMONS_PER_PAGE = 20, pageIndex = 0) {
@@ -23,9 +23,15 @@ export function setupPokemonModal() {
     getPokemonData(getPokemon, getPokemonSpecies, clickedPokemon).then((pokemonData) => {
       const pokemonSprite = getPokemonSprite(clickedPokemon);
 
-      createPokemonModal(pokemonData, pokemonSprite);
-      changeModalTexture(pokemonData);
-      showModal("#pokemon-modal");
+      displayPokemonCardModal(pokemonData, pokemonSprite);
+    });
+  });
+}
+
+export function setupCatchPokemon() {
+  handlePokeballButton(() => {
+    getCaughtPokemonData(getPokemons, getPokemon, getPokemonSpecies, 100000, 0).then((caughtPokemonData) => {
+      displayCaughtPokemonModal(caughtPokemonData, changeCaughtPokemonText);
     });
   });
 }
