@@ -41,6 +41,10 @@ body {
   height: 35px;
 }
 
+.pokemon-emerald-font {
+  font-family: "emerald-font";
+}
+
 #catch-pokemon-button {
   background-image: url(/img/misc/poke-background.png);
   background-size: cover;
@@ -50,7 +54,10 @@ body {
   border-radius: 50%;
   width: 45px;
   height: 45px;
-  animation: poke-shake 4s;
+}
+
+.poke-shake {
+  animation: poke-shake 5s;
 }
 
 .paginator-text {
@@ -197,6 +204,26 @@ body {
   background-image: linear-gradient(to right, rgb(255, 202, 44), rgb(255, 137, 2));
 }
 
+.caught-pokemon-body {
+  background-color: rgb(60, 59, 59);
+}
+
+.caught-pokemon-description-background {
+  border-style: outset;
+  border-color: rgb(243, 60, 9);
+  border-radius: 8px;
+  background-color: rgb(243, 60, 9);
+  border-left: 15px solid rgb(243, 60, 9);
+  border-right: 15px solid rgb(243, 60, 9);
+}
+
+.caught-pokemon-description-container {
+  background-color: rgb(24, 184, 142);
+  font-size: 50px;
+  border-radius: 8px;
+  color: white;
+}
+
 .registration-border {
   position: relative;
 }
@@ -210,10 +237,6 @@ body {
   height: 3px;
   border-radius: 10px;
   background-color: rgb(198, 198, 198);
-}
-
-.pokemon-emerald-font {
-  font-family: "emerald-font";
 }
 
 .water-background {
@@ -286,6 +309,43 @@ body {
 
 .steel-background {
   background: content-box linear-gradient(rgba(0, 0, 0, 0.747), rgba(133, 133, 133, 0), rgb(255, 255, 255));
+}
+
+.typewriter-effect {
+  overflow: hidden;
+  border-right: 0.15em solid transparent;
+  white-space: nowrap;
+  letter-spacing: 0.15em;
+  animation: typing 1s steps(40), cursor 0.75s step-end forwards;
+}
+
+.typewriter-effect-delayed {
+  overflow: hidden;
+  border-right: 0.15em solid transparent;
+  white-space: nowrap;
+  letter-spacing: 0.15em;
+  opacity: 0;
+  animation: typing 1s steps(40), cursor 0.75s step-end forwards;
+  animation-fill-mode: forwards;
+  animation-delay: 1s;
+}
+
+.container,
+.caught-pokemon-description-container {
+  min-height: 160px;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
 }
 
 @keyframes tickAnimationLeft {
