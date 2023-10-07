@@ -1,4 +1,10 @@
-export function createPokemonModal(pokemonData, pokemonSprite) {
+export function displayPokemonCardModal(pokemonData, pokemonSprite) {
+  setPokemonCardModalContent(pokemonData, pokemonSprite);
+  changeModalTexture(pokemonData);
+  showModal("#pokemon-modal");
+}
+
+function setPokemonCardModalContent(pokemonData, pokemonSprite) {
   const $modalContent = document.querySelector("#pokemon-modal-content");
   $modalContent.innerHTML = "";
 
@@ -19,18 +25,6 @@ export function createPokemonModal(pokemonData, pokemonSprite) {
   $modalBody.appendChild($modalMiscStats);
   $modalBody.appendChild($modalFooter);
   $modalContent.appendChild($modalBody);
-}
-
-export function showModal(modal) {
-  const $modal = document.querySelector(modal);
-  const modalInstance = new bootstrap.Modal($modal);
-  modalInstance.show();
-}
-
-export function changeModalTexture(pokemonData) {
-  const { pokemonTypes } = pokemonData;
-  const $modalContent = document.querySelector("#pokemon-modal-content");
-  $modalContent.style.background = `url(/img/modal-textures/${pokemonTypes.mainType}-texture.png) center/cover`;
 }
 
 function createModalBody() {
@@ -215,4 +209,56 @@ function createPokemonDescription(pokemonData) {
   `;
 
   return $modalDescription;
+}
+
+export function displayCaughtPokemonModal(pokemonData, changeModalText) {
+  setCaughtPokemonModalContent(pokemonData);
+  changeModalText(pokemonData.caughtPokemonName);
+  showModal("#caught-pokemon-modal");
+  hideModal("#caught-pokemon-modal", 7000);
+}
+
+function setCaughtPokemonModalContent(pokemonData) {
+  const $caughtPokemonContent = document.querySelector("#caught-pokemon-content");
+
+  $caughtPokemonContent.innerHTML = "";
+
+  const $caughtPokemonBody = createCaughtModalBody(pokemonData);
+  $caughtPokemonContent.appendChild($caughtPokemonBody);
+}
+
+function createCaughtModalBody(pokemonData) {
+  const $caughtModalBody = document.createElement("section");
+
+  $caughtModalBody.className = "modal-body caught-pokemon-body";
+  $caughtModalBody.innerHTML = `
+    <div class="caught-pokemon-description-background">
+      <div class="container pokemon-emerald-font caught-pokemon-description-container">
+        <div class="row">
+          <div class="typewriter-effect col-12" id="caught-pokemon-top-text"></div>
+          <div class="typewriter-effect-delayed col-12" id="caught-pokemon-bottom-text"></div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  return $caughtModalBody;
+}
+
+function showModal(modal) {
+  const modalInstance = new bootstrap.Modal(modal);
+  modalInstance.show();
+}
+
+function hideModal(modal, timer) {
+  const $modal = bootstrap.Modal.getInstance(modal);
+  setTimeout(() => {
+    $modal.hide();
+  }, timer);
+}
+
+function changeModalTexture(pokemonData) {
+  const { pokemonTypes } = pokemonData;
+  const $modalContent = document.querySelector("#pokemon-modal-content");
+  $modalContent.style.background = `url(/img/modal-textures/${pokemonTypes.mainType}-texture.png) center/cover`;
 }
