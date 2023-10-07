@@ -1,4 +1,20 @@
-import { getPokemonNames, getPokemonMainName, getPokemonIds, getPokemonSkills, getPokemonStats, getPokemonTypes, getPokemonAdvantage, getPreviousEvolutionData, getEnglishDescription, convertGramToLb, convertDecimeterToFeet, calculatePaginationValues, advantageChart } from "./general.js";
+import {
+  getPokemonNames,
+  getPokemonMainName,
+  getPokemonIds,
+  getPokemonSkills,
+  getPokemonStats,
+  getPokemonTypes,
+  getPokemonAdvantage,
+  getPreviousEvolutionData,
+  getEnglishDescription,
+  convertGramToLb,
+  convertDecimeterToFeet,
+  calculatePaginationValues,
+  advantageChart,
+  catchPokemon,
+} from "./general.js";
+
 export function getPageData(getPokemons, POKEMONS_PER_PAGE, pageIndex) {
   return getPokemons(POKEMONS_PER_PAGE, pageIndex).then((pokemons) => {
     const totalPokemons = pokemons.count;
@@ -26,6 +42,27 @@ export function getPokemonData(pokemon, species, selectedPokemon) {
       const pokemonDescription = getEnglishDescription(species.flavor_text_entries);
 
       return { pokemonSkills, pokemonHeight, pokemonName, pokemonStats, pokemonTypes, pokemonWeight, previousEvolutionData, pokemonDescription, pokemonTypeAdvantage };
+    });
+  });
+}
+
+export function getCaughtPokemonData(getAllPokemons, pokemon, species, limit, offset) {
+  return getAllPokemons(limit, offset).then((pokemons) => {
+    const caughtPokemon = catchPokemon(pokemons);
+
+    return pokemon(caughtPokemon).then((caughtPokemon) => {
+      const caughtPokemonId = caughtPokemon.id;
+      const caughtPokemonName = getPokemonMainName(caughtPokemon.name);
+      const caughtPokemonHeight = convertDecimeterToFeet(caughtPokemon.height);
+      const caughtPokemonWeight = convertGramToLb(caughtPokemon.weight);
+      const caughtPokemonSpecies = caughtPokemon.species.name;
+
+      return species(caughtPokemonSpecies).then((caughtPokemonSpecies) => {
+        const caughtPokemonEvolutionData = getPreviousEvolutionData(caughtPokemonSpecies);
+        const caughtPokemonDescription = getEnglishDescription(caughtPokemonSpecies.flavor_text_entries);
+
+        return { caughtPokemonId, caughtPokemonName, caughtPokemonHeight, caughtPokemonWeight, caughtPokemonEvolutionData, caughtPokemonDescription };
+      });
     });
   });
 }

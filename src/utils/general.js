@@ -71,6 +71,13 @@ export function getPokemonAdvantage(pokemonType, advantageChart) {
   return advantageChart[pokemonType];
 }
 
+export function catchPokemon(pokemons) {
+  const caughtPokemon = Math.floor(Math.random() * pokemons.count);
+  const caughtPokemonId = pokemons.results[caughtPokemon].url.split("/")[6];
+
+  return caughtPokemonId;
+}
+
 export const advantageChart = {
   fire: { resistance: "grass", weakness: "water" },
   water: { resistance: "fire", weakness: "electric" },
