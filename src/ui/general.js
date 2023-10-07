@@ -28,3 +28,35 @@ export function handleClickedPokemon(clicked) {
     clicked(pokemonId);
   };
 }
+
+export function handlePokeballButton(clicked) {
+  const $pokeballButton = document.querySelector("#catch-pokemon-button");
+
+  $pokeballButton.onclick = () => {
+    $pokeballButton.classList.toggle("poke-shake");
+    clicked();
+  };
+}
+
+export function changeCaughtPokemonText(pokemonName) {
+  const $caughtPokemonTopText = document.querySelector("#caught-pokemon-top-text");
+  const $caughtPokemonBottomText = document.querySelector("#caught-pokemon-bottom-text");
+  $caughtPokemonTopText.innerText = "Gotcha !";
+  $caughtPokemonBottomText.innerText = `${pokemonName.toUpperCase()} was caught`;
+
+  setTimeout(() => {
+    $caughtPokemonTopText.innerText = "";
+    $caughtPokemonBottomText.innerText = "";
+
+    $caughtPokemonTopText.classList.remove("typewriter-effect");
+    $caughtPokemonBottomText.classList.remove("typewriter-effect-delayed");
+
+    setTimeout(() => {
+      $caughtPokemonTopText.classList.add("typewriter-effect");
+      $caughtPokemonTopText.innerText = `${pokemonName.toUpperCase()}'S data was`;
+
+      $caughtPokemonBottomText.classList.add("typewriter-effect-delayed");
+      $caughtPokemonBottomText.innerText = "added to the POKéDEX";
+    }, 500);
+  }, 2500);
+}
