@@ -42,6 +42,16 @@ body {
   height: 35px;
 }
 
+.slot-image {
+  background-image: url(/img/misc/pokedex-len.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 60px;
+  height: 60px;
+  border: 5px solid crimson;
+}
+
 .pokemon-emerald-font {
   font-family: "emerald-font";
 }

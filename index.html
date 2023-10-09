@@ -16,7 +16,7 @@
             <img src="img/misc/pokedex-logo.png" alt="Pokedex" class="poke-logo" />
           </a>
 
-          <form class="container-fluid col-5">
+          <form class="container-fluid col-4">
             <div class="input-group">
               <span class="input-group-text"><img src="img/misc/magnifier.png" alt="@" class="magnifier" /></span>
               <input type="text" class="form-control search-input" placeholder="Search pokemon" aria-label="Username" aria-describedby="basic-addon1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" />
@@ -24,7 +24,7 @@
           </form>
 
           <section class="container-fluid col-7">
-            <div class="row justify-content-start align-items-center" id="caught-pokemon-container">
+            <div class="row justify-content-start align-items-center">
               <div class="col-4">
                 <div class="row">
                   <div class="col-3">
@@ -36,16 +36,16 @@
                 </div>
               </div>
 
-              <div class="col-4">
+              <div class="col-5">
                 <div class="row" id="caught-pokemon-container">
                   <div class="col-4">
-                    <img style="width: 60px; height: 60px" data-id="1" />
+                    <img class="slot-image" />
                   </div>
                   <div class="col-4">
-                    <img style="width: 60px; height: 60px" />
+                    <img class="slot-image" />
                   </div>
                   <div class="col-4">
-                    <img style="width: 60px; height: 60px" />
+                    <img class="slot-image" />
                   </div>
                 </div>
               </div>
@@ -60,7 +60,7 @@
         </div>
       </section>
 
-      <section class="modal fade" id="caught-pokemon-modal" tabindex="-1" aria-hidden="true">
+      <section class="modal fade" id="caught-pokemon-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
           <div class="modal-content" id="caught-pokemon-content"></div>
         </div>
