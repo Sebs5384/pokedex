@@ -45,9 +45,9 @@ export function getPokemonSpecies(id) {
     });
 }
 
-export function getPokemonSprite(id) {
+export function getPokemonSprite(id, sprite = "") {
   try {
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${sprite}${id}.png`;
   } catch (error) {
     console.error(error);
   }

@@ -245,19 +245,19 @@ function createCaughtModalBody(pokemonData) {
   return $caughtModalBody;
 }
 
-export function displayPokedexRegistrationModal(pokemonData) {
-  setPokedexRegistrationModalContent(pokemonData);
-  showModal("#pokedex-registration-modal", 10000);
+export function displayPokedexRegistrationModal(pokemonData, pokemonSprite) {
+  setPokedexRegistrationModalContent(pokemonData, pokemonSprite);
+  showModal("#pokedex-registration-modal", 9000);
   hideModal("#pokedex-registration-modal", 25000);
 }
 
-function setPokedexRegistrationModalContent(pokemonData) {
+function setPokedexRegistrationModalContent(pokemonData, pokemonSprite) {
   const $registrationModalContent = document.querySelector("#registration-content");
   $registrationModalContent.innerHTML = "";
 
   const $registrationText = createRegistrationText();
   const $modalBody = createRegistrationBody();
-  const $registrationContent = createRegistrationContent(pokemonData);
+  const $registrationContent = createRegistrationContent(pokemonData, pokemonSprite);
   const $registrationDescription = createRegistrationDescription(pokemonData);
 
   $registrationModalContent.appendChild($registrationText);
@@ -283,7 +283,7 @@ function createRegistrationBody() {
   return $modalBody;
 }
 
-function createRegistrationContent(pokemonData) {
+function createRegistrationContent(pokemonData, pokemonSprite) {
   const { caughtPokemonId, caughtPokemonName, caughtPokemonEvolutionData, caughtPokemonHeight, caughtPokemonWeight } = pokemonData;
   const $registrationContent = document.createElement("div");
   $registrationContent.className = "col-11 registration-details-background";
@@ -291,7 +291,7 @@ function createRegistrationContent(pokemonData) {
   $registrationContent.innerHTML = `
   <div class="row justify-content-center registration-screen">
     <div class="container col-4 registration-image-background">
-      <img class="registration-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${caughtPokemonId}.png" />
+      <img class="registration-image" src=${pokemonSprite} onerror="this.src='img/misc/404-shocked.png'"  />
     </div>
 
     <div class="container col-8 mt-1">

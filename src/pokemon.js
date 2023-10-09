@@ -11,7 +11,7 @@ export function updatePokedexPage(POKEMONS_PER_PAGE = 20, pageIndex = 0) {
 
   getPageData(getPokemons, POKEMONS_PER_PAGE, pageIndex).then((pageData) => {
     const { pokemonNames, pokemonIds, totalPages, currentPage } = pageData;
-    const pokemonSprites = pokemonIds.map((id) => getPokemonSprite(id));
+    const pokemonSprites = pokemonIds.map((id) => getPokemonSprite(id, "other/official-artwork/"));
 
     setupPagination(POKEMONS_PER_PAGE, pageIndex, totalPages, currentPage, updatePokedexPage, validatePageSearchBox);
     displayPokemonCards(pokemonNames, pokemonIds, pokemonSprites);
@@ -21,7 +21,7 @@ export function updatePokedexPage(POKEMONS_PER_PAGE = 20, pageIndex = 0) {
 export function setupPokemonModal() {
   handleClickedPokemon((clickedPokemon) => {
     getPokemonData(getPokemon, getPokemonSpecies, clickedPokemon).then((pokemonData) => {
-      const pokemonSprite = getPokemonSprite(clickedPokemon);
+      const pokemonSprite = getPokemonSprite(clickedPokemon, "other/official-artwork/");
 
       displayPokemonCardModal(pokemonData, pokemonSprite);
     });
@@ -31,8 +31,10 @@ export function setupPokemonModal() {
 export function setupCatchPokemon() {
   handlePokeballButton(() => {
     getCaughtPokemonData(getPokemons, getPokemon, getPokemonSpecies, 100000, 0).then((caughtPokemonData) => {
+      const pokemonSprite = getPokemonSprite(caughtPokemonData.caughtPokemonId);
+
       displayCaughtPokemonModal(caughtPokemonData, changeCaughtPokemonText);
-      displayPokedexRegistrationModal(caughtPokemonData);
+      displayPokedexRegistrationModal(caughtPokemonData, pokemonSprite);
     });
   });
 }
