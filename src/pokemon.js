@@ -1,6 +1,6 @@
 import { getPokemons, getPokemon, getPokemonSprite, getPokemonSpecies } from "./api/pokemon.js";
 import { setupPagination } from "./ui/pagination.js";
-import { displayPokemonCardModal, displayCaughtPokemonModal } from "./ui/modal.js";
+import { displayPokemonCardModal, displayCaughtPokemonModal, displayPokedexRegistrationModal } from "./ui/modal.js";
 import { displayPokemonCards } from "./ui/cards.js";
 import { displayLoadingMessage, handleClickedPokemon, handlePokeballButton, changeCaughtPokemonText } from "./ui/general.js";
 import { getPageData, getPokemonData, getCaughtPokemonData } from "./utils/pokemon.js";
@@ -32,6 +32,7 @@ export function setupCatchPokemon() {
   handlePokeballButton(() => {
     getCaughtPokemonData(getPokemons, getPokemon, getPokemonSpecies, 100000, 0).then((caughtPokemonData) => {
       displayCaughtPokemonModal(caughtPokemonData, changeCaughtPokemonText);
+      displayPokedexRegistrationModal(caughtPokemonData);
     });
   });
 }
