@@ -215,7 +215,7 @@ export function displayCaughtPokemonModal(pokemonData, changeModalText) {
   setCaughtPokemonModalContent(pokemonData);
   changeModalText(pokemonData.caughtPokemonName);
   showModal("#caught-pokemon-modal");
-  hideModal("#caught-pokemon-modal", 7000);
+  hideModal("#caught-pokemon-modal", 10000);
 }
 
 function setCaughtPokemonModalContent(pokemonData) {
@@ -245,12 +245,109 @@ function createCaughtModalBody(pokemonData) {
   return $caughtModalBody;
 }
 
-function showModal(modal) {
-  const modalInstance = new bootstrap.Modal(modal);
-  modalInstance.show();
+export function displayPokedexRegistrationModal(pokemonData) {
+  setPokedexRegistrationModalContent(pokemonData);
+  showModal("#pokedex-registration-modal", 10000);
+  hideModal("#pokedex-registration-modal", 25000);
 }
 
-function hideModal(modal, timer) {
+function setPokedexRegistrationModalContent(pokemonData) {
+  const $registrationModalContent = document.querySelector("#registration-content");
+  $registrationModalContent.innerHTML = "";
+
+  const $registrationText = createRegistrationText();
+  const $modalBody = createRegistrationBody();
+  const $registrationContent = createRegistrationContent(pokemonData);
+  const $registrationDescription = createRegistrationDescription(pokemonData);
+
+  $registrationModalContent.appendChild($registrationText);
+  $registrationModalContent.appendChild($modalBody);
+  $modalBody.appendChild($registrationContent);
+  $registrationModalContent.appendChild($modalBody);
+  $registrationModalContent.appendChild($registrationDescription);
+}
+
+function createRegistrationText() {
+  const $registrationText = document.createElement("section");
+  $registrationText.className = "modal-title w-100 text-center h2";
+  $registrationText.innerText = "POKÉDEX registration completed.";
+
+  return $registrationText;
+}
+
+function createRegistrationBody() {
+  const $modalBody = document.createElement("section");
+  $modalBody.className = "modal-body row justify-content-center registration-screen-background";
+  $modalBody.style = "text-transform: uppercase";
+
+  return $modalBody;
+}
+
+function createRegistrationContent(pokemonData) {
+  const { caughtPokemonId, caughtPokemonName, caughtPokemonEvolutionData, caughtPokemonHeight, caughtPokemonWeight } = pokemonData;
+  const $registrationContent = document.createElement("div");
+  $registrationContent.className = "col-11 registration-details-background";
+
+  $registrationContent.innerHTML = `
+  <div class="row justify-content-center registration-screen">
+    <div class="container col-4 registration-image-background">
+      <img class="registration-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${caughtPokemonId}.png" />
+    </div>
+
+    <div class="container col-8 mt-1">
+      <div class="row">
+        <div class="col-11 registration-info-background">
+          <div class="row">
+            <div class="mt-2 col-12 text-start h3">Nº ${caughtPokemonId > 1017 ? caughtPokemonId - 8983 : caughtPokemonId} ${caughtPokemonName}</div>
+            <div class="mb-2 col-12 h3 genus-registration-font" > ${caughtPokemonEvolutionData.genus}</div>
+          
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-8">
+          <div class="row">
+            <div class="mt-2 col-3 h3 text-center description-underline">HT</div>
+            <div class="mt-2 col-7 h3 text-end description-underline">${caughtPokemonHeight}"</div>
+            <div class="col-3 h3 text-center description-underline">WT</div>
+            <div class="col-7 h3 text-end description-underline">${caughtPokemonWeight} lbs.</div>
+          </div>
+        </div>
+
+        <div class="col-3 d-flex justify-content-end align-items-center">
+          <div class="row">
+            <div class="text-center d-flex justify-content-center align-items-center footprint-background"></div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>`;
+
+  return $registrationContent;
+}
+
+function createRegistrationDescription(pokemonData) {
+  const { caughtPokemonDescription } = pokemonData;
+  const $descriptionContainer = document.createElement("section");
+  $descriptionContainer.className = "modal-title w-100 text-center h1";
+
+  $descriptionContainer.innerHTML = `
+    <div>${caughtPokemonDescription}</div>
+  `;
+
+  return $descriptionContainer;
+}
+
+function showModal(modal, timer = 0) {
+  const modalInstance = new bootstrap.Modal(modal);
+  setTimeout(() => {
+    modalInstance.show();
+  }, timer);
+}
+
+function hideModal(modal, timer = 0) {
   const $modal = bootstrap.Modal.getInstance(modal);
   setTimeout(() => {
     $modal.hide();
