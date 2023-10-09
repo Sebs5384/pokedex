@@ -2,7 +2,7 @@ import { getPokemons, getPokemon, getPokemonSprite, getPokemonSpecies } from "./
 import { setupPagination } from "./ui/pagination.js";
 import { displayPokemonCardModal, displayCaughtPokemonModal, displayPokedexRegistrationModal } from "./ui/modal.js";
 import { displayPokemonCards } from "./ui/cards.js";
-import { displayLoadingMessage, handleClickedPokemon, handlePokeballButton, changeCaughtPokemonText } from "./ui/general.js";
+import { displayLoadingMessage, handleClickedPokemon, handlePokeballButton, changeCaughtPokemonText, setCaughtPokemonSlot } from "./ui/general.js";
 import { getPageData, getPokemonData, getCaughtPokemonData } from "./utils/pokemon.js";
 import { validatePageSearchBox } from "./utils/validation.js";
 
@@ -25,16 +25,26 @@ export function setupPokemonModal() {
 
       displayPokemonCardModal(pokemonData, pokemonSprite);
     });
-  });
+  }, "#cards-container");
 }
 
 export function setupCatchPokemon() {
   handlePokeballButton(() => {
     getCaughtPokemonData(getPokemons, getPokemon, getPokemonSpecies, 100000, 0).then((caughtPokemonData) => {
-      const pokemonSprite = getPokemonSprite(caughtPokemonData.caughtPokemonId);
+      const pokemonId = caughtPokemonData.id;
+      const pokemonSprite = getPokemonSprite(pokemonId);
 
       displayCaughtPokemonModal(caughtPokemonData, changeCaughtPokemonText);
       displayPokedexRegistrationModal(caughtPokemonData, pokemonSprite);
+      setCaughtPokemonSlot(pokemonId, pokemonSprite);
     });
   });
+
+  handleClickedPokemon((clickedPokemon) => {
+    getPokemonData(getPokemon, getPokemonSpecies, clickedPokemon).then((pokemonData) => {
+      const pokemonSprite = getPokemonSprite(clickedPokemon, "other/official-artwork/");
+
+      displayPokemonCardModal(pokemonData, pokemonSprite);
+    });
+  }, "#caught-pokemon-container");
 }

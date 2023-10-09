@@ -18,9 +18,9 @@ export function displayLoadingMessage() {
   $container.appendChild($loadingMessage);
 }
 
-export function handleClickedPokemon(clicked) {
-  const $cards = document.querySelector("#cards-container");
-  $cards.onclick = (event) => {
+export function handleClickedPokemon(clicked, selector) {
+  const $pokemon = document.querySelector(selector);
+  $pokemon.onclick = (event) => {
     const pokemonId = event.target.dataset.id;
 
     if (pokemonId === undefined) return;
@@ -35,6 +35,7 @@ export function handlePokeballButton(clicked) {
   $pokeballButton.onclick = () => {
     $pokeballButton.disabled = true;
     $pokeballButton.classList.add("poke-shake");
+
     setTimeout(() => {
       $pokeballButton.classList.remove("poke-shake");
     }, 3000);
@@ -47,11 +48,13 @@ export function handlePokeballButton(clicked) {
   };
 }
 
-export function changeCaughtPokemonText(pokemonName) {
+export function changeCaughtPokemonText(pokemonData) {
+  const name = pokemonData.name.toUpperCase();
   const $caughtPokemonTopText = document.querySelector("#caught-pokemon-top-text");
   const $caughtPokemonBottomText = document.querySelector("#caught-pokemon-bottom-text");
+
   $caughtPokemonTopText.innerText = "Gotcha !";
-  $caughtPokemonBottomText.innerText = `${pokemonName.toUpperCase()} was caught`;
+  $caughtPokemonBottomText.innerText = `${name} was caught`;
 
   setTimeout(() => {
     $caughtPokemonTopText.innerText = "";
@@ -62,10 +65,26 @@ export function changeCaughtPokemonText(pokemonName) {
 
     setTimeout(() => {
       $caughtPokemonTopText.classList.add("typewriter-effect");
-      $caughtPokemonTopText.innerText = `${pokemonName.toUpperCase()}'S data was`;
-
       $caughtPokemonBottomText.classList.add("typewriter-effect-delayed");
+
+      $caughtPokemonTopText.innerText = `${name}'S data was`;
       $caughtPokemonBottomText.innerText = "added to the POKéDEX";
     }, 500);
   }, 2500);
+}
+
+export function setCaughtPokemonSlot(pokemonId, pokemonSprite) {
+  const pokemonSlots = document.querySelectorAll("#caught-pokemon-container img");
+
+  for (let i = 0; i < pokemonSlots.length; i++) {
+    const slot = pokemonSlots[i];
+
+    if (!slot.dataset.id) {
+      slot.dataset.id = pokemonId;
+      slot.src = pokemonSprite;
+      slot.style = "background-image: url('')";
+      slot.onerror = () => (slot.src = "img/misc/404-shocked.png");
+      return;
+    }
+  }
 }
