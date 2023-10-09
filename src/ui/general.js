@@ -33,7 +33,16 @@ export function handlePokeballButton(clicked) {
   const $pokeballButton = document.querySelector("#catch-pokemon-button");
 
   $pokeballButton.onclick = () => {
-    $pokeballButton.classList.toggle("poke-shake");
+    $pokeballButton.disabled = true;
+    $pokeballButton.classList.add("poke-shake");
+    setTimeout(() => {
+      $pokeballButton.classList.remove("poke-shake");
+    }, 3000);
+
+    setTimeout(() => {
+      $pokeballButton.disabled = false;
+    }, 20000);
+
     clicked();
   };
 }
