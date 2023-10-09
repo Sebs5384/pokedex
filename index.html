@@ -16,7 +16,7 @@
             <img src="img/misc/pokedex-logo.png" alt="Pokedex" class="poke-logo" />
           </a>
 
-          <form class="container-fluid col-4">
+          <form class="container-fluid col-5">
             <div class="input-group">
               <span class="input-group-text"><img src="img/misc/magnifier.png" alt="@" class="magnifier" /></span>
               <input type="text" class="form-control search-input" placeholder="Search pokemon" aria-label="Username" aria-describedby="basic-addon1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" />
@@ -24,21 +24,30 @@
           </form>
 
           <section class="container-fluid col-7">
-            <div class="row justify-content-start align-items-center">
-              <div class="col-1">
-                <button class="btn" id="catch-pokemon-button"></button>
+            <div class="row justify-content-start align-items-center" id="caught-pokemon-container">
+              <div class="col-4">
+                <div class="row">
+                  <div class="col-3">
+                    <button class="btn" id="catch-pokemon-button"></button>
+                  </div>
+                  <div class="col-3 align-self-center">
+                    <p style="font-size: 13px"><img src="img/misc/catch-a-pokemon.png" alt="catch-a-pokemon" style="width: 120px; height: 30px" /></p>
+                  </div>
+                </div>
               </div>
-              <div class="col-2">
-                <p style="font-size: 13px"><img src="img/misc/catch-a-pokemon.png" alt="catch-a-pokemon" style="width: 120px; height: 30px" /></p>
-              </div>
-              <div class="col-2">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png" style="width: 60px; height: 60px" />
-              </div>
-              <div class="col-2">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png" style="width: 60px; height: 60px" />
-              </div>
-              <div class="col-2">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png" style="width: 60px; height: 60px" />
+
+              <div class="col-4">
+                <div class="row" id="caught-pokemon-container">
+                  <div class="col-4">
+                    <img style="width: 60px; height: 60px" data-id="1" />
+                  </div>
+                  <div class="col-4">
+                    <img style="width: 60px; height: 60px" />
+                  </div>
+                  <div class="col-4">
+                    <img style="width: 60px; height: 60px" />
+                  </div>
+                </div>
               </div>
             </div>
           </section>
