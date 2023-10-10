@@ -21,7 +21,8 @@ export function updatePokedexPage(POKEMONS_PER_PAGE = 20, pageIndex = 0) {
 export function setupPokemonModal() {
   handleClickedPokemon((clickedPokemon) => {
     getPokemonData(getPokemon, getPokemonSpecies, clickedPokemon).then((pokemonData) => {
-      const pokemonSprite = getPokemonSprite(clickedPokemon, "other/official-artwork/");
+      const pokemonId = clickedPokemon;
+      const pokemonSprite = getPokemonSprite(pokemonId, "other/official-artwork/");
 
       displayPokemonCardModal(pokemonData, pokemonSprite);
     });
@@ -42,9 +43,12 @@ export function setupCatchPokemon() {
 
   handleClickedPokemon((clickedPokemon) => {
     getPokemonData(getPokemon, getPokemonSpecies, clickedPokemon).then((pokemonData) => {
-      const pokemonSprite = getPokemonSprite(clickedPokemon, "other/official-artwork/");
+      const pokemonId = clickedPokemon;
+      const pokemonSprite = getPokemonSprite(pokemonId, "other/official-artwork/");
 
       displayPokemonCardModal(pokemonData, pokemonSprite);
     });
   }, "#caught-pokemon-container");
 }
+
+export function setupPokedexSearchBox() {}

@@ -82,7 +82,7 @@ export function setCaughtPokemonSlot(pokemonId, pokemonSprite) {
     if (!slot.dataset.id) {
       slot.dataset.id = pokemonId;
       slot.src = pokemonSprite;
-      slot.style = "background-image: url('')";
+      slot.style = 'background-image: url(""); filter: drop-shadow(3px 1px 3px black)';
       slot.onerror = () => (slot.src = "img/misc/404-shocked.png");
       return;
     }
