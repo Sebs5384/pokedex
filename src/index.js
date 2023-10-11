@@ -1,9 +1,10 @@
-import { updatePokedexPage, setupPokemonModal, setupCatchPokemon } from "./pokemon.js";
+import { updatePokedexPage, setupPokemonModal, setupCatchPokemon, setupPokedexSearchBox } from "./pokemon.js";
 
 function initialize() {
-  updatePokedexPage();
+  updatePokedexPage(20, 0);
   setupPokemonModal();
-  setupCatchPokemon();
+  setupCatchPokemon(100000, 0);
+  setupPokedexSearchBox();
 }
 
 initialize();
