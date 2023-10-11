@@ -46,8 +46,8 @@ export function getPokemonData(pokemon, species, selectedPokemon) {
   });
 }
 
-export function getCaughtPokemonData(getAllPokemons, pokemon, species, limit, offset) {
-  return getAllPokemons(limit, offset).then((pokemons) => {
+export function getCaughtPokemonData(getPokemons, pokemon, species, limit, offset) {
+  return getPokemons(limit, offset).then((pokemons) => {
     const caughtPokemon = catchPokemon(pokemons);
 
     return pokemon(caughtPokemon).then((caughtPokemon) => {
@@ -64,5 +64,14 @@ export function getCaughtPokemonData(getAllPokemons, pokemon, species, limit, of
         return { id, name, height, weight, description, evolutionData };
       });
     });
+  });
+}
+
+export function getPokemonsData(getPokemons, limit, offset) {
+  return getPokemons(limit, offset).then((pokemons) => {
+    const names = getPokemonNames(pokemons.results);
+    const ids = getPokemonIds(pokemons.results);
+
+    return { names, ids };
   });
 }
