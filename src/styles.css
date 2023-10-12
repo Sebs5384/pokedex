@@ -475,3 +475,52 @@ body {
   font-family: "emerald-font";
   src: url(/font/pokemon-emerald.ttf);
 }
+
+@media screen and (max-width: 470px) {
+  * {
+    font-size: 10px;
+  }
+
+  .poke-logo {
+    width: 60px;
+    height: 20px;
+  }
+
+  .magnifier {
+    width: 20px;
+    height: 22px;
+  }
+
+  .search-box-list {
+    width: 17rem;
+    max-height: 10rem;
+  }
+
+  #catch-pokemon {
+    margin-left: -5px;
+  }
+
+  #catch-pokemon-button {
+    width: 20px;
+    height: 20px;
+  }
+
+  .catch-pokemon-img {
+    display: none;
+  }
+
+  .slot-image {
+    width: 25px;
+    height: 25px;
+  }
+
+  .pokemon-card {
+    font-size: 8px;
+  }
+
+  .paginator-search-box {
+    width: 40px;
+    height: 40px;
+    margin-left: 30px;
+  }
+}
