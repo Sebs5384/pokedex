@@ -1,10 +1,14 @@
-export function displayPokemonCards(pageData) {
-  const { pokemonNames, pokemonIds, pokemonSprites } = pageData;
+export function displayPokemonCards(pageData, pokemonSprite) {
+  const { pokemonNames, pokemonIds } = pageData;
+  const pokemonSprites = pokemonIds.map((id) => pokemonSprite(id, "other/official-artwork/"));
+
   createCards(pokemonNames, pokemonIds, pokemonSprites);
 }
 
 function createCards(pokemons, ids, sprites) {
   const $container = document.querySelector("#cards-container");
+  const MAX_PREVIOUS_GEN_ID = 1017;
+  const LOWEST_NEW_GEN_ID = 8983;
 
   $container.innerHTML = "";
   pokemons.forEach((pokemon, index) => {
@@ -18,7 +22,7 @@ function createCards(pokemons, ids, sprites) {
     $card.style.backgroundImage = 'url("img/misc/pokeball.png")';
 
     $name.className = "card-body text-center";
-    $name.textContent = `#${id > 1017 ? id - 8983 : id}  ${pokemon}`;
+    $name.textContent = `#${id > MAX_PREVIOUS_GEN_ID ? id - LOWEST_NEW_GEN_ID : id}  ${pokemon}`;
     $name.style = "font-size: 13px";
 
     $sprite.className = "card-img-top pokemon-sprite";
