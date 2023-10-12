@@ -1,5 +1,5 @@
-export function setupPagination(POKEMONS_PER_PAGE, pageIndex, pageData, setNewPage, pageValidation) {
-  const { totalPages, currentPage } = pageData;
+export function setupPagination(POKEMONS_PER_PAGE, pageIndex, pageData, pokedexPageValues, setNewPage, pageValidation) {
+  const { totalPages, currentPage } = pokedexPageValues(pageData, pageIndex, POKEMONS_PER_PAGE);
 
   createPaginator(totalPages);
   displayCurrentPagination(currentPage, totalPages);
