@@ -52,16 +52,20 @@ export function setupCatchPokemon(limit, offset) {
   });
 }
 
-export function setupPokedexSearchBox() {
+export function setupPokedexSearchBox(limit, offset) {
   handleSearchBoxClick(() => {
-    getPokemonsData(getPokemons, 100000, 0).then((pokemons) => {
+    getPokemonsData(getPokemons, limit, offset).then((pokemons) => {
       const { names, ids } = pokemons;
       createPokemonList(names, ids);
     });
   });
 
-  handleSearchInput((pokemonQuery) => {
-    filterPokemonsName(pokemonQuery);
+  handleSearchInput(filterPokemonsName, (query) => {
+    getPokemonData(getPokemon, getPokemonSpecies, query).then((pokemonData) => {
+      const pokemonId = query;
+      const pokemonSprite = getPokemonSprite(pokemonId, "other/official-artwork/");
+      displayPokemonCardModal(pokemonData, pokemonSprite);
+    });
   });
 
   handleClickedPokemon("#pokedex-search-list", (clickedPokemon) => {
