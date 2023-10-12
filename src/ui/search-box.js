@@ -25,13 +25,32 @@ export function createPokemonList(pokemons, pokemonIds) {
   });
 }
 
-export function handleSearchInput(search) {
+export function handleSearchInput(filterPokemonsName, search) {
   const $searchBox = document.querySelector("#pokedex-search-box");
 
   $searchBox.oninput = () => {
     const pokemonQuery = $searchBox.value.toLowerCase();
 
-    search(pokemonQuery);
+    filterPokemonsName(pokemonQuery);
+  };
+
+  $searchBox.onkeydown = (searcher) => {
+    const pokemonQuery = $searchBox.value.toLowerCase();
+    const $pokemonList = document.querySelectorAll("#pokedex-search-list li a");
+
+    if (searcher.key === "Enter") {
+      searcher.preventDefault();
+
+      $pokemonList.forEach((pokemon) => {
+        const pokemonName = pokemon.textContent.toLowerCase();
+
+        if (pokemonName === pokemonQuery) {
+          const pokemonId = pokemon.dataset.id;
+
+          search(pokemonId);
+        }
+      });
+    }
   };
 }
 
