@@ -18,8 +18,8 @@ export function displayLoadingMessage() {
   $container.appendChild($loadingMessage);
 }
 
-export function handleClickedPokemon(selector, clicked) {
-  const $pokemons = document.querySelector(selector);
+export function handleClickedPokemon(clicked) {
+  const $pokemons = document.querySelector("body");
   $pokemons.onclick = (event) => {
     const pokemonId = event.target.dataset.id;
 

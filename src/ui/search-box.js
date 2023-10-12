@@ -1,18 +1,8 @@
-export function handleSearchBoxClick(clicked) {
-  const $searchBox = document.querySelector("#pokedex-search-box");
+export function createPokemonList(pokemons) {
+  const { pokemonNames, pokemonIds } = pokemons;
   const $pokemonList = document.querySelector("#pokedex-search-list");
 
-  $searchBox.onclick = () => {
-    if ($pokemonList.innerHTML !== "") return;
-
-    clicked();
-  };
-}
-
-export function createPokemonList(pokemons, pokemonIds) {
-  const $pokemonList = document.querySelector("#pokedex-search-list");
-
-  pokemons.forEach((name, index) => {
+  pokemonNames.forEach((name, index) => {
     const $list = document.createElement("li");
     const $item = document.createElement("a");
 
@@ -25,14 +15,27 @@ export function createPokemonList(pokemons, pokemonIds) {
   });
 }
 
-export function handleSearchInput(filterPokemonsName, search) {
-  const $searchBox = document.querySelector("#pokedex-search-box");
+export function handleSearchInput(search) {
+  const $searchBox = document.querySelector("#pokedex-search-box input");
 
   $searchBox.oninput = () => {
     const pokemonQuery = $searchBox.value.toLowerCase();
 
-    filterPokemonsName(pokemonQuery);
+    search(pokemonQuery);
   };
+}
+
+export function filterPokemonsName(pokemonQuery) {
+  const $pokemonList = document.querySelectorAll("#pokedex-search-list li a");
+
+  $pokemonList.forEach((pokemon) => {
+    const pokemonName = pokemon.textContent.toLowerCase();
+    pokemon.style.display = pokemonName.includes(pokemonQuery) ? "block" : "none";
+  });
+}
+
+export function searchPokemon(search) {
+  const $searchBox = document.querySelector("#pokedex-search-box input");
 
   $searchBox.onkeydown = (searcher) => {
     const pokemonQuery = $searchBox.value.toLowerCase();
@@ -52,13 +55,4 @@ export function handleSearchInput(filterPokemonsName, search) {
       });
     }
   };
-}
-
-export function filterPokemonsName(pokemonQuery) {
-  const $pokemonList = document.querySelectorAll("#pokedex-search-list li a");
-
-  $pokemonList.forEach((pokemon) => {
-    const pokemonName = pokemon.textContent.toLowerCase();
-    pokemon.style.display = pokemonName.includes(pokemonQuery) ? "block" : "none";
-  });
 }
