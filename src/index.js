@@ -1,10 +1,13 @@
-import { updatePokedexPage, setupPokemonModal, setupCatchPokemon, setupPokedexSearchBox } from "./pokemon.js";
+import { updatePokedexPage, setupPokemonModal, setupNavigationBar } from "./pokemon.js";
 
 function initialize() {
-  updatePokedexPage(20, 0);
+  const MAX_LIMIT = 100000;
+  const POKEMONS_PER_PAGE = 20;
+  const OFFSET = 0;
+
+  updatePokedexPage(POKEMONS_PER_PAGE, OFFSET);
   setupPokemonModal();
-  setupCatchPokemon(100000, 0);
-  setupPokedexSearchBox(100000, 0);
+  setupNavigationBar(MAX_LIMIT, OFFSET);
 }
 
 initialize();

@@ -73,8 +73,11 @@ export function getPokemonAdvantage(pokemonType, advantageChart) {
 }
 
 export function catchPokemon(pokemons) {
-  const caughtPokemon = Math.floor(Math.random() * pokemons.count);
-  const caughtPokemonId = pokemons.results[caughtPokemon].url.split("/")[6];
+  const MAX_PREVIOUS_GEN_ID = 1017;
+  const LOWEST_NEW_GEN_ID = 8983;
+
+  const caughtPokemon = Math.floor(Math.random() * pokemons);
+  const caughtPokemonId = caughtPokemon > MAX_PREVIOUS_GEN_ID ? caughtPokemon + LOWEST_NEW_GEN_ID : caughtPokemon;
 
   return caughtPokemonId;
 }

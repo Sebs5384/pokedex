@@ -243,13 +243,13 @@ export function displayPokedexRegistrationModal(caughtPokemonData) {
 }
 
 function setPokedexRegistrationModalContent(caughtPokemonData) {
-  const { id, name, height, weight, description, evolutionData, pokemonSprite } = caughtPokemonData;
+  const { id, name, height, weight, description, previousEvolutionData, sprite } = caughtPokemonData;
   const $registrationModalContent = document.querySelector("#registration-content");
   $registrationModalContent.innerHTML = "";
 
   const $registrationText = createRegistrationText();
   const $modalBody = createRegistrationBody();
-  const $registrationContent = createRegistrationContent(id, name, height, weight, pokemonSprite, evolutionData);
+  const $registrationContent = createRegistrationContent(id, name, height, weight, sprite, previousEvolutionData);
   const $registrationDescription = createRegistrationDescription(description);
 
   $registrationModalContent.appendChild($registrationText);
@@ -275,14 +275,14 @@ function createRegistrationBody() {
   return $modalBody;
 }
 
-function createRegistrationContent(id, name, height, weight, pokemonSprite, evolutionData) {
+function createRegistrationContent(id, name, height, weight, sprite, previousEvolutionData) {
   const $registrationContent = document.createElement("div");
   $registrationContent.className = "col-11 registration-details-background";
 
   $registrationContent.innerHTML = `
   <div class="row justify-content-center registration-screen">
     <div class="container col-4 registration-image-background">
-      <img class="registration-image" src=${pokemonSprite} onerror="this.src='img/misc/404-shocked.png'"  />
+      <img class="registration-image" src=${sprite} onerror="this.src='img/misc/404-shocked.png'"  />
     </div>
 
     <div class="container col-8 mt-1">
@@ -290,7 +290,7 @@ function createRegistrationContent(id, name, height, weight, pokemonSprite, evol
         <div class="col-11 registration-info-background">
           <div class="row">
             <div class="mt-2 col-12 text-start h3">Nº ${id > 1017 ? id - 8983 : id} ${name}</div>
-            <div class="mb-2 col-12 h3 genus-registration-font" > ${evolutionData.genus}</div>
+            <div class="mb-2 col-12 h3 genus-registration-font" > ${previousEvolutionData.genus}</div>
           
           </div>
         </div>

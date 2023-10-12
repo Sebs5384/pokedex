@@ -2,6 +2,7 @@ export function handlePokeballButton(clicked) {
   const $pokeballButton = document.querySelector("#catch-pokemon-button");
 
   $pokeballButton.onclick = () => {
+    const totalPokemons = document.querySelectorAll("#pokedex-search-list li a").length;
     $pokeballButton.disabled = true;
     $pokeballButton.classList.add("poke-shake");
 
@@ -13,7 +14,7 @@ export function handlePokeballButton(clicked) {
       $pokeballButton.disabled = false;
     }, 20000);
 
-    clicked();
+    clicked(totalPokemons);
   };
 }
 
@@ -44,14 +45,14 @@ export function changeCaughtPokemonText(pokemonData) {
 
 export function setCaughtPokemonSlot(pokemonData) {
   const pokemonSlots = document.querySelectorAll("#caught-pokemon-container img");
-  const { id, pokemonSprite } = pokemonData;
+  const { id, sprite } = pokemonData;
 
   for (let i = 0; i < pokemonSlots.length; i++) {
     const slot = pokemonSlots[i];
 
     if (!slot.dataset.id) {
       slot.dataset.id = id;
-      slot.src = pokemonSprite;
+      slot.src = sprite;
       slot.style = 'background-image: url(""); filter: drop-shadow(3px 1px 3px black)';
       slot.onerror = () => (slot.src = "img/misc/404-shocked.png");
       return;

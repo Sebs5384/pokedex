@@ -2,51 +2,52 @@ import { getPokemons, getPokemon, getPokemonSprite, getPokemonSpecies } from "./
 import { setupPagination } from "./ui/pagination.js";
 import { displayPokemonCardModal, displayCaughtPokemonModal, displayPokedexRegistrationModal } from "./ui/modal.js";
 import { displayPokemonCards } from "./ui/cards.js";
-import { handlePokemonSearch } from "./ui/search-box.js";
+import { handleSearchInput, searchPokemon, createPokemonList, filterPokemonsName } from "./ui/search-box.js";
 import { handlePokeballButton, changeCaughtPokemonText, setCaughtPokemonSlot } from "./ui/catch-pokemon.js";
 import { displayLoadingMessage, handleClickedPokemon } from "./ui/general.js";
-import { getPageData, getPokemonData, getCaughtPokemonData, getPokemonsData } from "./utils/pokemon.js";
+import { getPokemonsData, getPokemonData, getPageData } from "./utils/pokemon.js";
 import { validatePageSearchBox } from "./utils/validation.js";
+import { catchPokemon } from "./utils/general.js";
 
 export function updatePokedexPage(POKEMONS_PER_PAGE, pageIndex) {
   displayLoadingMessage();
-  getPageData(getPokemons, getPokemonSprite, POKEMONS_PER_PAGE, pageIndex).then((pageData) => {
-    setupPagination(POKEMONS_PER_PAGE, pageIndex, pageData, updatePokedexPage, validatePageSearchBox);
-    displayPokemonCards(pageData);
+
+  getPokemonsData(getPokemons, POKEMONS_PER_PAGE, pageIndex).then((pokemons) => {
+    setupPagination(POKEMONS_PER_PAGE, pageIndex, pokemons, getPageData, updatePokedexPage, validatePageSearchBox);
+    displayPokemonCards(pokemons, getPokemonSprite);
   });
 }
 
 export function setupPokemonModal() {
-  handleClickedPokemon("#cards-container", (clickedPokemon) => {
+  handleClickedPokemon((clickedPokemon) => {
     getPokemonData(getPokemon, getPokemonSpecies, getPokemonSprite, clickedPokemon).then((pokemonData) => {
       displayPokemonCardModal(pokemonData);
     });
   });
 }
 
-export function setupCatchPokemon(limit, offset) {
-  handlePokeballButton(() => {
-    getCaughtPokemonData(getPokemons, getPokemon, getPokemonSpecies, getPokemonSprite, limit, offset).then((caughtPokemonData) => {
-      displayCaughtPokemonModal(caughtPokemonData, changeCaughtPokemonText);
-      displayPokedexRegistrationModal(caughtPokemonData);
-      setCaughtPokemonSlot(caughtPokemonData);
+export function setupNavigationBar(limit, offset) {
+  getPokemonsData(getPokemons, limit, offset).then((pokemons) => {
+    createPokemonList(pokemons);
+  });
+
+  handlePokeballButton((pokemons) => {
+    const caughtPokemon = catchPokemon(pokemons);
+
+    getPokemonData(getPokemon, getPokemonSpecies, getPokemonSprite, caughtPokemon).then((pokemonData) => {
+      displayCaughtPokemonModal(pokemonData, changeCaughtPokemonText);
+      displayPokedexRegistrationModal(pokemonData);
+      setCaughtPokemonSlot(pokemonData);
     });
   });
 
-  handleClickedPokemon("#caught-pokemon-container", (clickedPokemon) => {
-    getPokemonData(getPokemon, getPokemonSpecies, getPokemonSprite, clickedPokemon).then((pokemonData) => {
+  handleSearchInput((searchQuery) => {
+    filterPokemonsName(searchQuery);
+  });
+
+  searchPokemon((searchQuery) => {
+    getPokemonData(getPokemon, getPokemonSpecies, getPokemonSprite, searchQuery).then((pokemonData) => {
       displayPokemonCardModal(pokemonData);
-    });
-  });
-}
-
-export function setupPokedexSearchBox(limit, offset) {
-  handlePokemonSearch((search) => {
-    getPokemonData(getPokemons, getPokemonSpecies, search).then((pokemonData) => {
-      const pokemonId = pokemonData.id;
-      const pokemonSprite = getPokemonSprite(pokemonId);
-
-      displayPokemonCardModal(pokemonData, pokemonSprite);
     });
   });
 }
