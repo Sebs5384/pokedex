@@ -8,6 +8,12 @@ body {
   background-color: #dc143c !important;
 }
 
+.search-box-list {
+  width: 25rem;
+  max-height: 11rem;
+  overflow-y: scroll;
+}
+
 .catch-pokemon-img {
   width: 120px;
   height: 30px;
