@@ -2,6 +2,7 @@ export function displayPokemonCardModal(pokemonData, pokemonSprite) {
   setPokemonCardModalContent(pokemonData, pokemonSprite);
   changeModalTexture(pokemonData);
   showModal("#pokemon-modal");
+  setupCloseModalButton("#close-modal-button");
 }
 
 function setPokemonCardModalContent(pokemonData, pokemonSprite) {
@@ -55,7 +56,11 @@ function createModalHeader(name, stats, types, previousEvolutionData) {
     </div>
 
     <div class="row" id="pokemon-main-info">
-      ${previousEvolutionData.id === "None" ? `<div class="col-2"></div>` : `<img class="col-2 align-self-center stage-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${previousEvolutionData.id}.png" alt="" />`}
+      ${
+        previousEvolutionData.id === "None"
+          ? `<div class="col-2"></div>`
+          : `<img class="col-2 align-self-center stage-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${previousEvolutionData.id}.png" data-id="${previousEvolutionData.id}" />`
+      }
       <strong class="col-4 align-self-center"> ${name}</strong>
       <strong class="col-4 align-self-center text-end main-status">${stats.hp} HP</strong>
       <img class="col-2 align-self-center type-icon" src="img/pokemon-types/icons/${types.mainType}-type-icon.png" />
@@ -344,8 +349,24 @@ function hideModal(modal, timer = 0) {
   }, timer);
 }
 
+function removeModals() {
+  const $modals = document.querySelectorAll(".modal-backdrop");
+
+  $modals.forEach(($modal) => {
+    $modal.remove();
+  });
+}
+
 function changeModalTexture(pokemonData) {
   const { types } = pokemonData;
   const $modalContent = document.querySelector("#pokemon-modal-content");
   $modalContent.style.background = `url(/img/modal-textures/${types.mainType}-texture.png) center/cover`;
+}
+
+function setupCloseModalButton(button) {
+  const $closeButton = document.querySelector(button);
+
+  $closeButton.onclick = () => {
+    removeModals();
+  };
 }
