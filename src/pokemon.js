@@ -2,7 +2,7 @@ import { getPokemons, getPokemon, getPokemonSprite, getPokemonSpecies } from "./
 import { setupPagination } from "./ui/pagination.js";
 import { displayPokemonCardModal, displayCaughtPokemonModal, displayPokedexRegistrationModal } from "./ui/modal.js";
 import { displayPokemonCards } from "./ui/cards.js";
-import { handleSearchBoxClick, createPokemonList, handleSearchInput, filterPokemonsName } from "./ui/search-box.js";
+import { handlePokemonSearch } from "./ui/search-box.js";
 import { handlePokeballButton, changeCaughtPokemonText, setCaughtPokemonSlot } from "./ui/catch-pokemon.js";
 import { displayLoadingMessage, handleClickedPokemon } from "./ui/general.js";
 import { getPageData, getPokemonData, getCaughtPokemonData, getPokemonsData } from "./utils/pokemon.js";
@@ -10,68 +10,42 @@ import { validatePageSearchBox } from "./utils/validation.js";
 
 export function updatePokedexPage(POKEMONS_PER_PAGE, pageIndex) {
   displayLoadingMessage();
-  getPageData(getPokemons, POKEMONS_PER_PAGE, pageIndex).then((pageData) => {
-    const { pokemonNames, pokemonIds, totalPages, currentPage } = pageData;
-    const pokemonSprites = pokemonIds.map((id) => getPokemonSprite(id, "other/official-artwork/"));
-
-    setupPagination(POKEMONS_PER_PAGE, pageIndex, totalPages, currentPage, updatePokedexPage, validatePageSearchBox);
-    displayPokemonCards(pokemonNames, pokemonIds, pokemonSprites);
+  getPageData(getPokemons, getPokemonSprite, POKEMONS_PER_PAGE, pageIndex).then((pageData) => {
+    setupPagination(POKEMONS_PER_PAGE, pageIndex, pageData, updatePokedexPage, validatePageSearchBox);
+    displayPokemonCards(pageData);
   });
 }
 
 export function setupPokemonModal() {
   handleClickedPokemon("#cards-container", (clickedPokemon) => {
-    getPokemonData(getPokemon, getPokemonSpecies, clickedPokemon).then((pokemonData) => {
-      const pokemonId = clickedPokemon;
-      const pokemonSprite = getPokemonSprite(pokemonId, "other/official-artwork/");
-
-      displayPokemonCardModal(pokemonData, pokemonSprite);
+    getPokemonData(getPokemon, getPokemonSpecies, getPokemonSprite, clickedPokemon).then((pokemonData) => {
+      displayPokemonCardModal(pokemonData);
     });
   });
 }
 
 export function setupCatchPokemon(limit, offset) {
   handlePokeballButton(() => {
-    getCaughtPokemonData(getPokemons, getPokemon, getPokemonSpecies, limit, offset).then((caughtPokemonData) => {
-      const pokemonId = caughtPokemonData.id;
-      const pokemonSprite = getPokemonSprite(pokemonId);
-
+    getCaughtPokemonData(getPokemons, getPokemon, getPokemonSpecies, getPokemonSprite, limit, offset).then((caughtPokemonData) => {
       displayCaughtPokemonModal(caughtPokemonData, changeCaughtPokemonText);
-      displayPokedexRegistrationModal(caughtPokemonData, pokemonSprite);
-      setCaughtPokemonSlot(pokemonId, pokemonSprite);
+      displayPokedexRegistrationModal(caughtPokemonData);
+      setCaughtPokemonSlot(caughtPokemonData);
     });
   });
 
   handleClickedPokemon("#caught-pokemon-container", (clickedPokemon) => {
-    getPokemonData(getPokemon, getPokemonSpecies, clickedPokemon).then((pokemonData) => {
-      const pokemonId = clickedPokemon;
-      const pokemonSprite = getPokemonSprite(pokemonId, "other/official-artwork/");
-
-      displayPokemonCardModal(pokemonData, pokemonSprite);
+    getPokemonData(getPokemon, getPokemonSpecies, getPokemonSprite, clickedPokemon).then((pokemonData) => {
+      displayPokemonCardModal(pokemonData);
     });
   });
 }
 
 export function setupPokedexSearchBox(limit, offset) {
-  handleSearchBoxClick(() => {
-    getPokemonsData(getPokemons, limit, offset).then((pokemons) => {
-      const { names, ids } = pokemons;
-      createPokemonList(names, ids);
-    });
-  });
+  handlePokemonSearch((search) => {
+    getPokemonData(getPokemons, getPokemonSpecies, search).then((pokemonData) => {
+      const pokemonId = pokemonData.id;
+      const pokemonSprite = getPokemonSprite(pokemonId);
 
-  handleSearchInput(filterPokemonsName, (query) => {
-    getPokemonData(getPokemon, getPokemonSpecies, query).then((pokemonData) => {
-      const pokemonId = query;
-      const pokemonSprite = getPokemonSprite(pokemonId, "other/official-artwork/");
-      displayPokemonCardModal(pokemonData, pokemonSprite);
-    });
-  });
-
-  handleClickedPokemon("#pokedex-search-list", (clickedPokemon) => {
-    getPokemonData(getPokemon, getPokemonSpecies, clickedPokemon).then((pokemonData) => {
-      const pokemonId = clickedPokemon;
-      const pokemonSprite = getPokemonSprite(pokemonId, "other/official-artwork/");
       displayPokemonCardModal(pokemonData, pokemonSprite);
     });
   });

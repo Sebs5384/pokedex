@@ -1,5 +1,6 @@
-export function displayPokemonCards(pokemons, ids, sprites) {
-  createCards(pokemons, ids, sprites);
+export function displayPokemonCards(pageData) {
+  const { pokemonNames, pokemonIds, pokemonSprites } = pageData;
+  createCards(pokemonNames, pokemonIds, pokemonSprites);
 }
 
 function createCards(pokemons, ids, sprites) {

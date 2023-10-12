@@ -42,14 +42,15 @@ export function changeCaughtPokemonText(pokemonData) {
   }, 2500);
 }
 
-export function setCaughtPokemonSlot(pokemonId, pokemonSprite) {
+export function setCaughtPokemonSlot(pokemonData) {
   const pokemonSlots = document.querySelectorAll("#caught-pokemon-container img");
+  const { id, pokemonSprite } = pokemonData;
 
   for (let i = 0; i < pokemonSlots.length; i++) {
     const slot = pokemonSlots[i];
 
     if (!slot.dataset.id) {
-      slot.dataset.id = pokemonId;
+      slot.dataset.id = id;
       slot.src = pokemonSprite;
       slot.style = 'background-image: url(""); filter: drop-shadow(3px 1px 3px black)';
       slot.onerror = () => (slot.src = "img/misc/404-shocked.png");

@@ -5,13 +5,13 @@ export function displayPokemonCardModal(pokemonData, pokemonSprite) {
 }
 
 function setPokemonCardModalContent(pokemonData, pokemonSprite) {
-  const { skills, height, name, stats, types, weight, previousEvolutionData, description, typeAdvantage } = pokemonData;
+  const { skills, height, name, stats, types, weight, previousEvolutionData, description, typeAdvantage, sprite } = pokemonData;
   const $modalContent = document.querySelector("#pokemon-modal-content");
   $modalContent.innerHTML = "";
 
   const $modalBody = createModalBody();
   const $modalHeader = createModalHeader(name, stats, types, previousEvolutionData);
-  const $modalCard = createCard(types, pokemonSprite);
+  const $modalCard = createCard(types, sprite);
   const $modalBanner = createBanner(types, height, weight);
   const $modalSkillsContainer = createSkillsContainer(types, skills);
   const $modalStatsContainer = createStatsContainer(stats);
@@ -236,14 +236,14 @@ function createCaughtModalBody() {
   return $caughtModalBody;
 }
 
-export function displayPokedexRegistrationModal(caughtPokemonData, pokemonSprite) {
-  setPokedexRegistrationModalContent(caughtPokemonData, pokemonSprite);
+export function displayPokedexRegistrationModal(caughtPokemonData) {
+  setPokedexRegistrationModalContent(caughtPokemonData);
   showModal("#pokedex-registration-modal", 9000);
   hideModal("#pokedex-registration-modal", 25000);
 }
 
-function setPokedexRegistrationModalContent(caughtPokemonData, pokemonSprite) {
-  const { id, name, height, weight, description, evolutionData } = caughtPokemonData;
+function setPokedexRegistrationModalContent(caughtPokemonData) {
+  const { id, name, height, weight, description, evolutionData, pokemonSprite } = caughtPokemonData;
   const $registrationModalContent = document.querySelector("#registration-content");
   $registrationModalContent.innerHTML = "";
 
