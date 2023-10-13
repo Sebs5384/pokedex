@@ -477,28 +477,24 @@ body {
 }
 
 @media screen and (max-width: 470px) {
+  .navbar * {
+    font-size: 8px;
+  }
+
   .poke-logo {
-    width: 60px;
+    width: 50px;
     height: 20px;
   }
 
-  .magnifier {
-    width: 20px;
-    height: 22px;
-  }
-
-  .search-box-list {
-    width: 17rem;
-    max-height: 10rem;
-  }
-
-  #catch-pokemon {
-    margin-left: -5px;
-  }
-
+  .magnifier,
   #catch-pokemon-button {
     width: 20px;
     height: 20px;
+  }
+
+  .search-box-list {
+    width: 10rem;
+    max-height: 10rem;
   }
 
   .catch-pokemon-img {
@@ -506,32 +502,38 @@ body {
   }
 
   .slot-image {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
   }
 
   .pokemon-card {
     font-size: 8px;
+    width: 120px;
+    background-size: 240px;
+    background-position: left top;
   }
 
   .paginator-search-box {
     width: 40px;
     height: 40px;
-    margin-left: 30px;
+    margin-left: 60px;
+  }
+
+  #pokedex-search-box {
+    width: 130px;
   }
 
   #pokemon-main-info {
-    margin-top: -20px;
-    font-size: 20px;
+    font-size: 25px;
   }
 
   .type-icon {
-    width: 3rem;
-    height: 2rem;
+    width: 2.7rem;
+    height: 1.5rem;
   }
 
   .modal-font {
-    font-size: 9px;
+    font-size: 8px;
   }
 
   .modal-banner {
@@ -539,6 +541,10 @@ body {
   }
 
   .skill-font {
-    font-size: 15px;
+    font-size: 17px;
+  }
+
+  .modal-footer-description {
+    font-size: 9px;
   }
 }

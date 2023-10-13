@@ -59,7 +59,7 @@ function createModalHeader(name, stats, types, previousEvolutionData) {
       ${previousEvolutionData.id === "None" ? `<div class="col-2"></div>` : `<img class="col-2 col-md-2 align-self-center stage-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${previousEvolutionData.id}.png" data-id="${previousEvolutionData.id}" />`}
       <strong class="col-4 col-md-4 align-self-center"> ${name}</strong>
       <strong class="col-4 col-md-4 align-self-center text-end main-status">${stats.hp} HP</strong>
-      <img class="col-2 col-md-2 align-self-center type-icon" src="img/pokemon-types/icons/${types.mainType}-type-icon.png" />
+      <img class="mt-1 mb-md-0 col-2 col-md-2 align-self-center type-icon" src="img/pokemon-types/icons/${types.mainType}-type-icon.png" />
     </div>
   `;
 
@@ -73,7 +73,7 @@ function createCard(types, pokemonSprite) {
   $modalCardContainer.innerHTML = `
     <div class="card main-image-container ${types.mainType}-background">
       <div class="row card-body justify-content-center">
-        <img class="col-10 col-md-8" src=${pokemonSprite} onerror="this.src='img/misc/404-shocked.png'" />
+        <img class="col-11 col-md-8" src=${pokemonSprite} onerror="this.src='img/misc/404-shocked.png'" />
       </div>
     </div>
   `;
@@ -108,11 +108,11 @@ function createSkillsContainer(types, skills) {
       </div>
       <hr class="col-12 modal-horizontal-rule" />
       <div class="col-6">
-        <img src="img/pokemon-types/icons/${types.mainType}-type-icon.png" class="status-icon" />
+        <img src="img/pokemon-types/icons/${types.mainType}-type-icon.png" class="status-icon mb-2 mb-md-1" />
         <strong class="skill-font">${skills.firstSkill}</strong>
       </div>
       <div class="col-6">
-        <img src="img/pokemon-types/icons/${types.mainType}-type-icon.png" class="status-icon" />
+        <img src="img/pokemon-types/icons/${types.mainType}-type-icon.png" class="status-icon mb-2 mb-md-1" />
         <strong class="skill-font">${skills.secondSkill}</strong>
       </div>
     </div>
