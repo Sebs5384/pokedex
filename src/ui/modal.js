@@ -56,7 +56,11 @@ function createModalHeader(name, stats, types, previousEvolutionData) {
     </div>
 
     <div class="row" id="pokemon-main-info">
-      ${previousEvolutionData.id === "None" ? `<div class="col-2"></div>` : `<img class="col-2 col-md-2 align-self-center stage-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${previousEvolutionData.id}.png" data-id="${previousEvolutionData.id}" />`}
+      ${
+        previousEvolutionData.id === "None"
+          ? `<div class="col-2"></div>`
+          : `<img class="col-2 col-md-2 align-self-center stage-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${previousEvolutionData.id}.png" data-id="${previousEvolutionData.id}" />`
+      }
       <strong class="col-4 col-md-4 align-self-center"> ${name}</strong>
       <strong class="col-4 col-md-4 align-self-center text-end main-status">${stats.hp} HP</strong>
       <img class="mt-1 mb-md-0 col-2 col-md-2 align-self-center type-icon" src="img/pokemon-types/icons/${types.mainType}-type-icon.png" />
@@ -262,7 +266,7 @@ function setPokedexRegistrationModalContent(caughtPokemonData) {
 
 function createRegistrationText() {
   const $registrationText = document.createElement("section");
-  $registrationText.className = "modal-title w-100 text-center h2";
+  $registrationText.className = "registration-text modal-title w-100 text-center h2";
   $registrationText.innerText = "POKÉDEX registration completed.";
 
   return $registrationText;
@@ -282,17 +286,16 @@ function createRegistrationContent(id, name, height, weight, sprite, previousEvo
 
   $registrationContent.innerHTML = `
   <div class="row justify-content-center registration-screen">
-    <div class="container col-4 registration-image-background">
+    <div class="col-4 registration-image-background">
       <img class="registration-image" src=${sprite} onerror="this.src='img/misc/404-shocked.png'"  />
     </div>
 
-    <div class="container col-8 mt-1">
+    <div class="col-8 mt-1 registration-info">
       <div class="row">
         <div class="col-11 registration-info-background">
           <div class="row">
             <div class="mt-2 col-12 text-start h3">Nº ${id > 1017 ? id - 8983 : id} ${name}</div>
             <div class="mb-2 col-12 h3 genus-registration-font" > ${previousEvolutionData.genus}</div>
-          
           </div>
         </div>
       </div>
@@ -300,10 +303,10 @@ function createRegistrationContent(id, name, height, weight, sprite, previousEvo
       <div class="row">
         <div class="col-8">
           <div class="row">
-            <div class="mt-2 col-3 h3 text-center description-underline">HT</div>
-            <div class="mt-2 col-7 h3 text-end description-underline">${height}"</div>
-            <div class="col-3 h3 text-center description-underline">WT</div>
-            <div class="col-7 h3 text-end description-underline">${weight} lbs.</div>
+            <div class="mt-2 col-3 col-md-3 h3 text-center description-underline">HT</div>
+            <div class="mt-2 col-7 col-md-7 h3 text-end description-underline">${height}"</div>
+            <div class="col-3 col-md-3 h3 text-center description-underline">WT</div>
+            <div class="col-7 col-md-7 h3 text-end description-underline">${weight} lbs.</div>
           </div>
         </div>
 
@@ -322,7 +325,7 @@ function createRegistrationContent(id, name, height, weight, sprite, previousEvo
 
 function createRegistrationDescription(description) {
   const $descriptionContainer = document.createElement("section");
-  $descriptionContainer.className = "modal-title w-100 text-center h1";
+  $descriptionContainer.className = "registration-text modal-title w-100 text-center h1";
 
   $descriptionContainer.innerHTML = `
     <div>${description ? description : "Uknown pokemon description"}</div>

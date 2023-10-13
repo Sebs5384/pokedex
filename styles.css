@@ -481,6 +481,10 @@ body {
     font-size: 8px;
   }
 
+  .registration-info * {
+    font-size: 13px;
+  }
+
   .poke-logo {
     width: 50px;
     height: 20px;
@@ -546,5 +550,33 @@ body {
 
   .modal-footer-description {
     font-size: 9px;
+  }
+
+  .caught-pokemon-description-container {
+    min-height: 70px;
+    font-size: 22px;
+  }
+
+  .registration-image {
+    width: 100px;
+    height: 105px;
+  }
+
+  .footprint-background {
+    height: 25px;
+    width: 25px;
+  }
+
+  .description-underline::after {
+    left: 10px;
+    height: 2px;
+  }
+
+  .genus-registration-font {
+    padding-left: 20px;
+  }
+
+  .registration-text {
+    font-size: 18px;
   }
 }
