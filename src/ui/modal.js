@@ -43,23 +43,23 @@ function createModalHeader(name, stats, types, previousEvolutionData) {
 
   $modalHeader.innerHTML = `
     <div class="row modal-font">
-      ${previousEvolutionData.name === "Basic Pokemon" ? `<div class="col-2"></div>` : ` <strong class="col-2 align-self-end">P. STAGE</strong>`}
-      <strong class="col-5 align-self-end text-start">${previousEvolutionData.name}</strong>
-      <strong class="col-4 align-self-end text-end">${previousEvolutionData.genus}</strong>
-      <div class="col-1">
+      ${previousEvolutionData.name === "Basic Pokemon" ? `<div class="col-2 col-md-2"></div>` : ` <strong class="col-2 align-self-end">P. STAGE</strong>`}
+      <strong class="col-5 col-md-5 align-self-end text-start">${previousEvolutionData.name}</strong>
+      <strong class="col-4 col-md-4 align-self-end text-end">${previousEvolutionData.genus}</strong>
+      <div class="col-1 col-md-1">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal-button"></button>
       </div>
     </div>
 
     <div class="row justify-content-center">
-      <hr class="border col-11 border-warning border-1 opacity-50" />
+      <hr class="border col-11 col-md-11 border-warning border-1 opacity-50" />
     </div>
 
     <div class="row" id="pokemon-main-info">
-      ${previousEvolutionData.id === "None" ? `<div class="col-2"></div>` : `<img class="col-2 align-self-center stage-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${previousEvolutionData.id}.png" data-id="${previousEvolutionData.id}" />`}
-      <strong class="col-4 align-self-center"> ${name}</strong>
-      <strong class="col-4 align-self-center text-end main-status">${stats.hp} HP</strong>
-      <img class="col-2 align-self-center type-icon" src="img/pokemon-types/icons/${types.mainType}-type-icon.png" />
+      ${previousEvolutionData.id === "None" ? `<div class="col-2"></div>` : `<img class="col-2 col-md-2 align-self-center stage-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${previousEvolutionData.id}.png" data-id="${previousEvolutionData.id}" />`}
+      <strong class="col-4 col-md-4 align-self-center"> ${name}</strong>
+      <strong class="col-4 col-md-4 align-self-center text-end main-status">${stats.hp} HP</strong>
+      <img class="col-2 col-md-2 align-self-center type-icon" src="img/pokemon-types/icons/${types.mainType}-type-icon.png" />
     </div>
   `;
 
@@ -73,7 +73,7 @@ function createCard(types, pokemonSprite) {
   $modalCardContainer.innerHTML = `
     <div class="card main-image-container ${types.mainType}-background">
       <div class="row card-body justify-content-center">
-        <img class="col-8" src=${pokemonSprite} onerror="this.src='img/misc/404-shocked.png'" />
+        <img class="col-10 col-md-8" src=${pokemonSprite} onerror="this.src='img/misc/404-shocked.png'" />
       </div>
     </div>
   `;
@@ -87,10 +87,10 @@ function createBanner(types, height, weight) {
   $modalBanner.id = "pokemon-modal-banner";
 
   $modalBanner.innerHTML = `
-    <img class="col-2" src="img/pokemon-types/logos/${types.mainType}-type.png" />
-    <img class="col-2" src="img/pokemon-types/logos/${types.secondaryType}-type.png" />
-    <strong class="col-4 text-end">Length: ${height}" </strong>
-    <strong class="col-4">Weight: ${weight} lbs</strong>
+    <img class="col-2 col-md-2" src="img/pokemon-types/logos/${types.mainType}-type.png" />
+    <img class="col-2 col-md-2" src="img/pokemon-types/logos/${types.secondaryType}-type.png" />
+    <strong class="col-4 col-md-4 text-end">Length: ${height}" </strong>
+    <strong class="col-4 col-md-4">Weight: ${weight} lbs</strong>
   `;
 
   return $modalBanner;
