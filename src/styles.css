@@ -1,5 +1,5 @@
 body {
-  background-image: url(/img/misc/pokepaper.png);
+  background-image: url(img/misc/pokepaper.png);
   background-size: cover;
   overflow-x: hidden;
 }
@@ -58,7 +58,7 @@ body {
 }
 
 .slot-image {
-  background-image: url(/img/misc/pokedex-len.png);
+  background-image: url(img/misc/pokedex-len.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -67,7 +67,7 @@ body {
 }
 
 #catch-pokemon-button {
-  background-image: url(/img/misc/poke-background.png);
+  background-image: url(img/misc/poke-background.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -473,7 +473,7 @@ body {
 
 @font-face {
   font-family: "emerald-font";
-  src: url(/font/pokemon-emerald.ttf);
+  src: url(font/pokemon-emerald.ttf);
 }
 
 @media screen and (max-width: 470px) {
