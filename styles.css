@@ -587,8 +587,8 @@ body {
   }
 
   .poke-logo {
-    width: 120px;
-    height: 45px;
+    width: 90px;
+    height: 40px;
   }
 
   .magnifier,
@@ -608,12 +608,12 @@ body {
   }
 
   .slot-image {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
   }
 
   .pokemon-card {
-    font-size: 11px;
+    font-size: 8px;
     background-size: 270px;
   }
 }
