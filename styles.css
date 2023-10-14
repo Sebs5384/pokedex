@@ -6,6 +6,8 @@ body {
 
 .nav-bar {
   background-color: #dc143c !important;
+  border: 2px solid #dc143c;
+  border-style: outset;
 }
 
 .search-box-list {
@@ -25,14 +27,20 @@ body {
 
 .main-card-container {
   background-color: #fff8dc;
+  border: 3px solid rgb(250, 239, 176);
+  border-style: outset;
+  border-radius: 8px;
 }
 
 .popover {
-  border-color: crimson;
+  border-color: #dc143c;
 }
 
-.card-border {
-  border-color: #dc143c;
+.pokemon-card {
+  background-image: url(img/misc/pokeball.png);
+  border: 3px solid #dc143c;
+  border-style: outset;
+  border-radius: 5px;
 }
 
 .capitalize-text {
@@ -62,6 +70,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  filter: drop-shadow(3px 1px 3px black);
   width: 55px;
   height: 55px;
 }
@@ -314,6 +323,30 @@ body {
   background-color: rgb(198, 198, 198);
 }
 
+.typewriter-effect {
+  overflow: hidden;
+  border-right: 0.15em solid transparent;
+  white-space: nowrap;
+  letter-spacing: 0.15em;
+  animation: typing 1s steps(40), cursor 0.75s step-end forwards;
+}
+
+.typewriter-effect-delayed {
+  overflow: hidden;
+  border-right: 0.15em solid transparent;
+  white-space: nowrap;
+  letter-spacing: 0.15em;
+  opacity: 0;
+  animation: typing 1s steps(40), cursor 0.75s step-end forwards;
+  animation-fill-mode: forwards;
+  animation-delay: 1s;
+}
+
+.container,
+.caught-pokemon-description-container {
+  min-height: 160px;
+}
+
 .water-background {
   background: content-box linear-gradient(rgb(107, 254, 154), rgb(30, 103, 198), rgb(13, 52, 104), rgb(0, 0, 0));
 }
@@ -384,30 +417,6 @@ body {
 
 .steel-background {
   background: content-box linear-gradient(rgba(0, 0, 0, 0.747), rgba(133, 133, 133, 0), rgb(255, 255, 255));
-}
-
-.typewriter-effect {
-  overflow: hidden;
-  border-right: 0.15em solid transparent;
-  white-space: nowrap;
-  letter-spacing: 0.15em;
-  animation: typing 1s steps(40), cursor 0.75s step-end forwards;
-}
-
-.typewriter-effect-delayed {
-  overflow: hidden;
-  border-right: 0.15em solid transparent;
-  white-space: nowrap;
-  letter-spacing: 0.15em;
-  opacity: 0;
-  animation: typing 1s steps(40), cursor 0.75s step-end forwards;
-  animation-fill-mode: forwards;
-  animation-delay: 1s;
-}
-
-.container,
-.caught-pokemon-description-container {
-  min-height: 160px;
 }
 
 @keyframes typing {

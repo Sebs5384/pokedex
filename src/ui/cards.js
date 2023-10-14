@@ -18,13 +18,13 @@ function createCards(pokemons, ids, sprites) {
     const $sprite = document.createElement("img");
     const $name = document.createElement("strong");
 
-    $card.className = "card col-3 col-md-2 col-lg-2 card-border pokemon-card";
-    $card.style.backgroundImage = 'url("img/misc/pokeball.png")';
+    $card.className = "card col-3 col-md-2 col-lg-2 pokemon-card";
 
-    $name.className = "card-body text-center";
+    $name.className = "card-body text-center pokemon-emerald-font";
     $name.textContent = `#${id > MAX_PREVIOUS_GEN_ID ? id - LOWEST_NEW_GEN_ID : id}  ${pokemon}`;
 
     $sprite.className = "card-img-top pokemon-sprite";
+    $sprite.style = "filter: drop-shadow(5px 1px 3px black)";
     $sprite.src = sprite;
     $sprite.dataset.id = id;
     $sprite.onerror = () => ($sprite.src = "img/misc/404-shocked.png");
