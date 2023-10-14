@@ -24,7 +24,6 @@ function createCards(pokemons, ids, sprites) {
     $name.textContent = `#${id > MAX_PREVIOUS_GEN_ID ? id - LOWEST_NEW_GEN_ID : id}  ${pokemon}`;
 
     $sprite.className = "card-img-top pokemon-sprite";
-    $sprite.style = "filter: drop-shadow(5px 1px 3px black)";
     $sprite.src = sprite;
     $sprite.dataset.id = id;
     $sprite.onerror = () => ($sprite.src = "img/misc/404-shocked.png");
