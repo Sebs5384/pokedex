@@ -580,3 +580,40 @@ body {
     font-size: 18px;
   }
 }
+
+@media screen and (min-width: 470px) and (max-width: 992px) {
+  .navbar * {
+    font-size: 13px;
+  }
+
+  .poke-logo {
+    width: 120px;
+    height: 45px;
+  }
+
+  .magnifier,
+  #catch-pokemon-button {
+    width: 35px;
+    height: 35px;
+  }
+
+  .search-box-list {
+    width: 17rem;
+    max-height: 17rem;
+  }
+
+  .catch-pokemon-img {
+    width: 90px;
+    height: 30px;
+  }
+
+  .slot-image {
+    width: 45px;
+    height: 45px;
+  }
+
+  .pokemon-card {
+    font-size: 11px;
+    background-size: 270px;
+  }
+}

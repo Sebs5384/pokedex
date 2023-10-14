@@ -44,15 +44,15 @@ function createModalHeader(name, stats, types, previousEvolutionData) {
   $modalHeader.innerHTML = `
     <div class="row modal-font">
       ${previousEvolutionData.name === "Basic Pokemon" ? `<div class="col-2 col-md-2"></div>` : ` <strong class="col-2 align-self-end">P. STAGE</strong>`}
-      <strong class="col-5 col-md-5 align-self-end text-start">${previousEvolutionData.name}</strong>
-      <strong class="col-4 col-md-4 align-self-end text-end">${previousEvolutionData.genus}</strong>
+      <strong class="col-5 col-md-5 col-lg-5 align-self-end text-start">${previousEvolutionData.name}</strong>
+      <strong class="col-4 col-md-4 col-lg-4 align-self-end text-end">${previousEvolutionData.genus}</strong>
       <div class="col-1 col-md-1">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal-button"></button>
       </div>
     </div>
 
     <div class="row justify-content-center">
-      <hr class="border col-11 col-md-11 border-warning border-1 opacity-50" />
+      <hr class="border col-11 col-md-11 col-lg-11 border-warning border-1 opacity-50" />
     </div>
 
     <div class="row" id="pokemon-main-info">
@@ -77,7 +77,7 @@ function createCard(types, pokemonSprite) {
   $modalCardContainer.innerHTML = `
     <div class="card main-image-container ${types.mainType}-background">
       <div class="row card-body justify-content-center">
-        <img class="col-11 col-md-8" src=${pokemonSprite} onerror="this.src='img/misc/404-shocked.png'" />
+        <img class="col-11 col-md-6 col-lg-8" src=${pokemonSprite} onerror="this.src='img/misc/404-shocked.png'" />
       </div>
     </div>
   `;
