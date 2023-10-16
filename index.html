@@ -20,8 +20,8 @@
           <form class="container-fluid col-4 col-md-5 col-lg-4">
             <div class="input-group dropdown" id="pokedex-search-box">
               <span class="input-group-text"><img src="img/misc/magnifier.png" alt="@" class="magnifier" /></span>
-              <input type="search" class="form-control search-input dropdown-toggle" placeholder="Search pokemon" data-bs-toggle="dropdown" aria-expanded="false" />
-              <ul class="dropdown-menu search-box-list" id="pokedex-search-list"></ul>
+              <input type="search" class="form-control search-input dropdown-toggle" data-cy="pokemon-search-box" placeholder="Search pokemon" data-bs-toggle="dropdown" aria-expanded="false" />
+              <ul class="dropdown-menu search-box-list" id="pokedex-search-list" data-cy="pokemon-search-box-list"></ul>
             </div>
           </form>
 
@@ -56,7 +56,7 @@
         </section>
       </nav>
 
-      <section class="modal fade" id="pokemon-modal" tabindex="-1" aria-hidden="true">
+      <section class="modal fade" id="pokemon-modal" data-cy="pokemon-card-modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content pokemon-modal" id="pokemon-modal-content"></div>
         </div>

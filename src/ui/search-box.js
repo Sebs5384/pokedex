@@ -8,6 +8,7 @@ export function createPokemonList(pokemons) {
 
     $item.className = "dropdown-item";
     $item.textContent = `${name}`;
+    $item.dataset.cy = name;
     $item.dataset.id = pokemonIds[index];
 
     $list.appendChild($item);

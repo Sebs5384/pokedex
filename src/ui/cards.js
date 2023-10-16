@@ -25,6 +25,7 @@ function createCards(pokemons, ids, sprites) {
 
     $sprite.className = "card-img-top pokemon-sprite";
     $sprite.src = sprite;
+    $sprite.dataset.cy = `${pokemon}-card`;
     $sprite.dataset.id = id;
     $sprite.onerror = () => ($sprite.src = "img/misc/404-shocked.png");
 

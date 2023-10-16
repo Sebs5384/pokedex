@@ -44,10 +44,10 @@ function createModalHeader(name, stats, types, previousEvolutionData) {
   $modalHeader.innerHTML = `
     <div class="row modal-font">
       ${previousEvolutionData.name === "Basic Pokemon" ? `<div class="col-2 col-md-2"></div>` : ` <strong class="col-2 align-self-end">P. STAGE</strong>`}
-      <strong class="col-5 col-md-5 col-lg-5 align-self-end text-start">${previousEvolutionData.name}</strong>
-      <strong class="col-4 col-md-4 col-lg-4 align-self-end text-end">${previousEvolutionData.genus}</strong>
+      <strong class="col-5 col-md-5 col-lg-5 align-self-end text-start" data-cy="previous-evolution-name">${previousEvolutionData.name}</strong>
+      <strong class="col-4 col-md-4 col-lg-4 align-self-end text-end" data-cy="pokemon-genus">${previousEvolutionData.genus}</strong>
       <div class="col-1 col-md-1">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal-button"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal-button" data-cy="pokemon-modal-close-button"></button>
       </div>
     </div>
 
@@ -59,11 +59,11 @@ function createModalHeader(name, stats, types, previousEvolutionData) {
       ${
         previousEvolutionData.id === "None"
           ? `<div class="col-2"></div>`
-          : `<img class="col-2 col-md-2 align-self-center stage-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${previousEvolutionData.id}.png" data-id="${previousEvolutionData.id}" />`
+          : `<img class="col-2 col-md-2 align-self-center stage-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${previousEvolutionData.id}.png" data-id="${previousEvolutionData.id}" data-cy="previous-evolution-sprite" />`
       }
-      <strong class="col-4 col-md-4 align-self-center"> ${name}</strong>
-      <strong class="col-4 col-md-4 align-self-center text-end main-status">${stats.hp} HP</strong>
-      <img class="mt-1 mb-md-0 col-2 col-md-2 align-self-center type-icon" src="img/pokemon-types/icons/${types.mainType}-type-icon.png" />
+      <strong class="col-4 col-md-4 align-self-center" data-cy="pokemon-name">${name}</strong>
+      <strong class="col-4 col-md-4 align-self-center text-end main-status" data-cy="pokemon-hp">${stats.hp} HP</strong>
+      <img class="mt-1 mb-md-0 col-2 col-md-2 align-self-center type-icon" src="img/pokemon-types/icons/${types.mainType}-type-icon.png" data-id="${name}-main-type" data-cy="pokemon-main-type-icon" />
     </div>
   `;
 
@@ -75,9 +75,9 @@ function createCard(types, pokemonSprite) {
   $modalCardContainer.className = "container-fluid";
   $modalCardContainer.id = "pokemon-modal-image";
   $modalCardContainer.innerHTML = `
-    <div class="card main-image-container ${types.mainType}-background">
+    <div class="card main-image-container ${types.mainType}-background" data-cy="type-texture">
       <div class="row card-body justify-content-center">
-        <img class="col-11 col-md-6 col-lg-8" src=${pokemonSprite} onerror="this.src='img/misc/404-shocked.png'" />
+        <img class="col-11 col-md-6 col-lg-8" src=${pokemonSprite} onerror="this.src='img/misc/404-shocked.png'" data-cy="pokemon-sprite" />
       </div>
     </div>
   `;
@@ -91,10 +91,10 @@ function createBanner(types, height, weight) {
   $modalBanner.id = "pokemon-modal-banner";
 
   $modalBanner.innerHTML = `
-    <img class="col-2 col-md-2" src="img/pokemon-types/logos/${types.mainType}-type.png" />
-    <img class="col-2 col-md-2" src="img/pokemon-types/logos/${types.secondaryType}-type.png" />
-    <strong class="col-4 col-md-4 text-end">Length: ${height}" </strong>
-    <strong class="col-4 col-md-4">Weight: ${weight} lbs</strong>
+    <img class="col-2 col-md-2" src="img/pokemon-types/logos/${types.mainType}-type.png" data-cy="pokemon-main-type-logo" />
+    <img class="col-2 col-md-2" src="img/pokemon-types/logos/${types.secondaryType}-type.png" data-cy="pokemon-secondary-type-logo" />
+    <strong class="col-4 col-md-4 text-end" data-cy="pokemon-height">Length: ${height}" </strong>
+    <strong class="col-4 col-md-4" data-cy="pokemon-weight">Weight: ${weight} lbs</strong>
   `;
 
   return $modalBanner;
@@ -112,12 +112,12 @@ function createSkillsContainer(types, skills) {
       </div>
       <hr class="col-12 modal-horizontal-rule" />
       <div class="col-6">
-        <img src="img/pokemon-types/icons/${types.mainType}-type-icon.png" class="status-icon mb-2 mb-md-1" />
-        <strong class="skill-font">${skills.firstSkill}</strong>
+        <img src="img/pokemon-types/icons/${types.mainType}-type-icon.png" class="status-icon mb-2 mb-md-1" data-cy="first-skill-icon"/>
+        <strong class="skill-font" data-cy="first-skill">${skills.firstSkill}</strong>
       </div>
       <div class="col-6">
-        <img src="img/pokemon-types/icons/${types.mainType}-type-icon.png" class="status-icon mb-2 mb-md-1" />
-        <strong class="skill-font">${skills.secondSkill}</strong>
+        <img src="img/pokemon-types/icons/${types.mainType}-type-icon.png" class="status-icon mb-2 mb-md-1" data-cy="second-skill-icon" />
+        <strong class="skill-font" data-cy="second-skill">${skills.secondSkill}</strong>
       </div>
     </div>
   `;
@@ -138,23 +138,23 @@ function createStatsContainer(stats) {
       <hr class="col-12 modal-horizontal-rule" />
       <div class="col-4">
         <img src="img/pokemon-stats/atk-icon.png" class="status-icon" />
-        <strong>ATTACK: ${stats.attack}</strong>
+        <strong data-cy="pokemon-attack">ATTACK: ${stats.attack}</strong>
       </div>
       <div class="col-4">
       <img src="img/pokemon-stats/def-icon.png" class="status-icon" />
-      <strong>DEFENSE: ${stats.defense}</strong>
+      <strong data-cy="pokemon-defense">DEFENSE: ${stats.defense}</strong>
     </div>
     <div class="col-4">
       <img src="img/pokemon-stats/speed-icon.png" class="status-icon" />
-      <strong>SPEED: ${stats.speed}</strong>
+      <strong data-cy="pokemon-speed">SPEED: ${stats.speed}</strong>
     </div>
     <div class="col-4 mt-1">
       <img src="img/pokemon-stats/sp-atk-icon.png" class="status-icon" />
-      <strong>SP ATK: ${stats.spAtk}</strong>
+      <strong data-cy="pokemon-sp-attack">SP ATK: ${stats.spAtk}</strong>
     </div>
     <div class="col-4 mt-1">
       <img src="img/pokemon-stats/sp-def-icon.png" class="status-icon" />
-      <strong>SP DEF: ${stats.spDef}</strong>
+      <strong data-cy="pokemon-sp-defense">SP DEF: ${stats.spDef}</strong>
     </div>
   </div>  
   `;
@@ -173,12 +173,12 @@ function createMiscStats(typeAdvantage, previousEvolutionData) {
     <strong class="col-4 text-center">Resistance</strong>
     <strong class="col-4 text-end">Retreat Cost</strong>
     <div class="col-4 text-start">
-      <img src="img/pokemon-types/icons/${typeAdvantage.weakness}-type-icon.png" class="status-icon" />
+      <img src="img/pokemon-types/icons/${typeAdvantage.weakness}-type-icon.png" class="status-icon" data-cy="weakness-icon"/>
     </div>
     <div class="col-4 text-center">
-      <img src="img/pokemon-types/icons/${typeAdvantage.resistance}-type-icon.png" class="status-icon" />
+      <img src="img/pokemon-types/icons/${typeAdvantage.resistance}-type-icon.png" class="status-icon" data-cy="resistance-icon" />
     </div>
-    <div class="col-4 text-end">
+    <div class="col-4 text-end" data-cy="retreat-icon">
       ${
         previousEvolutionData.name === "Basic Pokemon"
           ? `<img src="img/pokemon-types/icons/retreat-icon.png" class="status-icon" />`
@@ -200,7 +200,7 @@ function createPokemonDescription(description) {
 
   $modalDescription.innerHTML = `
     <div class="card text-center modal-footer-description">
-      <strong>${description}</strong>
+      <strong data-cy="pokemon-description">${description}</strong>
     </div>
   `;
 

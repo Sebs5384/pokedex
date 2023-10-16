@@ -8,6 +8,7 @@ export function displayLoadingMessage() {
   const $loadingMessage = document.createElement("div");
 
   $spinnerContainer.className = "spinner-border text-danger";
+  $spinnerContainer.dataset.cy = "spinner";
   $spinnerContainer.role = "status";
   $spinnerContainer.style = "width: 6rem; height: 6rem;";
   $spinner.className = "visually-hidden";

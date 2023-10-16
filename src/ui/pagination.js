@@ -74,6 +74,8 @@ function createPaginator(totalPages) {
     $page.href = "#";
 
     $page.textContent = i === 0 ? "Previous" : i === totalPages ? "Next" : i;
+    $page.dataset.cy = i === 0 ? "previous-page-button" : i === totalPages ? "next-page-button" : `page-${i}`;
+
     i !== 0 && i !== totalPages ? $page.classList.add("paginator-page") : $page.classList.add("paginator-button");
 
     $item.appendChild($page);
