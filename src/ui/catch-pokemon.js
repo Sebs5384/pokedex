@@ -1,22 +1,21 @@
-export function handlePokeballButton(callback) {
-  return new Promise((resolve, reject) => {
-    const $pokeballButton = document.querySelector("#catch-pokemon-button");
-    $pokeballButton.onclick = () => {
-      const totalPokemons = document.querySelectorAll("#pokedex-search-list li a").length;
-      $pokeballButton.disabled = true;
-      $pokeballButton.classList.add("poke-shake");
+export function handlePokeballButton(clicked) {
+  const $pokeballButton = document.querySelector("#catch-pokemon-button");
 
-      setTimeout(() => {
-        $pokeballButton.classList.remove("poke-shake");
-      }, 3000);
+  $pokeballButton.onclick = () => {
+    const totalPokemons = document.querySelectorAll("#pokedex-search-list li a").length;
+    $pokeballButton.disabled = true;
+    $pokeballButton.classList.add("poke-shake");
 
-      setTimeout(() => {
-        $pokeballButton.disabled = false;
-      }, 20000);
+    setTimeout(() => {
+      $pokeballButton.classList.remove("poke-shake");
+    }, 3000);
 
-      callback ? reject() : resolve(totalPokemons);
-    };
-  });
+    setTimeout(() => {
+      $pokeballButton.disabled = false;
+    }, 20000);
+
+    clicked(totalPokemons);
+  };
 }
 
 export function changeCaughtPokemonText(pokemonData) {

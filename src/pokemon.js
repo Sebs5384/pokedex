@@ -9,32 +9,37 @@ import { getPokemonsData, getPokemonData, getPageData } from "./utils/pokemon.js
 import { validatePageSearchBox } from "./utils/validation.js";
 import { catchPokemon } from "./utils/general.js";
 
-export async function updatePokedexPage(POKEMONS_PER_PAGE, pageIndex) {
+export function updatePokedexPage(POKEMONS_PER_PAGE, pageIndex) {
   displayLoadingMessage();
 
-  const pokemons = await getPokemonsData(getPokemons, POKEMONS_PER_PAGE, pageIndex);
-  setupPagination(POKEMONS_PER_PAGE, pageIndex, pokemons, getPageData, updatePokedexPage, validatePageSearchBox);
-  displayPokemonCards(pokemons, getPokemonSprite);
+  getPokemonsData(getPokemons, POKEMONS_PER_PAGE, pageIndex).then((pokemons) => {
+    setupPagination(POKEMONS_PER_PAGE, pageIndex, pokemons, getPageData, updatePokedexPage, validatePageSearchBox);
+    displayPokemonCards(pokemons, getPokemonSprite);
+  });
 }
 
-export async function setupPokemonModal() {
-  const clickedPokemon = await handleClickedPokemon();
-  const pokemonData = await getPokemonData(getPokemon, getPokemonSpecies, getPokemonSprite, clickedPokemon);
-
-  displayPokemonCardModal(pokemonData);
+export function setupPokemonModal() {
+  handleClickedPokemon((clickedPokemon) => {
+    getPokemonData(getPokemon, getPokemonSpecies, getPokemonSprite, clickedPokemon).then((pokemonData) => {
+      displayPokemonCardModal(pokemonData);
+    });
+  });
 }
 
-export async function setupNavigationBar(limit, offset) {
-  const pokemons = await getPokemonsData(getPokemons, limit, offset);
-  createPokemonList(pokemons);
+export function setupNavigationBar(limit, offset) {
+  getPokemonsData(getPokemons, limit, offset).then((pokemons) => {
+    createPokemonList(pokemons);
+  });
 
-  const totalPokemons = await handlePokeballButton();
-  const caughtPokemon = catchPokemon(totalPokemons);
+  handlePokeballButton((pokemons) => {
+    const caughtPokemon = catchPokemon(pokemons);
 
-  const pokemonData = await getPokemonData(getPokemon, getPokemonSpecies, getPokemonSprite, caughtPokemon);
-  displayCaughtPokemonModal(pokemonData, changeCaughtPokemonText);
-  displayPokedexRegistrationModal(pokemonData);
-  setCaughtPokemonSlot(pokemonData);
+    getPokemonData(getPokemon, getPokemonSpecies, getPokemonSprite, caughtPokemon).then((pokemonData) => {
+      displayCaughtPokemonModal(pokemonData, changeCaughtPokemonText);
+      displayPokedexRegistrationModal(pokemonData);
+      setCaughtPokemonSlot(pokemonData);
+    });
+  });
 
   handleSearchInput((searchQuery) => {
     filterPokemonsName(searchQuery);

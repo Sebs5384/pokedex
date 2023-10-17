@@ -1,4 +1,4 @@
-export async function displayPokemonCardModal(pokemonData, pokemonSprite) {
+export function displayPokemonCardModal(pokemonData, pokemonSprite) {
   setPokemonCardModalContent(pokemonData, pokemonSprite);
   changeModalTexture(pokemonData);
   showModal("#pokemon-modal");

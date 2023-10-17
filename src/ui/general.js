@@ -20,11 +20,12 @@ export function displayLoadingMessage() {
 }
 
 export function handleClickedPokemon(clicked) {
-  return new Promise((resolve, reject) => {
-    const $pokemons = document.querySelector("body");
-    $pokemons.onclick = (event) => {
-      const pokemonId = event.target.dataset.id;
-      clicked ? reject("Pokemon not found") : resolve(pokemonId);
-    };
-  });
+  const $pokemons = document.querySelector("body");
+  $pokemons.onclick = (event) => {
+    const pokemonId = event.target.dataset.id;
+
+    if (pokemonId === undefined) return;
+
+    clicked(pokemonId);
+  };
 }
