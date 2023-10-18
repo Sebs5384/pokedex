@@ -1,5 +1,5 @@
 body {
-  background-image: url(img/misc/pokepaper.png);
+  background: linear-gradient(to bottom, #fff8dc, #dc143c);
   background-size: cover;
   overflow-x: hidden;
 }
