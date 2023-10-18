@@ -1,7 +1,7 @@
 export async function displayPokemonCardModal(pokemonData, pokemonSprite) {
   await setPokemonCardModalContent(pokemonData, pokemonSprite);
   await changeModalTexture(pokemonData);
-  showModal("#pokemon-modal", 500);
+  showModal("#pokemon-modal");
   setupCloseModalButton("#close-modal-button");
 }
 
@@ -359,7 +359,20 @@ function removeModals() {
 async function changeModalTexture(pokemonData) {
   const { types } = pokemonData;
   const $modalContent = document.querySelector("#pokemon-modal-content");
-  $modalContent.style.background = `url(img/modal-textures/${types.mainType}-texture.png) center/cover`;
+  const modalTexture = `img/modal-textures/${types.mainType}-texture.png`;
+
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.src = modalTexture;
+    img.onload = () => {
+      $modalContent.style.background = `url(${modalTexture}) center/cover`;
+      resolve();
+    };
+
+    img.onerror = () => {
+      reject();
+    };
+  });
 }
 
 function setupCloseModalButton(button) {
