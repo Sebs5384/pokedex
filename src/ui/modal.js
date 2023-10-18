@@ -1,11 +1,10 @@
 export async function displayPokemonCardModal(pokemonData) {
-  await showModal("#loading-modal");
+  await displayLoadingModal();
   await setPokemonCardModalContent(pokemonData);
   await changeModalCardTexture(pokemonData);
   await changeModalCardSprite(pokemonData);
-  await hideModal("#loading-modal", 500);
-
   await showModal("#pokemon-modal");
+
   setupCloseModalButton("#close-modal-button");
 }
 
@@ -230,10 +229,10 @@ function setCaughtPokemonModalContent() {
 function createCaughtModalBody() {
   const $caughtModalBody = document.createElement("section");
 
-  $caughtModalBody.className = "modal-body caught-pokemon-body";
+  $caughtModalBody.className = "modal-body pokedex-message-body";
   $caughtModalBody.innerHTML = `
-    <div class="caught-pokemon-description-background">
-      <div class="container pokemon-emerald-font caught-pokemon-description-container">
+    <div class="pokedex-message-background">
+      <div class="container pokemon-emerald-font pokedex-message">
         <div class="row">
           <div class="typewriter-effect col-12" id="caught-pokemon-top-text"></div>
           <div class="typewriter-effect-delayed col-12" id="caught-pokemon-bottom-text"></div>
@@ -336,6 +335,23 @@ function createRegistrationDescription(description) {
   `;
 
   return $descriptionContainer;
+}
+
+async function displayLoadingModal() {
+  const $loadingModalBody = document.querySelector("#loading-modal-content");
+
+  $loadingModalBody.className = "modal-body pokedex-message-body";
+  $loadingModalBody.innerHTML = `
+  <div class="pokedex-message-background">
+    <div class="pokemon-emerald-font pokedex-message">
+      <div class="row">
+        <div class="col-12 text-center">Loading....</div>
+      </div>
+    </div>
+  </div>`;
+
+  await showModal("#loading-modal");
+  await hideModal("#loading-modal", 1000);
 }
 
 async function showModal(modal, timer = 0) {
