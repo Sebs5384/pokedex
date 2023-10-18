@@ -1,8 +1,11 @@
 export async function displayPokemonCardModal(pokemonData) {
+  await showModal("#loading-modal");
   await setPokemonCardModalContent(pokemonData);
   await changeModalCardTexture(pokemonData);
   await changeModalCardSprite(pokemonData);
-  showModal("#pokemon-modal");
+  await hideModal("#loading-modal", 500);
+
+  await showModal("#pokemon-modal");
   setupCloseModalButton("#close-modal-button");
 }
 
@@ -335,23 +338,30 @@ function createRegistrationDescription(description) {
   return $descriptionContainer;
 }
 
-function showModal(modal, timer = 0) {
-  const modalInstance = new bootstrap.Modal(modal);
-  setTimeout(() => {
-    modalInstance.show();
-  }, timer);
+async function showModal(modal, timer = 0) {
+  const $modal = new bootstrap.Modal(modal);
+
+  return await new Promise((resolve) => {
+    setTimeout(() => {
+      $modal.show();
+      resolve();
+    }, timer);
+  });
 }
 
-function hideModal(modal, timer = 0) {
+async function hideModal(modal, timer = 0) {
   const $modal = bootstrap.Modal.getInstance(modal);
-  setTimeout(() => {
-    $modal.hide();
-  }, timer);
+
+  return await new Promise((resolve) => {
+    setTimeout(() => {
+      $modal.hide();
+      resolve();
+    }, timer);
+  });
 }
 
 function removeModals() {
   const $modals = document.querySelectorAll(".modal-backdrop");
-
   $modals.forEach(($modal) => {
     $modal.remove();
   });
@@ -362,16 +372,12 @@ async function changeModalCardTexture(pokemonData) {
   const $modalContent = document.querySelector("#pokemon-modal-content");
   const modalTexture = `img/modal-textures/${types.mainType}-texture.png`;
 
-  return new Promise((resolve, reject) => {
+  return await new Promise((resolve) => {
     const img = new Image();
     img.src = modalTexture;
     img.onload = () => {
       $modalContent.style.background = `url(${modalTexture}) center/cover`;
       resolve();
-    };
-
-    img.onerror = () => {
-      reject();
     };
   });
 }
@@ -380,16 +386,12 @@ async function changeModalCardSprite(pokemonData) {
   const { sprite } = pokemonData;
   const $modalCard = document.querySelector("#pokemon-card-sprite");
 
-  return new Promise((resolve, reject) => {
+  return await new Promise((resolve) => {
     const img = new Image();
     img.src = sprite;
     img.onload = () => {
       $modalCard.src = sprite;
       resolve();
-    };
-
-    img.onerror = () => {
-      reject();
     };
   });
 }
