@@ -1,7 +1,7 @@
 export async function displayPokemonCardModal(pokemonData, pokemonSprite) {
   await setPokemonCardModalContent(pokemonData, pokemonSprite);
   await changeModalTexture(pokemonData);
-  showModal("#pokemon-modal");
+  showModal("#pokemon-modal", 500);
   setupCloseModalButton("#close-modal-button");
 }
 
