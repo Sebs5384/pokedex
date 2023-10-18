@@ -1,9 +1,9 @@
 const URL = "https://pokeapi.co/api/v2";
 
-export function getPokemon(id) {
+export async function getPokemon(id) {
   const pokemonURL = `${URL}/pokemon/${id}`;
 
-  return fetch(pokemonURL)
+  return await fetch(pokemonURL)
     .then((response) => {
       return response.json();
     })
@@ -15,10 +15,10 @@ export function getPokemon(id) {
     });
 }
 
-export function getPokemons(limit, offset) {
+export async function getPokemons(limit, offset) {
   const pokemonsURL = `${URL}/pokemon/?limit=${limit}&offset=${offset}`;
 
-  return fetch(pokemonsURL)
+  return await fetch(pokemonsURL)
     .then((response) => {
       return response.json();
     })
@@ -30,10 +30,10 @@ export function getPokemons(limit, offset) {
     });
 }
 
-export function getPokemonSpecies(id) {
-  const speciesURL = `${URL}/pokemon-species/${id}`;
+export async function getPokemonSpecies(name) {
+  const speciesURL = `${URL}/pokemon-species/${name}`;
 
-  return fetch(speciesURL)
+  return await fetch(speciesURL)
     .then((response) => {
       return response.json();
     })
@@ -45,9 +45,12 @@ export function getPokemonSpecies(id) {
     });
 }
 
-export function getPokemonSprite(id, sprite = "") {
+export async function getPokemonSprite(pokemonId, sprite = "") {
   try {
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${sprite}${id}.png`;
+    const pokemonSprite = Array.isArray(pokemonId)
+      ? pokemonId.map((id) => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${sprite}${id}.png`)
+      : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${sprite}${pokemonId}.png`;
+    return pokemonSprite;
   } catch (error) {
     console.error(error);
   }

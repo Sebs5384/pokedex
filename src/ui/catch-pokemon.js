@@ -2,7 +2,6 @@ export function handlePokeballButton(clicked) {
   const $pokeballButton = document.querySelector("#catch-pokemon-button");
 
   $pokeballButton.onclick = () => {
-    const totalPokemons = document.querySelectorAll("#pokedex-search-list li a").length;
     $pokeballButton.disabled = true;
     $pokeballButton.classList.add("poke-shake");
 
@@ -14,7 +13,7 @@ export function handlePokeballButton(clicked) {
       $pokeballButton.disabled = false;
     }, 20000);
 
-    clicked(totalPokemons);
+    clicked();
   };
 }
 

@@ -1,8 +1,7 @@
-export function displayPokemonCards(pageData, pokemonSprite) {
+export function displayPokemonCards(pageData, sprites) {
   const { pokemonNames, pokemonIds } = pageData;
-  const pokemonSprites = pokemonIds.map((id) => pokemonSprite(id, "other/official-artwork/"));
 
-  createCards(pokemonNames, pokemonIds, pokemonSprites);
+  createCards(pokemonNames, pokemonIds, sprites);
 }
 
 function createCards(pokemons, ids, sprites) {
