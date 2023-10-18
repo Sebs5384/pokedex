@@ -340,8 +340,9 @@ function createRegistrationDescription(description) {
 
 function createLoadingModal() {
   const $loadingModalContent = document.querySelector("#loading-modal-content");
-  const $loadingModalBody = document.createElement("section");
+  $loadingModalContent.innerHTML = "";
 
+  const $loadingModalBody = document.createElement("section");
   $loadingModalBody.className = "modal-body pokedex-message-body";
   $loadingModalBody.innerHTML = `
   <div class="pokedex-message-background">
