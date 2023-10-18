@@ -1,18 +1,19 @@
-export async function displayPokemonCardModal(pokemonData, pokemonSprite) {
-  await setPokemonCardModalContent(pokemonData, pokemonSprite);
-  await changeModalTexture(pokemonData);
+export async function displayPokemonCardModal(pokemonData) {
+  await setPokemonCardModalContent(pokemonData);
+  await changeModalCardTexture(pokemonData);
+  await changeModalCardSprite(pokemonData);
   showModal("#pokemon-modal");
   setupCloseModalButton("#close-modal-button");
 }
 
-async function setPokemonCardModalContent(pokemonData, pokemonSprite) {
+async function setPokemonCardModalContent(pokemonData) {
   const { skills, height, name, stats, types, weight, previousEvolutionData, description, typeAdvantage, sprite } = pokemonData;
   const $modalContent = document.querySelector("#pokemon-modal-content");
   $modalContent.innerHTML = "";
 
   const $modalBody = createModalBody();
   const $modalHeader = createModalHeader(name, stats, types, previousEvolutionData);
-  const $modalCard = createCard(types, sprite);
+  const $modalCard = createCard(types);
   const $modalBanner = createBanner(types, height, weight);
   const $modalSkillsContainer = createSkillsContainer(types, skills);
   const $modalStatsContainer = createStatsContainer(stats);
@@ -70,14 +71,14 @@ function createModalHeader(name, stats, types, previousEvolutionData) {
   return $modalHeader;
 }
 
-function createCard(types, pokemonSprite) {
+function createCard(types) {
   const $modalCardContainer = document.createElement("section");
   $modalCardContainer.className = "container-fluid";
   $modalCardContainer.id = "pokemon-modal-image";
   $modalCardContainer.innerHTML = `
     <div class="card main-image-container ${types.mainType}-background" data-cy="type-texture">
       <div class="row card-body justify-content-center">
-        <img class="col-11 col-md-6 col-lg-8" src=${pokemonSprite} onerror="this.src='img/misc/404-shocked.png'" data-cy="pokemon-sprite" />
+        <img id="pokemon-card-sprite" class="col-11 col-md-6 col-lg-8" src="" onerror="this.src='img/misc/404-shocked.png'" data-cy="pokemon-sprite" />
       </div>
     </div>
   `;
@@ -356,7 +357,7 @@ function removeModals() {
   });
 }
 
-async function changeModalTexture(pokemonData) {
+async function changeModalCardTexture(pokemonData) {
   const { types } = pokemonData;
   const $modalContent = document.querySelector("#pokemon-modal-content");
   const modalTexture = `img/modal-textures/${types.mainType}-texture.png`;
@@ -366,6 +367,24 @@ async function changeModalTexture(pokemonData) {
     img.src = modalTexture;
     img.onload = () => {
       $modalContent.style.background = `url(${modalTexture}) center/cover`;
+      resolve();
+    };
+
+    img.onerror = () => {
+      reject();
+    };
+  });
+}
+
+async function changeModalCardSprite(pokemonData) {
+  const { sprite } = pokemonData;
+  const $modalCard = document.querySelector("#pokemon-card-sprite");
+
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.src = sprite;
+    img.onload = () => {
+      $modalCard.src = sprite;
       resolve();
     };
 
