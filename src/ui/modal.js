@@ -1,11 +1,13 @@
 export async function displayPokemonCardModal(pokemonData) {
-  await displayLoadingModal();
+  setupCloseModalButton("#close-modal-button");
+  createLoadingModal();
+
+  await showModal("#loading-modal");
   await setPokemonCardModalContent(pokemonData);
   await changeModalCardTexture(pokemonData);
   await changeModalCardSprite(pokemonData);
+  await hideModal("#loading-modal");
   await showModal("#pokemon-modal");
-
-  setupCloseModalButton("#close-modal-button");
 }
 
 async function setPokemonCardModalContent(pokemonData) {
@@ -337,8 +339,9 @@ function createRegistrationDescription(description) {
   return $descriptionContainer;
 }
 
-async function displayLoadingModal() {
-  const $loadingModalBody = document.querySelector("#loading-modal-content");
+function createLoadingModal() {
+  const $loadingModalContent = document.querySelector("#loading-modal-content");
+  const $loadingModalBody = document.createElement("section");
 
   $loadingModalBody.className = "modal-body pokedex-message-body";
   $loadingModalBody.innerHTML = `
@@ -350,8 +353,7 @@ async function displayLoadingModal() {
     </div>
   </div>`;
 
-  await showModal("#loading-modal");
-  await hideModal("#loading-modal", 1000);
+  $loadingModalContent.appendChild($loadingModalBody);
 }
 
 async function showModal(modal, timer = 0) {
