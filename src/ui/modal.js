@@ -1,11 +1,11 @@
 export async function displayPokemonCardModal(pokemonData, pokemonSprite) {
-  setPokemonCardModalContent(pokemonData, pokemonSprite);
-  changeModalTexture(pokemonData);
+  await setPokemonCardModalContent(pokemonData, pokemonSprite);
+  await changeModalTexture(pokemonData);
   showModal("#pokemon-modal");
   setupCloseModalButton("#close-modal-button");
 }
 
-function setPokemonCardModalContent(pokemonData, pokemonSprite) {
+async function setPokemonCardModalContent(pokemonData, pokemonSprite) {
   const { skills, height, name, stats, types, weight, previousEvolutionData, description, typeAdvantage, sprite } = pokemonData;
   const $modalContent = document.querySelector("#pokemon-modal-content");
   $modalContent.innerHTML = "";
@@ -356,7 +356,7 @@ function removeModals() {
   });
 }
 
-function changeModalTexture(pokemonData) {
+async function changeModalTexture(pokemonData) {
   const { types } = pokemonData;
   const $modalContent = document.querySelector("#pokemon-modal-content");
   $modalContent.style.background = `url(img/modal-textures/${types.mainType}-texture.png) center/cover`;
