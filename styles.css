@@ -38,7 +38,6 @@ body {
 }
 
 .pokemon-card {
-  background-image: url(img/misc/pokeball.png);
   border: 3px solid #dc143c;
   border-style: outset;
   border-radius: 5px;

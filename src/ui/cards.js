@@ -1,10 +1,12 @@
-export function displayPokemonCards(pageData, sprites) {
+export async function displayPokemonCards(pageData, sprites) {
   const { pokemonNames, pokemonIds } = pageData;
 
-  createCards(pokemonNames, pokemonIds, sprites);
+  await createCards(pokemonNames, pokemonIds);
+  await loadCardsSprite(sprites);
+  await loadCardBackground();
 }
 
-function createCards(pokemons, ids, sprites) {
+async function createCards(pokemons, ids) {
   const $container = document.querySelector("#cards-container");
   const MAX_PREVIOUS_GEN_ID = 1017;
   const LOWEST_NEW_GEN_ID = 8983;
@@ -12,7 +14,6 @@ function createCards(pokemons, ids, sprites) {
   $container.innerHTML = "";
   pokemons.forEach((pokemon, index) => {
     const id = ids[index];
-    const sprite = sprites[index];
     const $card = document.createElement("div");
     const $sprite = document.createElement("img");
     const $name = document.createElement("strong");
@@ -23,13 +24,48 @@ function createCards(pokemons, ids, sprites) {
     $name.textContent = `#${id > MAX_PREVIOUS_GEN_ID ? id - LOWEST_NEW_GEN_ID : id}  ${pokemon}`;
 
     $sprite.className = "card-img-top pokemon-sprite";
-    $sprite.src = sprite;
     $sprite.dataset.cy = `${pokemon}-card`;
     $sprite.dataset.id = id;
-    $sprite.onerror = () => ($sprite.src = "img/misc/404-shocked.png");
 
     $card.appendChild($name);
     $card.appendChild($sprite);
     $container.appendChild($card);
+  });
+}
+
+async function loadCardBackground() {
+  const $cards = document.querySelectorAll(".pokemon-card");
+
+  return await new Promise((resolve) => {
+    const backgroundImg = new Image();
+    backgroundImg.src = "img/misc/pokeball.png";
+
+    backgroundImg.onload = () => {
+      $cards.forEach(($card) => {
+        $card.style.backgroundImage = `url(${backgroundImg.src})`;
+      });
+      resolve();
+    };
+  });
+}
+
+async function loadCardsSprite(sprites) {
+  const $cardsImage = document.querySelectorAll(".pokemon-card img");
+
+  return await new Promise((resolve) => {
+    sprites.forEach((sprite, index) => {
+      const cardSprite = new Image();
+      cardSprite.src = sprite;
+
+      cardSprite.onload = () => {
+        $cardsImage[index].src = sprite;
+      };
+
+      cardSprite.onerror = () => {
+        $cardsImage[index].src = "img/misc/404-shocked.png";
+      };
+    });
+
+    resolve();
   });
 }
