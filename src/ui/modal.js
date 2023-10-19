@@ -339,8 +339,10 @@ function createRegistrationDescription(description) {
 }
 
 function createLoadingModal() {
+  const $pokemonModal = document.querySelector("#pokemon-modal");
   const $loadingModalContent = document.querySelector("#loading-modal-content");
   $loadingModalContent.innerHTML = "";
+  $pokemonModal.style = "hidden";
 
   const $loadingModalBody = document.createElement("section");
   $loadingModalBody.className = "modal-body pokedex-message-body";
