@@ -233,7 +233,7 @@ function createCaughtModalBody() {
   $caughtModalBody.className = "modal-body pokedex-message-body";
   $caughtModalBody.innerHTML = `
     <div class="pokedex-message-background">
-      <div class="container pokemon-emerald-font pokedex-message">
+      <div class="container pokemon-emerald-font pokedex-registration-message">
         <div class="row">
           <div class="typewriter-effect col-12" id="caught-pokemon-top-text"></div>
           <div class="typewriter-effect-delayed col-12" id="caught-pokemon-bottom-text"></div>
@@ -350,7 +350,7 @@ function createLoadingModal() {
   <div class="pokedex-message-background">
     <div class="pokemon-emerald-font pokedex-message">
       <div class="row">
-        <div class="col-12 text-center">Loading....</div>
+        <div class="col-12 text-center align-items-center">Loading....</div>
       </div>
     </div>
   </div>`;

@@ -254,6 +254,7 @@ body {
   border-right: 15px solid rgb(243, 60, 9);
 }
 
+.pokedex-registration-message,
 .pokedex-message {
   background-color: rgb(24, 184, 142);
   font-size: 50px;
@@ -568,8 +569,13 @@ body {
     font-size: 9px;
   }
 
-  .pokedex-message {
+  .pokedex-registration-message {
     min-height: 70px;
+    font-size: 22px;
+  }
+
+  .pokedex-message {
+    min-height: 35px;
     font-size: 22px;
   }
 
@@ -647,8 +653,13 @@ body {
     background-size: 270px;
   }
 
+  .pokedex-registration-message {
+    min-height: 100px;
+    font-size: 32px;
+  }
+
   .pokedex-message {
-    min-height: 80px;
+    min-height: 50px;
     font-size: 32px;
   }
 
