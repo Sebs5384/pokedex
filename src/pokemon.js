@@ -40,7 +40,7 @@ export async function setupNavigationBar(limit, offset) {
     const caughtPokemon = catchPokemon(pokemons.count);
     const pokemon = await getPokemon(caughtPokemon);
     const species = await getPokemonSpecies(pokemon.species.name);
-    const sprite = await getPokemonSprite(caughtPokemon, "other/official-artwork/");
+    const sprite = await getPokemonSprite(caughtPokemon);
     const pokemonData = await getPokemonData(pokemon, species, sprite);
 
     displayCaughtPokemonModal(pokemonData, changeCaughtPokemonText);
