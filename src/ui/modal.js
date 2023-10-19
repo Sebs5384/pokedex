@@ -81,7 +81,7 @@ function createCard(types) {
   $modalCardContainer.innerHTML = `
     <div class="card main-image-container ${types.mainType}-background" data-cy="type-texture">
       <div class="row card-body justify-content-center">
-        <img id="pokemon-card-sprite" class="col-11 col-md-6 col-lg-8" src="" onerror="this.src='img/misc/404-shocked.png'" data-cy="pokemon-sprite" />
+        <img id="pokemon-card-sprite" class="col-11 col-md-6 col-lg-8" src="" data-cy="pokemon-sprite" />
       </div>
     </div>
   `;
@@ -409,8 +409,13 @@ async function changeModalCardSprite(pokemonData) {
     img.src = sprite;
     img.onload = () => {
       $modalCard.src = sprite;
-      resolve();
     };
+
+    img.onerror = () => {
+      $modalCard.src = "img/misc/404-shocked.png";
+    };
+
+    resolve();
   });
 }
 
