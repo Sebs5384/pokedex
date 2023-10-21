@@ -1,5 +1,14 @@
-import { getPokemon as getPokemonFromApi, getPokemons as getPokemonsFromApi, getPokemonSpecies as getPokemonSpeciesFromApi } from '../api/pokemon.js';
-import { loadPokemon as loadPokemonFromStorage, loadPokemons as loadPokemonsFromStorage, loadSpecies as loadSpeciesFromStorage, storePokemon, storePokemons, storeSpecies } from '../storage/pokemon.js';
+import { getPokemon as getPokemonFromApi, getPokemons as getPokemonsFromApi, getPokemonSpecies as getPokemonSpeciesFromApi, getPokemonSprite as getPokemonSpriteFromAssets } from '../api/pokemon.js';
+import {
+  loadPokemon as loadPokemonFromStorage,
+  loadPokemons as loadPokemonsFromStorage,
+  loadSpecies as loadSpeciesFromStorage,
+  loadPokemonSprite as loadPokemonSpriteFromStorage,
+  storePokemon,
+  storePokemons,
+  storeSpecies,
+  storePokemonSprite,
+} from '../storage/pokemon.js';
 
 const POKEMON_LIMIT = 20;
 const POKEMON_OFFSET = 0;
@@ -31,5 +40,15 @@ export async function getPokemonSpecies(name) {
     const species = await getPokemonSpeciesFromApi(name);
     storeSpecies(name, species);
     return species;
+  }
+}
+
+export async function getPokemonSprite(id) {
+  try {
+    return loadPokemonSpriteFromStorage(id);
+  } catch (error) {
+    const sprite = await getPokemonSpriteFromAssets(id);
+    storePokemonSprite(id, sprite);
+    return sprite;
   }
 }

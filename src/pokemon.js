@@ -1,4 +1,4 @@
-import { getPokemons, getPokemon, getPokemonSprite, getPokemonSpecies } from './api/pokemon.js';
+import { getPokemon, getPokemons, getPokemonSpecies, getPokemonSprite } from './api/pokemon.js';
 import setupPagination from './ui/pagination.js';
 import { displayPokemonCardModal, displayCaughtPokemonModal, displayPokedexRegistrationModal } from './ui/modal.js';
 import displayPokemonCards from './ui/cards.js';
@@ -14,7 +14,6 @@ export async function updatePokedexPage(POKEMONS_PER_PAGE, pageIndex) {
 
   const pokemons = await getPokemons(POKEMONS_PER_PAGE, pageIndex);
   const pokemonsData = await getPokemonsData(pokemons);
-  const sprites = await getPokemonSprite(pokemonsData.pokemonIds);
 
   setupPagination(POKEMONS_PER_PAGE, pageIndex, pokemonsData, getPageData, updatePokedexPage, validatePageSearchBox);
   displayPokemonCards(pokemonsData, sprites);

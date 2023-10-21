@@ -13,6 +13,10 @@ function getPokemonSpeciesKey(name) {
   return `pokemon_species_${name}`;
 }
 
+function getPokemonSpriteKey(id) {
+  return `pokemon_sprite_${id}`;
+}
+
 export function loadPokemon(id) {
   if (id === undefined) {
     throw new Error(`Invalid pokemon id: ${id}`);
@@ -22,6 +26,8 @@ export function loadPokemon(id) {
   if (pokemon === null) {
     throw new Error('Pokemon not found');
   }
+
+  return pokemon;
 }
 
 export function loadPokemons(limit = POKEMON_LIMIT, offset = POKEMON_OFFSET) {
@@ -33,7 +39,7 @@ export function loadPokemons(limit = POKEMON_LIMIT, offset = POKEMON_OFFSET) {
   return pokemons;
 }
 
-export function loadPokemonSpecies(name) {
+export function loadSpecies(name) {
   if (name === undefined) {
     throw new Error(`Invalid pokemon species name: ${name}`);
   }
@@ -44,6 +50,19 @@ export function loadPokemonSpecies(name) {
   }
 
   return species;
+}
+
+export function loadPokemonSprite(id) {
+  if (id === undefined) {
+    throw new Error(`Invalid pokemon id: ${id}`);
+  }
+
+  const sprite = JSON.parse(localStorage.getItem(getPokemonSpriteKey(id)));
+  if (sprite === null) {
+    throw new Error('Pokemon sprite not found');
+  }
+
+  return sprite;
 }
 
 export function storePokemon(id, pokemon) {
@@ -68,4 +87,13 @@ export function storeSpecies(name, species) {
   }
 
   localStorage.setItem(getPokemonSpeciesKey(name), JSON.stringify(species));
+}
+
+export function storePokemonSprite(id, sprite) {
+  console.log(sprite);
+  if (id === undefined || typeof sprite !== 'string') {
+    throw new Error('Id and sprite must be defined to be stored in local storage');
+  }
+
+  localStorage.setItem(getPokemonSpriteKey(id), JSON.stringify(sprite));
 }
