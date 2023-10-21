@@ -1,12 +1,12 @@
 const URL = 'https://pokeapi.co/api/v2';
 
 export async function getPokemon(id) {
+  console.log(id);
   const pokemonURL = `${URL}/pokemon/${id}`;
 
   // eslint-disable-next-line no-return-await
   return await fetch(pokemonURL)
     .then((response) => response.json())
-    .then((pokemon) => pokemon)
     .catch((error) => {
       throw new Error(error);
     });
@@ -18,7 +18,6 @@ export async function getPokemons(limit, offset) {
   // eslint-disable-next-line no-return-await
   return await fetch(pokemonsURL)
     .then((response) => response.json())
-    .then((pokemons) => pokemons)
     .catch((error) => {
       throw new Error(error);
     });
@@ -30,7 +29,6 @@ export async function getPokemonSpecies(name) {
   // eslint-disable-next-line no-return-await
   return await fetch(speciesURL)
     .then((response) => response.json())
-    .then((species) => species)
     .catch((error) => {
       throw new Error(error);
     });
@@ -38,10 +36,7 @@ export async function getPokemonSpecies(name) {
 
 export async function getPokemonSprite(pokemonId, sprite = '') {
   try {
-    const pokemonSprite = Array.isArray(pokemonId)
-      ? pokemonId.map((id) => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${sprite}${id}.png`)
-      : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${sprite}${pokemonId}.png`;
-    return pokemonSprite;
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${sprite}${pokemonId}.png`;
   } catch (error) {
     throw new Error(error);
   }
