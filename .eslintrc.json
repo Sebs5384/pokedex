@@ -1,0 +1,30 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": "airbnb-base",
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "rules": {
+    "linebreak-style": ["error", "windows"],
+    "max-len": ["error", { "code": 300 }],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "always"
+      }
+    ],
+    "object-curly-newline": [
+      "error",
+      {
+        "ObjectExpression": "always",
+        "ObjectPattern": { "multiline": true },
+        "ImportDeclaration": "never",
+        "ExportDeclaration": { "multiline": true, "minProperties": 3 }
+      }
+    ]
+  }
+}
