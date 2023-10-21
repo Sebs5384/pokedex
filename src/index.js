@@ -1,4 +1,4 @@
-import { updatePokedexPage, setupPokemonModal, setupNavigationBar } from "./pokemon.js";
+import { updatePokedexPage, setupPokemonModal, setupNavigationBar } from './pokemon.js';
 
 function initialize() {
   const MAX_LIMIT = 100000;

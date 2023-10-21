@@ -1,53 +1,19 @@
-export async function displayPokemonCardModal(pokemonData) {
-  createLoadingModal();
-  await showModal("#loading-modal");
-  await setPokemonCardModalContent(pokemonData);
-  await changeModalCardTexture(pokemonData);
-  await changeModalCardSprite(pokemonData);
-  await hideModal("#loading-modal", 500);
-  await showModal("#pokemon-modal");
-  setupCloseModalButton("#close-modal-button");
-}
-
-async function setPokemonCardModalContent(pokemonData) {
-  const { skills, height, name, stats, types, weight, previousEvolutionData, description, typeAdvantage, sprite } = pokemonData;
-  const $modalContent = document.querySelector("#pokemon-modal-content");
-  $modalContent.innerHTML = "";
-
-  const $modalBody = createModalBody();
-  const $modalHeader = createModalHeader(name, stats, types, previousEvolutionData);
-  const $modalCard = createCard(types);
-  const $modalBanner = createBanner(types, height, weight);
-  const $modalSkillsContainer = createSkillsContainer(types, skills);
-  const $modalStatsContainer = createStatsContainer(stats);
-  const $modalMiscStats = createMiscStats(typeAdvantage, previousEvolutionData);
-  const $modalFooter = createPokemonDescription(description);
-
-  $modalBody.appendChild($modalHeader);
-  $modalBody.appendChild($modalCard);
-  $modalBody.appendChild($modalBanner);
-  $modalBody.appendChild($modalSkillsContainer);
-  $modalBody.appendChild($modalStatsContainer);
-  $modalBody.appendChild($modalMiscStats);
-  $modalBody.appendChild($modalFooter);
-  $modalContent.appendChild($modalBody);
-}
-
+/* eslint-disable indent */
 function createModalBody() {
-  const $modalBody = document.createElement("section");
-  $modalBody.className = "modal-body";
-  $modalBody.id = "pokemon-modal-body";
+  const $modalBody = document.createElement('section');
+  $modalBody.className = 'modal-body';
+  $modalBody.id = 'pokemon-modal-body';
 
   return $modalBody;
 }
 
 function createModalHeader(name, stats, types, previousEvolutionData) {
-  const $modalHeader = document.createElement("section");
-  $modalHeader.className = "container-fluid capitalize-text";
+  const $modalHeader = document.createElement('section');
+  $modalHeader.className = 'container-fluid capitalize-text';
 
   $modalHeader.innerHTML = `
     <div class="row modal-font">
-      ${previousEvolutionData.name === "Basic Pokemon" ? `<div class="col-2 col-md-2"></div>` : ` <strong class="col-2 align-self-end">P. STAGE</strong>`}
+      ${previousEvolutionData.name === 'Basic Pokemon' ? '<div class="col-2 col-md-2"></div>' : '<strong class="col-2 align-self-end">P. STAGE</strong>'}
       <strong class="col-5 col-md-5 col-lg-5 align-self-end text-start" data-cy="previous-evolution-name">${previousEvolutionData.name}</strong>
       <strong class="col-4 col-md-4 col-lg-4 align-self-end text-end" data-cy="pokemon-genus">${previousEvolutionData.genus}</strong>
       <div class="col-1 col-md-1">
@@ -61,8 +27,8 @@ function createModalHeader(name, stats, types, previousEvolutionData) {
 
     <div class="row" id="pokemon-main-info">
       ${
-        previousEvolutionData.id === "None"
-          ? `<div class="col-2"></div>`
+        previousEvolutionData.id === 'None'
+          ? '<div class="col-2"></div>'
           : `<img class="col-2 col-md-2 align-self-center stage-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${previousEvolutionData.id}.png" data-id="${previousEvolutionData.id}" data-cy="previous-evolution-sprite" />`
       }
       <strong class="col-4 col-md-4 align-self-center" data-cy="pokemon-name">${name}</strong>
@@ -75,9 +41,9 @@ function createModalHeader(name, stats, types, previousEvolutionData) {
 }
 
 function createCard(types) {
-  const $modalCardContainer = document.createElement("section");
-  $modalCardContainer.className = "container-fluid";
-  $modalCardContainer.id = "pokemon-modal-image";
+  const $modalCardContainer = document.createElement('section');
+  $modalCardContainer.className = 'container-fluid';
+  $modalCardContainer.id = 'pokemon-modal-image';
   $modalCardContainer.innerHTML = `
     <div class="card main-image-container ${types.mainType}-background" data-cy="type-texture">
       <div class="row card-body justify-content-center">
@@ -90,9 +56,9 @@ function createCard(types) {
 }
 
 function createBanner(types, height, weight) {
-  const $modalBanner = document.createElement("section");
-  $modalBanner.className = "row col-11 mt-2 mx-auto modal-banner";
-  $modalBanner.id = "pokemon-modal-banner";
+  const $modalBanner = document.createElement('section');
+  $modalBanner.className = 'row col-11 mt-2 mx-auto modal-banner';
+  $modalBanner.id = 'pokemon-modal-banner';
 
   $modalBanner.innerHTML = `
     <img class="col-2 col-md-2" src="img/pokemon-types/logos/${types.mainType}-type.png" data-cy="pokemon-main-type-logo" />
@@ -105,8 +71,8 @@ function createBanner(types, height, weight) {
 }
 
 function createSkillsContainer(types, skills) {
-  const $modalSkillContainer = document.createElement("section");
-  $modalSkillContainer.className = "container-fluid capitalize-text mt-2";
+  const $modalSkillContainer = document.createElement('section');
+  $modalSkillContainer.className = 'container-fluid capitalize-text mt-2';
 
   $modalSkillContainer.innerHTML = `
     <div class="row modal-font">
@@ -130,8 +96,8 @@ function createSkillsContainer(types, skills) {
 }
 
 function createStatsContainer(stats) {
-  const $modalStatsContainer = document.createElement("section");
-  $modalStatsContainer.className = "container-fluid mt-2";
+  const $modalStatsContainer = document.createElement('section');
+  $modalStatsContainer.className = 'container-fluid mt-2';
 
   $modalStatsContainer.innerHTML = `
     <div class="row modal-font">
@@ -167,8 +133,8 @@ function createStatsContainer(stats) {
 }
 
 function createMiscStats(typeAdvantage, previousEvolutionData) {
-  const $modalMiscStats = document.createElement("section");
-  $modalMiscStats.className = "container-fluid mt-2";
+  const $modalMiscStats = document.createElement('section');
+  $modalMiscStats.className = 'container-fluid mt-2';
 
   $modalMiscStats.innerHTML = `
   <div class="row modal-font">
@@ -184,8 +150,8 @@ function createMiscStats(typeAdvantage, previousEvolutionData) {
     </div>
     <div class="col-4 text-end" data-cy="retreat-icon">
       ${
-        previousEvolutionData.name === "Basic Pokemon"
-          ? `<img src="img/pokemon-types/icons/retreat-icon.png" class="status-icon" />`
+        previousEvolutionData.name === 'Basic Pokemon'
+          ? '<img src="img/pokemon-types/icons/retreat-icon.png" class="status-icon" />'
           : `<img src="img/pokemon-types/icons/retreat-icon.png" class="status-icon" />
         <img src="img/pokemon-types/icons/retreat-icon.png" class="status-icon" />
         <img src="img/pokemon-types/icons/retreat-icon.png" class="status-icon" />
@@ -199,8 +165,8 @@ function createMiscStats(typeAdvantage, previousEvolutionData) {
 }
 
 function createPokemonDescription(description) {
-  const $modalDescription = document.createElement("section");
-  $modalDescription.className = "container-fluid mt-2";
+  const $modalDescription = document.createElement('section');
+  $modalDescription.className = 'container-fluid mt-2';
 
   $modalDescription.innerHTML = `
     <div class="card text-center modal-footer-description">
@@ -211,26 +177,10 @@ function createPokemonDescription(description) {
   return $modalDescription;
 }
 
-export function displayCaughtPokemonModal(caughtPokemonData, changeModalText) {
-  setCaughtPokemonModalContent();
-  changeModalText(caughtPokemonData);
-  showModal("#caught-pokemon-modal");
-  hideModal("#caught-pokemon-modal", 10000);
-}
-
-function setCaughtPokemonModalContent() {
-  const $caughtPokemonContent = document.querySelector("#caught-pokemon-content");
-
-  $caughtPokemonContent.innerHTML = "";
-
-  const $caughtPokemonBody = createCaughtModalBody();
-  $caughtPokemonContent.appendChild($caughtPokemonBody);
-}
-
 function createCaughtModalBody() {
-  const $caughtModalBody = document.createElement("section");
+  const $caughtModalBody = document.createElement('section');
 
-  $caughtModalBody.className = "modal-body pokedex-message-body";
+  $caughtModalBody.className = 'modal-body pokedex-message-body';
   $caughtModalBody.innerHTML = `
     <div class="pokedex-message-background">
       <div class="container pokemon-emerald-font pokedex-registration-message">
@@ -245,48 +195,25 @@ function createCaughtModalBody() {
   return $caughtModalBody;
 }
 
-export function displayPokedexRegistrationModal(caughtPokemonData) {
-  setPokedexRegistrationModalContent(caughtPokemonData);
-  showModal("#pokedex-registration-modal", 9000);
-  hideModal("#pokedex-registration-modal", 25000);
-}
-
-function setPokedexRegistrationModalContent(caughtPokemonData) {
-  const { id, name, height, weight, description, previousEvolutionData, sprite } = caughtPokemonData;
-  const $registrationModalContent = document.querySelector("#registration-content");
-  $registrationModalContent.innerHTML = "";
-
-  const $registrationText = createRegistrationText();
-  const $modalBody = createRegistrationBody();
-  const $registrationContent = createRegistrationContent(id, name, height, weight, sprite, previousEvolutionData);
-  const $registrationDescription = createRegistrationDescription(description);
-
-  $registrationModalContent.appendChild($registrationText);
-  $registrationModalContent.appendChild($modalBody);
-  $modalBody.appendChild($registrationContent);
-  $registrationModalContent.appendChild($modalBody);
-  $registrationModalContent.appendChild($registrationDescription);
-}
-
 function createRegistrationText() {
-  const $registrationText = document.createElement("section");
-  $registrationText.className = "registration-text modal-title w-100 text-center h2";
-  $registrationText.innerText = "POKÉDEX registration completed.";
+  const $registrationText = document.createElement('section');
+  $registrationText.className = 'registration-text modal-title w-100 text-center h2';
+  $registrationText.innerText = 'POKÉDEX registration completed.';
 
   return $registrationText;
 }
 
 function createRegistrationBody() {
-  const $modalBody = document.createElement("section");
-  $modalBody.className = "modal-body row justify-content-center registration-screen-background";
-  $modalBody.style = "text-transform: uppercase";
+  const $modalBody = document.createElement('section');
+  $modalBody.className = 'modal-body row justify-content-center registration-screen-background';
+  $modalBody.style = 'text-transform: uppercase';
 
   return $modalBody;
 }
 
 function createRegistrationContent(id, name, height, weight, sprite, previousEvolutionData) {
-  const $registrationContent = document.createElement("div");
-  $registrationContent.className = "col-11 registration-details-background";
+  const $registrationContent = document.createElement('div');
+  $registrationContent.className = 'col-11 registration-details-background';
 
   $registrationContent.innerHTML = `
   <div class="row justify-content-center registration-screen">
@@ -328,24 +255,24 @@ function createRegistrationContent(id, name, height, weight, sprite, previousEvo
 }
 
 function createRegistrationDescription(description) {
-  const $descriptionContainer = document.createElement("section");
-  $descriptionContainer.className = "registration-text modal-title w-100 text-center h1";
+  const $descriptionContainer = document.createElement('section');
+  $descriptionContainer.className = 'registration-text modal-title w-100 text-center h1';
 
   $descriptionContainer.innerHTML = `
-    <div>${description ? description : "Uknown pokemon description"}</div>
+    <div>${description || 'Uknown pokemon description'}</div>
   `;
 
   return $descriptionContainer;
 }
 
 function createLoadingModal() {
-  const $pokemonModal = document.querySelector("#pokemon-modal");
-  const $loadingModalContent = document.querySelector("#loading-modal-content");
-  $loadingModalContent.innerHTML = "";
-  $pokemonModal.style = "hidden";
+  const $pokemonModal = document.querySelector('#pokemon-modal');
+  const $loadingModalContent = document.querySelector('#loading-modal-content');
+  $loadingModalContent.innerHTML = '';
+  $pokemonModal.style = 'hidden';
 
-  const $loadingModalBody = document.createElement("section");
-  $loadingModalBody.className = "modal-body pokedex-message-body";
+  const $loadingModalBody = document.createElement('section');
+  $loadingModalBody.className = 'modal-body pokedex-message-body';
   $loadingModalBody.innerHTML = `
   <div class="pokedex-message-background">
     <div class="pokemon-emerald-font pokedex-message">
@@ -359,8 +286,10 @@ function createLoadingModal() {
 }
 
 async function showModal(modal, timer = 0) {
+  // eslint-disable-next-line no-undef
   const $modal = new bootstrap.Modal(modal);
 
+  // eslint-disable-next-line no-return-await
   return await new Promise((resolve) => {
     setTimeout(() => {
       $modal.show();
@@ -370,8 +299,10 @@ async function showModal(modal, timer = 0) {
 }
 
 async function hideModal(modal, timer = 0) {
+  // eslint-disable-next-line no-undef
   const $modal = bootstrap.Modal.getInstance(modal);
 
+  // eslint-disable-next-line no-return-await
   return await new Promise((resolve) => {
     setTimeout(() => {
       $modal.hide();
@@ -381,7 +312,7 @@ async function hideModal(modal, timer = 0) {
 }
 
 function removeModals() {
-  const $modals = document.querySelectorAll(".modal-backdrop");
+  const $modals = document.querySelectorAll('.modal-backdrop');
   $modals.forEach(($modal) => {
     $modal.remove();
   });
@@ -389,9 +320,10 @@ function removeModals() {
 
 async function changeModalCardTexture(pokemonData) {
   const { types } = pokemonData;
-  const $modalContent = document.querySelector("#pokemon-modal-content");
+  const $modalContent = document.querySelector('#pokemon-modal-content');
   const modalTexture = `img/modal-textures/${types.mainType}-texture.png`;
 
+  // eslint-disable-next-line no-return-await
   return await new Promise((resolve) => {
     const img = new Image();
     img.src = modalTexture;
@@ -404,8 +336,9 @@ async function changeModalCardTexture(pokemonData) {
 
 async function changeModalCardSprite(pokemonData) {
   const { sprite } = pokemonData;
-  const $modalCard = document.querySelector("#pokemon-card-sprite");
+  const $modalCard = document.querySelector('#pokemon-card-sprite');
 
+  // eslint-disable-next-line no-return-await
   return await new Promise((resolve) => {
     const img = new Image();
     img.src = sprite;
@@ -414,7 +347,7 @@ async function changeModalCardSprite(pokemonData) {
     };
 
     img.onerror = () => {
-      $modalCard.src = "img/misc/404-shocked.png";
+      $modalCard.src = 'img/misc/404-shocked.png';
     };
 
     resolve();
@@ -427,4 +360,78 @@ function setupCloseModalButton(button) {
   $closeButton.onclick = () => {
     removeModals();
   };
+}
+
+async function setPokemonCardModalContent(pokemonData) {
+  const { skills, height, name, stats, types, weight, previousEvolutionData, description, typeAdvantage } = pokemonData;
+  const $modalContent = document.querySelector('#pokemon-modal-content');
+  $modalContent.innerHTML = '';
+
+  const $modalBody = createModalBody();
+  const $modalHeader = createModalHeader(name, stats, types, previousEvolutionData);
+  const $modalCard = createCard(types);
+  const $modalBanner = createBanner(types, height, weight);
+  const $modalSkillsContainer = createSkillsContainer(types, skills);
+  const $modalStatsContainer = createStatsContainer(stats);
+  const $modalMiscStats = createMiscStats(typeAdvantage, previousEvolutionData);
+  const $modalFooter = createPokemonDescription(description);
+
+  $modalBody.appendChild($modalHeader);
+  $modalBody.appendChild($modalCard);
+  $modalBody.appendChild($modalBanner);
+  $modalBody.appendChild($modalSkillsContainer);
+  $modalBody.appendChild($modalStatsContainer);
+  $modalBody.appendChild($modalMiscStats);
+  $modalBody.appendChild($modalFooter);
+  $modalContent.appendChild($modalBody);
+}
+
+function setPokedexRegistrationModalContent(caughtPokemonData) {
+  const { id, name, height, weight, description, previousEvolutionData, sprite } = caughtPokemonData;
+  const $registrationModalContent = document.querySelector('#registration-content');
+  $registrationModalContent.innerHTML = '';
+
+  const $registrationText = createRegistrationText();
+  const $modalBody = createRegistrationBody();
+  const $registrationContent = createRegistrationContent(id, name, height, weight, sprite, previousEvolutionData);
+  const $registrationDescription = createRegistrationDescription(description);
+
+  $registrationModalContent.appendChild($registrationText);
+  $registrationModalContent.appendChild($modalBody);
+  $modalBody.appendChild($registrationContent);
+  $registrationModalContent.appendChild($modalBody);
+  $registrationModalContent.appendChild($registrationDescription);
+}
+
+function setCaughtPokemonModalContent() {
+  const $caughtPokemonContent = document.querySelector('#caught-pokemon-content');
+
+  $caughtPokemonContent.innerHTML = '';
+
+  const $caughtPokemonBody = createCaughtModalBody();
+  $caughtPokemonContent.appendChild($caughtPokemonBody);
+}
+
+export async function displayPokemonCardModal(pokemonData) {
+  createLoadingModal();
+  await showModal('#loading-modal');
+  await setPokemonCardModalContent(pokemonData);
+  await changeModalCardTexture(pokemonData);
+  await changeModalCardSprite(pokemonData);
+  await hideModal('#loading-modal', 500);
+  await showModal('#pokemon-modal');
+  setupCloseModalButton('#close-modal-button');
+}
+
+export function displayCaughtPokemonModal(caughtPokemonData, changeModalText) {
+  setCaughtPokemonModalContent();
+  changeModalText(caughtPokemonData);
+  showModal('#caught-pokemon-modal');
+  hideModal('#caught-pokemon-modal', 10000);
+}
+
+export function displayPokedexRegistrationModal(caughtPokemonData) {
+  setPokedexRegistrationModalContent(caughtPokemonData);
+  showModal('#pokedex-registration-modal', 9000);
+  hideModal('#pokedex-registration-modal', 25000);
 }
