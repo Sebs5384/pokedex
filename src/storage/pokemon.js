@@ -13,8 +13,8 @@ function getPokemonSpeciesKey(name) {
   return `pokemon_species_${name}`;
 }
 
-function getPokemonSpriteKey(id) {
-  return `pokemon_sprite_${id}`;
+function getPokemonSpriteKey(id, artwork = 'classic') {
+  return `pokemon_sprite_${id}_${artwork}`;
 }
 
 export function loadPokemon(id) {
@@ -52,12 +52,12 @@ export function loadSpecies(name) {
   return species;
 }
 
-export function loadPokemonSprite(id) {
+export function loadPokemonSprite(id, artwork) {
   if (id === undefined) {
     throw new Error(`Invalid pokemon id: ${id}`);
   }
 
-  const sprite = JSON.parse(localStorage.getItem(getPokemonSpriteKey(id)));
+  const sprite = JSON.parse(localStorage.getItem(getPokemonSpriteKey(id, artwork)));
   if (sprite === null) {
     throw new Error('Pokemon sprite not found');
   }
@@ -89,11 +89,10 @@ export function storeSpecies(name, species) {
   localStorage.setItem(getPokemonSpeciesKey(name), JSON.stringify(species));
 }
 
-export function storePokemonSprite(id, sprite) {
-  console.log(sprite);
+export function storePokemonSprite(id, sprite, artwork) {
   if (id === undefined || typeof sprite !== 'string') {
     throw new Error('Id and sprite must be defined to be stored in local storage');
   }
 
-  localStorage.setItem(getPokemonSpriteKey(id), JSON.stringify(sprite));
+  localStorage.setItem(getPokemonSpriteKey(id, artwork), JSON.stringify(sprite));
 }

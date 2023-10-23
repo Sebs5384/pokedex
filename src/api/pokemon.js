@@ -34,9 +34,9 @@ export async function getPokemonSpecies(name) {
     });
 }
 
-export async function getPokemonSprite(pokemonId, sprite = '') {
+export function getPokemonSprite(pokemonId, artwork = '') {
   try {
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${sprite}${pokemonId}.png`;
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${artwork}${pokemonId}.png`;
   } catch (error) {
     throw new Error(error);
   }

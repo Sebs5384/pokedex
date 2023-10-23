@@ -1,11 +1,11 @@
-import { getPokemon, getPokemons, getPokemonSpecies, getPokemonSprite } from './api/pokemon.js';
+import { getPokemon, getPokemons, getPokemonSpecies, getPokemonSprite } from './service/pokemon.js';
 import setupPagination from './ui/pagination.js';
 import { displayPokemonCardModal, displayCaughtPokemonModal, displayPokedexRegistrationModal } from './ui/modal.js';
 import displayPokemonCards from './ui/cards.js';
 import { handleSearchInput, searchPokemon, createPokemonList, filterPokemonsName } from './ui/search-box.js';
 import { handlePokeballButton, changeCaughtPokemonText, setCaughtPokemonSlot } from './ui/catch-pokemon.js';
 import { displayLoadingMessage, handleClickedPokemon } from './ui/general.js';
-import { getPokemonsData, getPokemonData, getPageData } from './utils/pokemon.js';
+import { getPokemonsData, getPokemonData, getPageData, getSpriteList } from './utils/pokemon.js';
 import validatePageSearchBox from './utils/validation.js';
 import { catchPokemon } from './utils/general.js';
 
@@ -14,6 +14,7 @@ export async function updatePokedexPage(POKEMONS_PER_PAGE, pageIndex) {
 
   const pokemons = await getPokemons(POKEMONS_PER_PAGE, pageIndex);
   const pokemonsData = await getPokemonsData(pokemons);
+  const sprites = getSpriteList(pokemonsData.pokemonIds, getPokemonSprite);
 
   setupPagination(POKEMONS_PER_PAGE, pageIndex, pokemonsData, getPageData, updatePokedexPage, validatePageSearchBox);
   displayPokemonCards(pokemonsData, sprites);

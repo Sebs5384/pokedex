@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 import { getPokemon as getPokemonFromApi, getPokemons as getPokemonsFromApi, getPokemonSpecies as getPokemonSpeciesFromApi, getPokemonSprite as getPokemonSpriteFromAssets } from '../api/pokemon.js';
 import {
   loadPokemon as loadPokemonFromStorage,
@@ -43,12 +44,12 @@ export async function getPokemonSpecies(name) {
   }
 }
 
-export async function getPokemonSprite(id) {
+export function getPokemonSprite(id, artwork = '') {
   try {
-    return loadPokemonSpriteFromStorage(id);
+    return loadPokemonSpriteFromStorage(id, artwork);
   } catch (error) {
-    const sprite = await getPokemonSpriteFromAssets(id);
-    storePokemonSprite(id, sprite);
+    const sprite = getPokemonSpriteFromAssets(id, artwork);
+    storePokemonSprite(id, sprite, artwork);
     return sprite;
   }
 }
