@@ -1,8 +1,8 @@
-const URL = 'https://pokeapi.co/api/v2';
+export const BASE_URL = 'https://pokeapi.co/api/v2';
 
 export async function getPokemon(id) {
   console.log(id);
-  const pokemonURL = `${URL}/pokemon/${id}`;
+  const pokemonURL = `${BASE_URL}/pokemon/${id}`;
 
   // eslint-disable-next-line no-return-await
   return await fetch(pokemonURL)
@@ -13,7 +13,7 @@ export async function getPokemon(id) {
 }
 
 export async function getPokemons(limit, offset) {
-  const pokemonsURL = `${URL}/pokemon/?limit=${limit}&offset=${offset}`;
+  const pokemonsURL = `${BASE_URL}/pokemon/?limit=${limit}&offset=${offset}`;
 
   // eslint-disable-next-line no-return-await
   return await fetch(pokemonsURL)
@@ -24,7 +24,7 @@ export async function getPokemons(limit, offset) {
 }
 
 export async function getPokemonSpecies(name) {
-  const speciesURL = `${URL}/pokemon-species/${name}`;
+  const speciesURL = `${BASE_URL}/pokemon-species/${name}`;
 
   // eslint-disable-next-line no-return-await
   return await fetch(speciesURL)
