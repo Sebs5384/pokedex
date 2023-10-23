@@ -62,3 +62,8 @@ export function getPageData(pageData, pageIndex, itemsPerPage) {
     currentPage,
   };
 }
+
+export function getSpriteList(pokemonIds, getPokemonSprite) {
+  const sprites = pokemonIds.map((id) => getPokemonSprite(id));
+  return sprites;
+}
