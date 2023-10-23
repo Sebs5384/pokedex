@@ -9,6 +9,16 @@
   },
   "rules": {
     "linebreak-style": ["error", "windows"],
+    "prefer-destructuring": [
+      "error",
+      {
+        "array": true,
+        "object": false
+      },
+      {
+        "enforceForRenamedProperties": false
+      }
+    ],
     "max-len": ["error", { "code": 300 }],
     "import/extensions": [
       "error",

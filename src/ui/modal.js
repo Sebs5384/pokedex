@@ -213,6 +213,8 @@ function createRegistrationBody() {
 
 function createRegistrationContent(id, name, height, weight, sprite, previousEvolutionData) {
   const $registrationContent = document.createElement('div');
+  const MAX_GEN_ID = 1017;
+  const LOWEST_GEN_ID = MAX_GEN_ID - 8983;
   $registrationContent.className = 'col-11 registration-details-background';
 
   $registrationContent.innerHTML = `
@@ -225,7 +227,7 @@ function createRegistrationContent(id, name, height, weight, sprite, previousEvo
       <div class="row">
         <div class="col-11 registration-info-background">
           <div class="row">
-            <div class="mt-2 col-12 text-start h3">Nº ${id > 1017 ? id - 8983 : id} ${name}</div>
+            <div class="mt-2 col-12 text-start h3">Nº ${id > MAX_GEN_ID ? id - LOWEST_GEN_ID : id} ${name}</div>
             <div class="mb-2 col-12 h3 genus-registration-font" > ${previousEvolutionData.genus}</div>
           </div>
         </div>

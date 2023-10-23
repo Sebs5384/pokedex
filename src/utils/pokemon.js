@@ -28,7 +28,7 @@ export async function getPokemonsData(pokemons) {
 }
 
 export async function getPokemonData(pokemon, species, sprite) {
-  const { id } = pokemon.id;
+  const id = pokemon.id;
   const name = getPokemonMainName(pokemon.name);
   const skills = getPokemonSkills(pokemon.abilities);
   const stats = getPokemonStats(pokemon.stats);
