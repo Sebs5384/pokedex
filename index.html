@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="img/misc/pokedex-icon.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+    <!--<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />-->
+    <link rel="stylesheet" href="styles.css" />
+    <title>Pokedex</title>
+  </head>
+  <body>
+    <main>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary nav-bar">
+        <section class="container-fluid col-12 col-md-12 col-lg-12">
+          <a class="navbar-brand" href="#">
+            <img src="img/misc/pokedex-logo.png" alt="Pokedex" class="poke-logo" />
+          </a>
+
+          <form class="container-fluid col-4 col-md-5 col-lg-4">
+            <div class="input-group dropdown" id="pokedex-search-box">
+              <span class="input-group-text"><img src="img/misc/magnifier.png" alt="@" class="magnifier" /></span>
+              <input type="search" class="form-control search-input dropdown-toggle" data-cy="pokemon-search-box" placeholder="Search pokemon" data-bs-toggle="dropdown" aria-expanded="false" />
+              <ul class="dropdown-menu search-box-list" id="pokedex-search-list" data-cy="pokemon-search-box-list"></ul>
+            </div>
+          </form>
+
+          <section class="container-fluid col-5 col-md-5 col-lg-7" id="catch-pokemon">
+            <div class="row justify-content-start align-items-center">
+              <div class="col-3 col-md-6 col-lg-4">
+                <div class="row">
+                  <div class="col-6 col-md-4 col-lg-3">
+                    <button class="btn" id="catch-pokemon-button" data-cy="pokeball-button"></button>
+                  </div>
+                  <div class="col-6 col-md-3 col-lg-3 align-self-center">
+                    <img class="catch-pokemon-img" src="img/misc/catch-a-pokemon.png" alt="catch-a-pokemon" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-8 col-md-6 col-lg-5">
+                <div class="row" id="caught-pokemon-container">
+                  <div class="col-4 col-md-4 col-lg-4">
+                    <img class="slot-image" />
+                  </div>
+                  <div class="col-4 col-md-4 col-lg-4">
+                    <img class="slot-image" />
+                  </div>
+                  <div class="col-4 col-md-4 col-lg-4">
+                    <img class="slot-image" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+      </nav>
+
+      <section class="modal fade" id="pokemon-modal" data-cy="pokemon-card-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content pokemon-modal" id="pokemon-modal-content"></div>
+        </div>
+      </section>
+
+      <section class="modal fade" id="loading-modal" data-cy="loading-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content" id="loading-modal-content"></div>
+        </div>
+      </section>
+
+      <section class="modal fade" id="caught-pokemon-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content" id="caught-pokemon-content"></div>
+        </div>
+      </section>
+
+      <section class="modal fade pokemon-emerald-font" id="pokedex-registration-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content registration-border" id="registration-content"></div>
+        </div>
+      </section>
+
+      <section class="row justify-content-center mt-2">
+        <div class="card col-12 col-md-11 card-border main-card-container">
+          <div class="card-body">
+            <div class="row justify-content-center gap-3 gap-md-2 text-center" id="cards-container" data-cy="pokemon-cards-container"></div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="text-center mt-2">
+        <div class="row">
+          <div class="col-2 col-md-4"></div>
+          <div class="col-6 col-md-4">
+            <div class="row">
+              <div class="col-12 col-md-12">
+                <nav>
+                  <ul class="pagination justify-content-center" id="paginator-container"></ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+          <div class="col-1 col-md-1 align-items-end">
+            <input
+              type="search"
+              class="form-control form-control-sm paginator-search-box text-center"
+              data-cy="paginator-search-box"
+              placeholder="Go"
+              id="search-page-input"
+              data-bs-toggle="popover"
+              data-bs-placement="right"
+              data-bs-container="body"
+              data-bs-content=""
+            />
+          </div>
+        </div>
+      </footer>
+    </main>
+  </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <!--<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>-->
+  <script src="src/index.js" type="module"></script>
+</html>

@@ -1,0 +1,29 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "description": "A pokedex made in vanilla JS",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server",
+    "cypress-dev": "cypress open",
+    "test:ui": "run-p start cypress-dev",
+    "jest": "jest",
+    "test": "jest"
+  },
+  "author": "5384",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
+    "babel-jest": "^29.7.0",
+    "cypress": "^13.1.0",
+    "eslint": "^8.51.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "jest": "^29.7.0",
+    "npm-run-all": "^4.1.5"
+  }
+}
