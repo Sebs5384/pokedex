@@ -24,7 +24,7 @@ export async function getPokemon(id) {
   }
 }
 
-export async function getPokemons(pokemon, limit = POKEMON_LIMIT, offset = POKEMON_OFFSET) {
+export async function getPokemons(limit = POKEMON_LIMIT, offset = POKEMON_OFFSET) {
   try {
     return loadPokemonsFromStorage(limit, offset);
   } catch (error) {
