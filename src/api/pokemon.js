@@ -39,9 +39,5 @@ export async function getPokemonSpecies(name) {
 export function getPokemonSprite(pokemonId, artwork = '') {
   if (pokemonId === undefined) throw new Error(`Invalid pokemon id: ${pokemonId}`);
 
-  try {
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${artwork}${pokemonId}.png`;
-  } catch (error) {
-    throw new Error(`An error occurred while returning the desired url with the pokemon id: ${pokemonId} ${error}`);
-  }
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${artwork}${pokemonId}.png`;
 }
