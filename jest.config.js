@@ -1,4 +1,5 @@
 /** @type {import('jest').Config} */
+
 const config = {
   verbose: true,
   coverageDirectory: 'coverage',
@@ -6,7 +7,6 @@ const config = {
   coveragePathIgnorePatterns: ['/node_modules/'],
   clearMocks: true,
   collectCoverage: true,
-  coverageDirectory: 'coverage',
 };
 
 module.exports = config;

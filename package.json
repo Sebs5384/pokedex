@@ -7,7 +7,6 @@
     "start": "http-server",
     "cypress-dev": "cypress open",
     "test:ui": "run-p start cypress-dev",
-    "jest": "jest",
     "test": "jest"
   },
   "author": "5384",
